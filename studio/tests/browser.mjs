@@ -41,6 +41,16 @@ try {
   await page.mouse.move(handle.x + 40, handle.y - 25, { steps: 5 });
   await page.mouse.up();
   assert.ok(Number(await page.locator("#light-x").inputValue()) > before);
+  const keyBefore = Number(await page.locator("#light-x").inputValue());
+  await page.locator(".handle.selected").focus();
+  await page.keyboard.press("ArrowRight");
+  assert.ok(Number(await page.locator("#light-x").inputValue()) > keyBefore);
+  assert.equal(
+    await page
+      .locator(".handle.selected")
+      .evaluate((el) => el === document.activeElement),
+    true,
+  );
   await page.locator("#layer-front").click();
   assert.equal(
     await page.locator(".layer").first().getAttribute("data-layer"),
@@ -74,16 +84,14 @@ try {
   await page.locator('[data-layer="alpine-cabin"]').waitFor();
   assert.equal(await page.locator("#weather").inputValue(), "rain");
   // Import actual raster artwork, then remove it through the inspector.
-  await page
-    .locator("#image-input")
-    .setInputFiles({
-      name: "user-layer.png",
-      mimeType: "image/png",
-      buffer: Buffer.from(
-        "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIHWP4z8DwHwAFgAI/ScLbtAAAAABJRU5ErkJggg==",
-        "base64",
-      ),
-    });
+  await page.locator("#image-input").setInputFiles({
+    name: "user-layer.png",
+    mimeType: "image/png",
+    buffer: Buffer.from(
+      "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIHWP4z8DwHwAFgAI/ScLbtAAAAABJRU5ErkJggg==",
+      "base64",
+    ),
+  });
   await page.waitForFunction(
     () => document.querySelectorAll(".layer").length === 4,
   );

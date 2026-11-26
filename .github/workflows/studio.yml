@@ -43,7 +43,7 @@ jobs:
           server_pid=$!
           trap 'kill "$server_pid"' EXIT
           node studio/tests/browser.mjs
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5.0.0
         if: github.event_name != 'pull_request'
         with:
           path: studio
@@ -60,4 +60,4 @@ jobs:
     steps:
       - name: Publish Studio
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5.0.1

@@ -354,23 +354,26 @@ for (const event of ["pointerup", "pointercancel"])
     }
   });
 $("#handles").addEventListener("keydown", (e) => {
-  if (
-    !e.target.dataset.handle ||
-    !["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)
-  )
-    return;
+  if (!e.target.dataset.handle) return;
+  const arrows = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
+  if (![...arrows, "Enter", " "].includes(e.key)) return;
   e.preventDefault();
   lightID = e.target.dataset.handle;
-  checkpoint();
-  const l = selectedLight(),
-    step = e.shiftKey ? 0.01 : 0.001;
-  if (e.key === "ArrowUp") l.y = clamp(l.y - step, 0, 1);
-  if (e.key === "ArrowDown") l.y = clamp(l.y + step, 0, 1);
-  if (e.key === "ArrowLeft") l.x = clamp(l.x - step, 0, 1);
-  if (e.key === "ArrowRight") l.x = clamp(l.x + step, 0, 1);
-  changed(false);
-  positionHandles();
+  if (arrows.includes(e.key)) {
+    checkpoint();
+    const light = selectedLight(),
+      step = e.shiftKey ? 0.01 : 0.001;
+    if (e.key === "ArrowUp") light.y = clamp(light.y - step, 0, 1);
+    if (e.key === "ArrowDown") light.y = clamp(light.y + step, 0, 1);
+    if (e.key === "ArrowLeft") light.x = clamp(light.x - step, 0, 1);
+    if (e.key === "ArrowRight") light.x = clamp(light.x + step, 0, 1);
+    changed();
+  } else render();
+  [...$("#handles").children]
+    .find((button) => button.dataset.handle === lightID)
+    ?.focus({ preventScroll: true });
 });
+
 for (const key of ["hour", "ground", "overscan"]) {
   $("#" + key).addEventListener("pointerdown", checkpoint);
   $("#" + key).addEventListener("input", (e) => {
