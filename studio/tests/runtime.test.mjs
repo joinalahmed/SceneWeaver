@@ -6,7 +6,7 @@ import {WASI} from 'node:wasi';
 const root=new URL('../assets/',import.meta.url);
 test('all 421 procedural recipes execute live in Swift at native and narrow RTL widths',async()=>{
  const wasi=new WASI({version:'preview1',args:[],env:{TZ:'UTC',SWIFT_DETERMINISTIC_HASHING:'1'},preopens:{}});
- const bytes=gunzipSync(readFileSync(new URL('runtime/sceneweaver-0.2.0.wasm.gz',root)));
+ const bytes=gunzipSync(readFileSync(new URL('runtime/sceneweaver-0.2.1.wasm.gz',root)));
  const {instance}=await WebAssembly.instantiate(bytes,{wasi_snapshot_preview1:wasi.wasiImport});wasi.initialize(instance);
  const e=instance.exports,enc=new TextEncoder(),dec=new TextDecoder();
  const index=id=>{const b=enc.encode(id),p=e.scene_alloc(b.length);new Uint8Array(e.memory.buffer,p,b.length).set(b);const i=e.scene_index(p,b.length);e.scene_free(p);return i};

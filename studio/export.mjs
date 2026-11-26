@@ -1,4 +1,4 @@
-import { validateProject } from "./model.mjs?v=library-5";
+import { validateProject } from "./model.mjs?v=library-6";
 const number = (x) => Number(x.toFixed(5)).toString();
 const literal = (x) =>
   '"' +

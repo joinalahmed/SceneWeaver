@@ -11,7 +11,7 @@ React 18 and 19 · TypeScript declarations · ESM · SSR-safe client initializat
 Install the built package from the public GitHub release:
 
 ```sh
-npm install https://github.com/joinalahmed/SceneWeaver/releases/download/react-v0.2.0/sceneweaver-react-0.2.0.tgz
+npm install https://github.com/joinalahmed/SceneWeaver/releases/download/react-v0.2.1/sceneweaver-react-0.2.1.tgz
 ```
 
 The package is distributed through GitHub Releases; it is not currently published to the npm registry. React is a peer dependency and is not bundled into the component. Use Node 20+ for package tooling.
@@ -130,7 +130,7 @@ Water animation is optional per layer: `water: { x: 0, y: 0.73, width: 1, height
 
 ## Full original library
 
-Version 0.2.0 exposes all 428 original scenes through the public demo. To self-host, download `sceneweaver-library-0.2.0.zip` from the [native release](https://github.com/joinalahmed/SceneWeaver/releases/tag/v0.2.0), extract its contents into `public/scenes/`, and retain the runtime license notices.
+Version 0.2.1 exposes all 428 original scenes through the public demo. To self-host, download `sceneweaver-library-0.2.1.zip` from the [native release](https://github.com/joinalahmed/SceneWeaver/releases/tag/v0.2.1), extract its contents into `public/scenes/`, and retain the runtime license notices.
 
 ```tsx
 import { useState } from 'react';

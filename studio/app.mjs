@@ -11,9 +11,9 @@ import {
   clamp,
   reorder,
   timeLabel,
-} from "./model.mjs?v=library-5";
-import { generateSwift, zipFiles } from "./export.mjs?v=library-5";
-import { createRenderer, decodeArtwork } from "./render.mjs?v=library-5";
+} from "./model.mjs?v=library-6";
+import { generateSwift, zipFiles } from "./export.mjs?v=library-6";
+import { createRenderer, decodeArtwork } from "./render.mjs?v=library-6";
 
 const $ = (selector) => document.querySelector(selector);
 const icon = (name) =>
@@ -855,7 +855,7 @@ $("#preset").onchange = async (e) => {
   }
 };
 async function loadPreset(entry, { undo = true } = {}) {
-  const url = new URL(`assets/${entry.project}?v=library-5`, location.href),
+  const url = new URL(`assets/${entry.project}?v=library-6`, location.href),
     response = await fetch(url);
   if (!response.ok) throw Error("Could not load the starter scene.");
   const p = validateProject(await response.json(), { allowSources: true });
@@ -919,7 +919,7 @@ document.addEventListener("keydown", (e) => {
 
 async function start() {
   try {
-    const response = await fetch("assets/catalog.json?v=library-5");
+    const response = await fetch("assets/catalog.json?v=library-6");
     if (!response.ok) throw Error("Could not load the scene catalog.");
     catalog = (await response.json()).scenes;
     mountLibrary({

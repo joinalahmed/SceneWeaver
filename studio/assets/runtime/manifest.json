@@ -1,10 +1,10 @@
 {
-  "version": "0.2.0",
-  "sha256": "6325afd6cb3e63f88f9cbb5c1e958d08dfd28176e37e5c4a200ebec19e0b87c4",
-  "compressedSha256": "54d2268c4ad9c38bb51737fe34cd534811f51a562e85e5fb468dd23d1d9f7fea",
+  "version": "0.2.1",
+  "sha256": "d9c5aa44c302c028282ab5d4b978fd7f71c22a96d9366b0ad26c2ceab28f4b26",
+  "compressedSha256": "fc079e4bd3991b5bee96063d442bfc5811caed679db2d7b256cf897c3b87c269",
   "sources": {
     "Sources/SceneWeaver/ScenePen.swift": "d9d7a1ee570c23ab8f492f99c13ccdd67c40d0214079239cd15bc75cd4233b6c",
-    "Sources/SceneWeaverCatalog/Recipes/CatalogRecipes.swift": "094feaabf95c33eb6cc8eae2fa1fb7e0862342e6d9c3ab9507f65cf04890665c",
+    "Sources/SceneWeaverCatalog/Recipes/CatalogRecipes.swift": "436fdf4fd0af1b76333bace7d8cfc13abdbcd87ec19a0442dc74c0bfa8966cfc",
     "Sources/SceneWeaverCatalog/Recipes/Cityscapes.swift": "1cafe889663a9c152a75a14ab6539cfc00b46fd3e7521be288413e6bdd56fbfc",
     "Sources/SceneWeaverCatalog/Recipes/DuaScenes.swift": "160ff8af603fda03213234865b028401ccab6f176d8d3710c873976c203b0f91",
     "Sources/SceneWeaverCatalog/Recipes/DuaScenesByDua.swift": "db7336eb273b0b510ff16f49989f324e2570699b48e9c866d46c5b817cd6c4c3",
@@ -23,6 +23,6 @@
     "Tools/WasmRuntime/Sources/Recipes/main.swift": "fd8b94cf1d25e54e1ebbb0ca63d86c22101cc4181367d6ae5dad3b083a3a1dab",
     "Tools/WasmRuntime/Sources/SceneWeaver/ArtworkLayout.swift": "15e187ec6c9383c1b78fff4841f24c5793175c37bfb18fe0bc251e7ec09a6dc7",
     "Tools/WasmRuntime/Package.swift": "e16fea1ed3ede96923547097d52ea0a22ae54a5c4a5ef90ed90646ed45100047",
-    "scripts/build-wasm.py": "e53bf5d94055e4afb7122515eb3cb99d8c38de99b1bea7a1cff0bb9cf11160de"
+    "scripts/build-wasm.py": "4dbba8d6b83d2a923ab16be3bf02b303fb9fb3d2fa6830c624b54a751dd59e76"
   }
 }

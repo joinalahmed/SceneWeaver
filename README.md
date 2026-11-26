@@ -22,7 +22,7 @@ Compose scenes visually: import aligned artwork, reorder layers, place and drag 
 
 ![SceneWeaver Studio with the alpine scene and layer inspector](docs/screenshots/studio.png)
 
-Browse all **428 original scenes**, including cities, surah and dua scenes, landscapes, and the detailed Makkah/Madinah illustrations. The 421 procedural scenes execute their original Swift recipes live through WebAssembly. Studio and React share the same renderer and assets. [Parity and distribution details](docs/parity.md). No account or build step is needed. [Run locally and read the workflow](studio/README.md).
+Browse all **428 original scenes**, including cities, story and dua scenes, landscapes, and the detailed Makkah/Madinah illustrations. The 421 procedural scenes execute their original Swift recipes live through WebAssembly. Studio and React share the same renderer and assets. [Parity and distribution details](docs/parity.md). No account or build step is needed. [Run locally and read the workflow](studio/README.md).
 
 ![Searchable complete original scene library](docs/screenshots/library.png)
 

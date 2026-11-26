@@ -12,7 +12,7 @@ function App() {
     >([]),
     [libraryOpen, setLibraryOpen] = useState(false);
   const catalogURL = new URL(
-    "../assets/catalog.json?v=library-5",
+    "../assets/catalog.json?v=library-6",
     location.href,
   ).href;
   useEffect(() => {

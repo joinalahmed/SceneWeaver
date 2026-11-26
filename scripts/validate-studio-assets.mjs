@@ -78,6 +78,6 @@ if(inventory.length!==catalog.scenes.length||inventory.some(s=>!nativeIDs.has(s.
 const manifest=JSON.parse(await readFile(path.join(root,"runtime/manifest.json"),"utf8"));
 const hash=bytes=>createHash("sha256").update(bytes).digest("hex");
 for(const [file,expected] of Object.entries(manifest.sources))if(hash(await readFile(path.resolve(root,"../..",file)))!==expected)throw Error(`Rebuild the Swift browser runtime after changing ${file}.`);
-const compressed=await readFile(path.join(root,"runtime/sceneweaver-0.2.0.wasm.gz"));
+const compressed=await readFile(path.join(root,`runtime/sceneweaver-${manifest.version}.wasm.gz`));
 if(hash(compressed)!==manifest.compressedSha256||hash(gunzipSync(compressed))!==manifest.sha256)throw Error("Browser Swift runtime checksum mismatch.");
 console.log(`PASS catalog parity: ${inventory.length} matching scenes and verified Swift runtime sources.`);

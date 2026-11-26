@@ -27,15 +27,10 @@ enum CatalogRecipes {
         add(.oasis, "Landscapes", "Oasis")
         add(.masjidAlHaram, "Illustrations", "Makkah · Masjid al-Haram", ["Mecca", "Kaaba"])
         add(.masjidAnNabawi, "Illustrations", "Madinah · Masjid an-Nabawi", ["Medina"])
-        var locations:[String:(Int,Int)]=[:]
-        for number in 1...114 {for portion in SurahScenes.portions(of:number){locations[portion.scene.id]=(number,portion.from)}}
         for key in SurahScenes.byID.keys.sorted() { if let scene = SurahScenes.byID[key] {
             var words=key.split(separator:"-").map(String.init)
-            let prefixed=words.first.flatMap{Int($0.dropFirst())}
-            if prefixed != nil {words.removeFirst()}
-            let number=locations[key]?.0 ?? prefixed
-            let label=(number.map{"Surah \($0) · "} ?? "Surah scene · ")+title(words.joined(separator:"-"))
-            add(scene,"Surah scenes",label,number.map{["surah \($0)","ayah \(locations[key]?.1 ?? 1)"]} ?? [])
+            if words.first.flatMap({Int($0.dropFirst())}) != nil {words.removeFirst()}
+            add(scene,"Story scenes",title(words.joined(separator:"-")))
         } }
         for key in DuaScenes.byCategory.keys.sorted() { if let scene = DuaScenes.byCategory[key] { add(scene, "Dua categories", title(key.replacingOccurrences(of: "_", with: "-"))) } }
         for key in DuaScenes.byDua.keys.sorted() { if let scene = DuaScenes.byDua[key] { add(scene, "Dua scenes", "Dua \(key) · \(title(scene.id.split(separator:"-").dropFirst(2).joined(separator:"-")))") } }

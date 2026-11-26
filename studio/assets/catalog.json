@@ -319,1816 +319,1538 @@
       "thumbnail": "thumbnails/native-oasis.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a01-straight-path",
-      "name": "Surah 1 · Straight Path",
+      "name": "Straight Path",
       "nativeID": "a01-straight-path",
       "project": "native-a01-straight-path.json",
       "tags": [
-        "a01-straight-path",
-        "surah 1",
-        "ayah 1"
+        "a01-straight-path"
       ],
       "thumbnail": "thumbnails/native-a01-straight-path.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a02-garden-on-height",
-      "name": "Surah 2 · Garden On Height",
+      "name": "Garden On Height",
       "nativeID": "a02-garden-on-height",
       "project": "native-a02-garden-on-height.json",
       "tags": [
-        "a02-garden-on-height",
-        "surah 2",
-        "ayah 261"
+        "a02-garden-on-height"
       ],
       "thumbnail": "thumbnails/native-a02-garden-on-height.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a02-oasis-crescent",
-      "name": "Surah 2 · Oasis Crescent",
+      "name": "Oasis Crescent",
       "nativeID": "a02-oasis-crescent",
       "project": "native-a02-oasis-crescent.json",
       "tags": [
-        "a02-oasis-crescent",
-        "surah 2",
-        "ayah 183"
+        "a02-oasis-crescent"
       ],
       "thumbnail": "thumbnails/native-a02-oasis-crescent.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a03-mihrab",
-      "name": "Surah 3 · Mihrab",
+      "name": "Mihrab",
       "nativeID": "a03-mihrab",
       "project": "native-a03-mihrab.json",
       "tags": [
-        "a03-mihrab",
-        "surah 3",
-        "ayah 33"
+        "a03-mihrab"
       ],
       "thumbnail": "thumbnails/native-a03-mihrab.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a03-uhud",
-      "name": "Surah 3 · Uhud",
+      "name": "Uhud",
       "nativeID": "a03-uhud",
       "project": "native-a03-uhud.json",
       "tags": [
-        "a03-uhud",
-        "surah 3",
-        "ayah 121"
+        "a03-uhud"
       ],
       "thumbnail": "thumbnails/native-a03-uhud.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a04-homes",
-      "name": "Surah 4 · Homes",
+      "name": "Homes",
       "nativeID": "a04-homes",
       "project": "native-a04-homes.json",
       "tags": [
-        "a04-homes",
-        "surah 4",
-        "ayah 1"
+        "a04-homes"
       ],
       "thumbnail": "thumbnails/native-a04-homes.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a05-table",
-      "name": "Surah 5 · Table",
+      "name": "Table",
       "nativeID": "a05-table",
       "project": "native-a05-table.json",
       "tags": [
-        "a05-table",
-        "surah 5",
-        "ayah 109"
+        "a05-table"
       ],
       "thumbnail": "thumbnails/native-a05-table.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a06-pasture-signs",
-      "name": "Surah 6 · Pasture Signs",
+      "name": "Pasture Signs",
       "nativeID": "a06-pasture-signs",
       "project": "native-a06-pasture-signs.json",
       "tags": [
-        "a06-pasture-signs",
-        "surah 6",
-        "ayah 74"
+        "a06-pasture-signs"
       ],
       "thumbnail": "thumbnails/native-a06-pasture-signs.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a07-heights",
-      "name": "Surah 7 · Heights",
+      "name": "Heights",
       "nativeID": "a07-heights",
       "project": "native-a07-heights.json",
       "tags": [
-        "a07-heights",
-        "surah 7",
-        "ayah 44"
+        "a07-heights"
       ],
       "thumbnail": "thumbnails/native-a07-heights.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a08-badr",
-      "name": "Surah 8 · Badr",
+      "name": "Badr",
       "nativeID": "a08-badr",
       "project": "native-a08-badr.json",
       "tags": [
-        "a08-badr",
-        "surah 8",
-        "ayah 1"
+        "a08-badr"
       ],
       "thumbnail": "thumbnails/native-a08-badr.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a08-two-banks",
-      "name": "Surah 8 · Two Banks",
+      "name": "Two Banks",
       "nativeID": "a08-two-banks",
       "project": "native-a08-two-banks.json",
       "tags": [
-        "a08-two-banks",
-        "surah 8",
-        "ayah 41"
+        "a08-two-banks"
       ],
       "thumbnail": "thumbnails/native-a08-two-banks.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a09-quba",
-      "name": "Surah 9 · Quba",
+      "name": "Quba",
       "nativeID": "a09-quba",
       "project": "native-a09-quba.json",
       "tags": [
-        "a09-quba",
-        "surah 9",
-        "ayah 107"
+        "a09-quba"
       ],
       "thumbnail": "thumbnails/native-a09-quba.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a09-tabuk-road",
-      "name": "Surah 9 · Tabuk Road",
+      "name": "Tabuk Road",
       "nativeID": "a09-tabuk-road",
       "project": "native-a09-tabuk-road.json",
       "tags": [
-        "a09-tabuk-road",
-        "surah 9",
-        "ayah 42"
+        "a09-tabuk-road"
       ],
       "thumbnail": "thumbnails/native-a09-tabuk-road.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a10-ship",
-      "name": "Surah 10 · Ship",
+      "name": "Ship",
       "nativeID": "a10-ship",
       "project": "native-a10-ship.json",
       "tags": [
-        "a10-ship",
-        "surah 10",
-        "ayah 11"
+        "a10-ship"
       ],
       "thumbnail": "thumbnails/native-a10-ship.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a11-judi",
-      "name": "Surah 11 · Judi",
+      "name": "Judi",
       "nativeID": "a11-judi",
       "project": "native-a11-judi.json",
       "tags": [
-        "a11-judi",
-        "surah 11",
-        "ayah 40"
+        "a11-judi"
       ],
       "thumbnail": "thumbnails/native-a11-judi.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a13-thunder",
-      "name": "Surah 13 · Thunder",
+      "name": "Thunder",
       "nativeID": "a13-thunder",
       "project": "native-a13-thunder.json",
       "tags": [
-        "a13-thunder",
-        "surah 13",
-        "ayah 12"
+        "a13-thunder"
       ],
       "thumbnail": "thumbnails/native-a13-thunder.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a13-tracts",
-      "name": "Surah 13 · Tracts",
+      "name": "Tracts",
       "nativeID": "a13-tracts",
       "project": "native-a13-tracts.json",
       "tags": [
-        "a13-tracts",
-        "surah 13",
-        "ayah 1"
+        "a13-tracts"
       ],
       "thumbnail": "thumbnails/native-a13-tracts.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a14-valley-tree",
-      "name": "Surah 14 · Valley Tree",
+      "name": "Valley Tree",
       "nativeID": "a14-valley-tree",
       "project": "native-a14-valley-tree.json",
       "tags": [
-        "a14-valley-tree",
-        "surah 14",
-        "ayah 24"
+        "a14-valley-tree"
       ],
       "thumbnail": "thumbnails/native-a14-valley-tree.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a15-hijr",
-      "name": "Surah 15 · Hijr",
+      "name": "Hijr",
       "nativeID": "a15-hijr",
       "project": "native-a15-hijr.json",
       "tags": [
-        "a15-hijr",
-        "surah 15",
-        "ayah 80"
+        "a15-hijr"
       ],
       "thumbnail": "thumbnails/native-a15-hijr.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a16-hives",
-      "name": "Surah 16 · Hives",
+      "name": "Hives",
       "nativeID": "a16-hives",
       "project": "native-a16-hives.json",
       "tags": [
-        "a16-hives",
-        "surah 16",
-        "ayah 65"
+        "a16-hives"
       ],
       "thumbnail": "thumbnails/native-a16-hives.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a17-aqsa",
-      "name": "Surah 17 · Aqsa",
+      "name": "Aqsa",
       "nativeID": "a17-aqsa",
       "project": "native-a17-aqsa.json",
       "tags": [
-        "a17-aqsa",
-        "surah 17",
-        "ayah 1"
+        "a17-aqsa"
       ],
       "thumbnail": "thumbnails/native-a17-aqsa.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a19-palm-stream",
-      "name": "Surah 19 · Palm Stream",
+      "name": "Palm Stream",
       "nativeID": "a19-palm-stream",
       "project": "native-a19-palm-stream.json",
       "tags": [
-        "a19-palm-stream",
-        "surah 19",
-        "ayah 16"
+        "a19-palm-stream"
       ],
       "thumbnail": "thumbnails/native-a19-palm-stream.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a20-tuwa-fire",
-      "name": "Surah 20 · Tuwa Fire",
+      "name": "Tuwa Fire",
       "nativeID": "a20-tuwa-fire",
       "project": "native-a20-tuwa-fire.json",
       "tags": [
-        "a20-tuwa-fire",
-        "surah 20",
-        "ayah 1"
+        "a20-tuwa-fire"
       ],
       "thumbnail": "thumbnails/native-a20-tuwa-fire.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a21-lamps",
-      "name": "Surah 21 · Lamps",
+      "name": "Lamps",
       "nativeID": "a21-lamps",
       "project": "native-a21-lamps.json",
       "tags": [
-        "a21-lamps",
-        "surah 21",
-        "ayah 1"
+        "a21-lamps"
       ],
       "thumbnail": "thumbnails/native-a21-lamps.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a22-abandoned-well",
-      "name": "Surah 22 · Abandoned Well",
+      "name": "Abandoned Well",
       "nativeID": "a22-abandoned-well",
       "project": "native-a22-abandoned-well.json",
       "tags": [
-        "a22-abandoned-well",
-        "surah 22",
-        "ayah 42"
+        "a22-abandoned-well"
       ],
       "thumbnail": "thumbnails/native-a22-abandoned-well.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a22-kaaba-mina",
-      "name": "Surah 22 · Kaaba Mina",
+      "name": "Kaaba Mina",
       "nativeID": "a22-kaaba-mina",
       "project": "native-a22-kaaba-mina.json",
       "tags": [
-        "a22-kaaba-mina",
-        "surah 22",
-        "ayah 1"
+        "a22-kaaba-mina"
       ],
       "thumbnail": "thumbnails/native-a22-kaaba-mina.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a23-olive-sinai",
-      "name": "Surah 23 · Olive Sinai",
+      "name": "Olive Sinai",
       "nativeID": "a23-olive-sinai",
       "project": "native-a23-olive-sinai.json",
       "tags": [
-        "a23-olive-sinai",
-        "surah 23",
-        "ayah 1"
+        "a23-olive-sinai"
       ],
       "thumbnail": "thumbnails/native-a23-olive-sinai.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a25-two-seas",
-      "name": "Surah 25 · Two Seas",
+      "name": "Two Seas",
       "nativeID": "a25-two-seas",
       "project": "native-a25-two-seas.json",
       "tags": [
-        "a25-two-seas",
-        "surah 25",
-        "ayah 45"
+        "a25-two-seas"
       ],
       "thumbnail": "thumbnails/native-a25-two-seas.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a26-heights",
-      "name": "Surah 26 · Heights",
+      "name": "Heights",
       "nativeID": "a26-heights",
       "project": "native-a26-heights.json",
       "tags": [
-        "a26-heights",
-        "surah 26",
-        "ayah 123"
+        "a26-heights"
       ],
       "thumbnail": "thumbnails/native-a26-heights.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a26-parted-sea",
-      "name": "Surah 26 · Parted Sea",
+      "name": "Parted Sea",
       "nativeID": "a26-parted-sea",
       "project": "native-a26-parted-sea.json",
       "tags": [
-        "a26-parted-sea",
-        "surah 26",
-        "ayah 1"
+        "a26-parted-sea"
       ],
       "thumbnail": "thumbnails/native-a26-parted-sea.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a27-glass-court",
-      "name": "Surah 27 · Glass Court",
+      "name": "Glass Court",
       "nativeID": "a27-glass-court",
       "project": "native-a27-glass-court.json",
       "tags": [
-        "a27-glass-court",
-        "surah 27",
-        "ayah 20"
+        "a27-glass-court"
       ],
       "thumbnail": "thumbnails/native-a27-glass-court.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a27-valley-ants",
-      "name": "Surah 27 · Valley Ants",
+      "name": "Valley Ants",
       "nativeID": "a27-valley-ants",
       "project": "native-a27-valley-ants.json",
       "tags": [
-        "a27-valley-ants",
-        "surah 27",
-        "ayah 1"
+        "a27-valley-ants"
       ],
       "thumbnail": "thumbnails/native-a27-valley-ants.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a28-madyan-well",
-      "name": "Surah 28 · Madyan Well",
+      "name": "Madyan Well",
       "nativeID": "a28-madyan-well",
       "project": "native-a28-madyan-well.json",
       "tags": [
-        "a28-madyan-well",
-        "surah 28",
-        "ayah 22"
+        "a28-madyan-well"
       ],
       "thumbnail": "thumbnails/native-a28-madyan-well.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-a29-web",
-      "name": "Surah 29 · Web",
+      "name": "Web",
       "nativeID": "a29-web",
       "project": "native-a29-web.json",
       "tags": [
-        "a29-web",
-        "surah 29",
-        "ayah 41"
+        "a29-web"
       ],
       "thumbnail": "thumbnails/native-a29-web.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b30-rum-fortress",
-      "name": "Surah 30 · Rum Fortress",
+      "name": "Rum Fortress",
       "nativeID": "b30-rum-fortress",
       "project": "native-b30-rum-fortress.json",
       "tags": [
-        "b30-rum-fortress",
-        "surah 30",
-        "ayah 1"
+        "b30-rum-fortress"
       ],
       "thumbnail": "thumbnails/native-b30-rum-fortress.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b31-luqman-ink",
-      "name": "Surah 31 · Luqman Ink",
+      "name": "Luqman Ink",
       "nativeID": "b31-luqman-ink",
       "project": "native-b31-luqman-ink.json",
       "tags": [
-        "b31-luqman-ink",
-        "surah 31",
-        "ayah 1"
+        "b31-luqman-ink"
       ],
       "thumbnail": "thumbnails/native-b31-luqman-ink.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b31-luqman-tree",
-      "name": "Surah 31 · Luqman Tree",
+      "name": "Luqman Tree",
       "nativeID": "b31-luqman-tree",
       "project": "native-b31-luqman-tree.json",
       "tags": [
-        "b31-luqman-tree",
-        "surah 31",
-        "ayah 1"
+        "b31-luqman-tree"
       ],
       "thumbnail": "thumbnails/native-b31-luqman-tree.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b32-sajda-niche",
-      "name": "Surah 32 · Sajda Niche",
+      "name": "Sajda Niche",
       "nativeID": "b32-sajda-niche",
       "project": "native-b32-sajda-niche.json",
       "tags": [
-        "b32-sajda-niche",
-        "surah 32",
-        "ayah 1"
+        "b32-sajda-niche"
       ],
       "thumbnail": "thumbnails/native-b32-sajda-niche.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b33-ahzab-trench",
-      "name": "Surah 33 · Ahzab Trench",
+      "name": "Ahzab Trench",
       "nativeID": "b33-ahzab-trench",
       "project": "native-b33-ahzab-trench.json",
       "tags": [
-        "b33-ahzab-trench",
-        "surah 33",
-        "ayah 10"
+        "b33-ahzab-trench"
       ],
       "thumbnail": "thumbnails/native-b33-ahzab-trench.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b33-ahzab-wind",
-      "name": "Surah 33 · Ahzab Wind",
+      "name": "Ahzab Wind",
       "nativeID": "b33-ahzab-wind",
       "project": "native-b33-ahzab-wind.json",
       "tags": [
-        "b33-ahzab-wind",
-        "surah 33",
-        "ayah 1"
+        "b33-ahzab-wind"
       ],
       "thumbnail": "thumbnails/native-b33-ahzab-wind.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b34-saba-dam",
-      "name": "Surah 34 · Saba Dam",
+      "name": "Saba Dam",
       "nativeID": "b34-saba-dam",
       "project": "native-b34-saba-dam.json",
       "tags": [
-        "b34-saba-dam",
-        "surah 34",
-        "ayah 1"
+        "b34-saba-dam"
       ],
       "thumbnail": "thumbnails/native-b34-saba-dam.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b34-saba-road",
-      "name": "Surah 34 · Saba Road",
+      "name": "Saba Road",
       "nativeID": "b34-saba-road",
       "project": "native-b34-saba-road.json",
       "tags": [
-        "b34-saba-road",
-        "surah 34",
-        "ayah 18"
+        "b34-saba-road"
       ],
       "thumbnail": "thumbnails/native-b34-saba-road.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b35-fatir-streaks",
-      "name": "Surah 35 · Fatir Streaks",
+      "name": "Fatir Streaks",
       "nativeID": "b35-fatir-streaks",
       "project": "native-b35-fatir-streaks.json",
       "tags": [
-        "b35-fatir-streaks",
-        "surah 35",
-        "ayah 27"
+        "b35-fatir-streaks"
       ],
       "thumbnail": "thumbnails/native-b35-fatir-streaks.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b36-yasin-moon",
-      "name": "Surah 36 · Yasin Moon",
+      "name": "Yasin Moon",
       "nativeID": "b36-yasin-moon",
       "project": "native-b36-yasin-moon.json",
       "tags": [
-        "b36-yasin-moon",
-        "surah 36",
-        "ayah 1"
+        "b36-yasin-moon"
       ],
       "thumbnail": "thumbnails/native-b36-yasin-moon.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b36-yasin-revived",
-      "name": "Surah 36 · Yasin Revived",
+      "name": "Yasin Revived",
       "nativeID": "b36-yasin-revived",
       "project": "native-b36-yasin-revived.json",
       "tags": [
-        "b36-yasin-revived",
-        "surah 36",
-        "ayah 33"
+        "b36-yasin-revived"
       ],
       "thumbnail": "thumbnails/native-b36-yasin-revived.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b37-saffat-stars",
-      "name": "Surah 37 · Saffat Stars",
+      "name": "Saffat Stars",
       "nativeID": "b37-saffat-stars",
       "project": "native-b37-saffat-stars.json",
       "tags": [
-        "b37-saffat-stars",
-        "surah 37",
-        "ayah 1"
+        "b37-saffat-stars"
       ],
       "thumbnail": "thumbnails/native-b37-saffat-stars.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b38-sad-mountains",
-      "name": "Surah 38 · Sad Mountains",
+      "name": "Sad Mountains",
       "nativeID": "b38-sad-mountains",
       "project": "native-b38-sad-mountains.json",
       "tags": [
-        "b38-sad-mountains",
-        "surah 38",
-        "ayah 1"
+        "b38-sad-mountains"
       ],
       "thumbnail": "thumbnails/native-b38-sad-mountains.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b38-sad-spring",
-      "name": "Surah 38 · Sad Spring",
+      "name": "Sad Spring",
       "nativeID": "b38-sad-spring",
       "project": "native-b38-sad-spring.json",
       "tags": [
-        "b38-sad-spring",
-        "surah 38",
-        "ayah 41"
+        "b38-sad-spring"
       ],
       "thumbnail": "thumbnails/native-b38-sad-spring.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b39-zumar-springs",
-      "name": "Surah 39 · Zumar Springs",
+      "name": "Zumar Springs",
       "nativeID": "b39-zumar-springs",
       "project": "native-b39-zumar-springs.json",
       "tags": [
-        "b39-zumar-springs",
-        "surah 39",
-        "ayah 1"
+        "b39-zumar-springs"
       ],
       "thumbnail": "thumbnails/native-b39-zumar-springs.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b40-ghafir-tower",
-      "name": "Surah 40 · Ghafir Tower",
+      "name": "Ghafir Tower",
       "nativeID": "b40-ghafir-tower",
       "project": "native-b40-ghafir-tower.json",
       "tags": [
-        "b40-ghafir-tower",
-        "surah 40",
-        "ayah 1"
+        "b40-ghafir-tower"
       ],
       "thumbnail": "thumbnails/native-b40-ghafir-tower.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b41-fussilat-revived",
-      "name": "Surah 41 · Fussilat Revived",
+      "name": "Fussilat Revived",
       "nativeID": "b41-fussilat-revived",
       "project": "native-b41-fussilat-revived.json",
       "tags": [
-        "b41-fussilat-revived",
-        "surah 41",
-        "ayah 37"
+        "b41-fussilat-revived"
       ],
       "thumbnail": "thumbnails/native-b41-fussilat-revived.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b42-shura-ships",
-      "name": "Surah 42 · Shura Ships",
+      "name": "Shura Ships",
       "nativeID": "b42-shura-ships",
       "project": "native-b42-shura-ships.json",
       "tags": [
-        "b42-shura-ships",
-        "surah 42",
-        "ayah 32"
+        "b42-shura-ships"
       ],
       "thumbnail": "thumbnails/native-b42-shura-ships.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b43-zukhruf-gate",
-      "name": "Surah 43 · Zukhruf Gate",
+      "name": "Zukhruf Gate",
       "nativeID": "b43-zukhruf-gate",
       "project": "native-b43-zukhruf-gate.json",
       "tags": [
-        "b43-zukhruf-gate",
-        "surah 43",
-        "ayah 1"
+        "b43-zukhruf-gate"
       ],
       "thumbnail": "thumbnails/native-b43-zukhruf-gate.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b44-dukhan-left-behind",
-      "name": "Surah 44 · Dukhan Left Behind",
+      "name": "Dukhan Left Behind",
       "nativeID": "b44-dukhan-left-behind",
       "project": "native-b44-dukhan-left-behind.json",
       "tags": [
-        "b44-dukhan-left-behind",
-        "surah 44",
-        "ayah 17"
+        "b44-dukhan-left-behind"
       ],
       "thumbnail": "thumbnails/native-b44-dukhan-left-behind.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b44-dukhan-smoke",
-      "name": "Surah 44 · Dukhan Smoke",
+      "name": "Dukhan Smoke",
       "nativeID": "b44-dukhan-smoke",
       "project": "native-b44-dukhan-smoke.json",
       "tags": [
-        "b44-dukhan-smoke",
-        "surah 44",
-        "ayah 1"
+        "b44-dukhan-smoke"
       ],
       "thumbnail": "thumbnails/native-b44-dukhan-smoke.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b45-jathiya-ships",
-      "name": "Surah 45 · Jathiya Ships",
+      "name": "Jathiya Ships",
       "nativeID": "b45-jathiya-ships",
       "project": "native-b45-jathiya-ships.json",
       "tags": [
-        "b45-jathiya-ships",
-        "surah 45",
-        "ayah 1"
+        "b45-jathiya-ships"
       ],
       "thumbnail": "thumbnails/native-b45-jathiya-ships.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b46-ahqaf-cloud",
-      "name": "Surah 46 · Ahqaf Cloud",
+      "name": "Ahqaf Cloud",
       "nativeID": "b46-ahqaf-cloud",
       "project": "native-b46-ahqaf-cloud.json",
       "tags": [
-        "b46-ahqaf-cloud",
-        "surah 46",
-        "ayah 1"
+        "b46-ahqaf-cloud"
       ],
       "thumbnail": "thumbnails/native-b46-ahqaf-cloud.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b47-muhammad-rivers",
-      "name": "Surah 47 · Muhammad Rivers",
+      "name": "Muhammad Rivers",
       "nativeID": "b47-muhammad-rivers",
       "project": "native-b47-muhammad-rivers.json",
       "tags": [
-        "b47-muhammad-rivers",
-        "surah 47",
-        "ayah 1"
+        "b47-muhammad-rivers"
       ],
       "thumbnail": "thumbnails/native-b47-muhammad-rivers.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b48-fath-tree",
-      "name": "Surah 48 · Fath Tree",
+      "name": "Fath Tree",
       "nativeID": "b48-fath-tree",
       "project": "native-b48-fath-tree.json",
       "tags": [
-        "b48-fath-tree",
-        "surah 48",
-        "ayah 1"
+        "b48-fath-tree"
       ],
       "thumbnail": "thumbnails/native-b48-fath-tree.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b49-hujurat-chambers",
-      "name": "Surah 49 · Hujurat Chambers",
+      "name": "Hujurat Chambers",
       "nativeID": "b49-hujurat-chambers",
       "project": "native-b49-hujurat-chambers.json",
       "tags": [
-        "b49-hujurat-chambers",
-        "surah 49",
-        "ayah 1"
+        "b49-hujurat-chambers"
       ],
       "thumbnail": "thumbnails/native-b49-hujurat-chambers.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b50-qaf-palms",
-      "name": "Surah 50 · Qaf Palms",
+      "name": "Qaf Palms",
       "nativeID": "b50-qaf-palms",
       "project": "native-b50-qaf-palms.json",
       "tags": [
-        "b50-qaf-palms",
-        "surah 50",
-        "ayah 1"
+        "b50-qaf-palms"
       ],
       "thumbnail": "thumbnails/native-b50-qaf-palms.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b51-dhariyat-winds",
-      "name": "Surah 51 · Dhariyat Winds",
+      "name": "Dhariyat Winds",
       "nativeID": "b51-dhariyat-winds",
       "project": "native-b51-dhariyat-winds.json",
       "tags": [
-        "b51-dhariyat-winds",
-        "surah 51",
-        "ayah 1"
+        "b51-dhariyat-winds"
       ],
       "thumbnail": "thumbnails/native-b51-dhariyat-winds.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b53-najm-star",
-      "name": "Surah 53 · Najm Star",
+      "name": "Najm Star",
       "nativeID": "b53-najm-star",
       "project": "native-b53-najm-star.json",
       "tags": [
-        "b53-najm-star",
-        "surah 53",
-        "ayah 1"
+        "b53-najm-star"
       ],
       "thumbnail": "thumbnails/native-b53-najm-star.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b54-qamar-moon",
-      "name": "Surah 54 · Qamar Moon",
+      "name": "Qamar Moon",
       "nativeID": "b54-qamar-moon",
       "project": "native-b54-qamar-moon.json",
       "tags": [
-        "b54-qamar-moon",
-        "surah 54",
-        "ayah 1"
+        "b54-qamar-moon"
       ],
       "thumbnail": "thumbnails/native-b54-qamar-moon.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b54-qamar-wind",
-      "name": "Surah 54 · Qamar Wind",
+      "name": "Qamar Wind",
       "nativeID": "b54-qamar-wind",
       "project": "native-b54-qamar-wind.json",
       "tags": [
-        "b54-qamar-wind",
-        "surah 54",
-        "ayah 18"
+        "b54-qamar-wind"
       ],
       "thumbnail": "thumbnails/native-b54-qamar-wind.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b55-rahman-balance",
-      "name": "Surah 55 · Rahman Balance",
+      "name": "Rahman Balance",
       "nativeID": "b55-rahman-balance",
       "project": "native-b55-rahman-balance.json",
       "tags": [
-        "b55-rahman-balance",
-        "surah 55",
-        "ayah 1"
+        "b55-rahman-balance"
       ],
       "thumbnail": "thumbnails/native-b55-rahman-balance.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b55-rahman-seas",
-      "name": "Surah 55 · Rahman Seas",
+      "name": "Rahman Seas",
       "nativeID": "b55-rahman-seas",
       "project": "native-b55-rahman-seas.json",
       "tags": [
-        "b55-rahman-seas",
-        "surah 55",
-        "ayah 19"
+        "b55-rahman-seas"
       ],
       "thumbnail": "thumbnails/native-b55-rahman-seas.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b56-waqia-signs",
-      "name": "Surah 56 · Waqia Signs",
+      "name": "Waqia Signs",
       "nativeID": "b56-waqia-signs",
       "project": "native-b56-waqia-signs.json",
       "tags": [
-        "b56-waqia-signs",
-        "surah 56",
-        "ayah 57"
+        "b56-waqia-signs"
       ],
       "thumbnail": "thumbnails/native-b56-waqia-signs.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b57-hadid-forge",
-      "name": "Surah 57 · Hadid Forge",
+      "name": "Hadid Forge",
       "nativeID": "b57-hadid-forge",
       "project": "native-b57-hadid-forge.json",
       "tags": [
-        "b57-hadid-forge",
-        "surah 57",
-        "ayah 1"
+        "b57-hadid-forge"
       ],
       "thumbnail": "thumbnails/native-b57-hadid-forge.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-b57-hadid-wall",
-      "name": "Surah 57 · Hadid Wall",
+      "name": "Hadid Wall",
       "nativeID": "b57-hadid-wall",
       "project": "native-b57-hadid-wall.json",
       "tags": [
-        "b57-hadid-wall",
-        "surah 57",
-        "ayah 1"
+        "b57-hadid-wall"
       ],
       "thumbnail": "thumbnails/native-b57-hadid-wall.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c58-mujadila-window",
-      "name": "Surah 58 · Mujadila Window",
+      "name": "Mujadila Window",
       "nativeID": "c58-mujadila-window",
       "project": "native-c58-mujadila-window.json",
       "tags": [
-        "c58-mujadila-window",
-        "surah 58",
-        "ayah 1"
+        "c58-mujadila-window"
       ],
       "thumbnail": "thumbnails/native-c58-mujadila-window.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c59-hashr-fortresses",
-      "name": "Surah 59 · Hashr Fortresses",
+      "name": "Hashr Fortresses",
       "nativeID": "c59-hashr-fortresses",
       "project": "native-c59-hashr-fortresses.json",
       "tags": [
-        "c59-hashr-fortresses",
-        "surah 59",
-        "ayah 1"
+        "c59-hashr-fortresses"
       ],
       "thumbnail": "thumbnails/native-c59-hashr-fortresses.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c59-hashr-mountain",
-      "name": "Surah 59 · Hashr Mountain",
+      "name": "Hashr Mountain",
       "nativeID": "c59-hashr-mountain",
       "project": "native-c59-hashr-mountain.json",
       "tags": [
-        "c59-hashr-mountain",
-        "surah 59",
-        "ayah 1"
+        "c59-hashr-mountain"
       ],
       "thumbnail": "thumbnails/native-c59-hashr-mountain.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c60-mumtahana-road",
-      "name": "Surah 60 · Mumtahana Road",
+      "name": "Mumtahana Road",
       "nativeID": "c60-mumtahana-road",
       "project": "native-c60-mumtahana-road.json",
       "tags": [
-        "c60-mumtahana-road",
-        "surah 60",
-        "ayah 1"
+        "c60-mumtahana-road"
       ],
       "thumbnail": "thumbnails/native-c60-mumtahana-road.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c61-saff-light",
-      "name": "Surah 61 · Saff Light",
+      "name": "Saff Light",
       "nativeID": "c61-saff-light",
       "project": "native-c61-saff-light.json",
       "tags": [
-        "c61-saff-light",
-        "surah 61",
-        "ayah 1"
+        "c61-saff-light"
       ],
       "thumbnail": "thumbnails/native-c61-saff-light.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c61-saff-wall",
-      "name": "Surah 61 · Saff Wall",
+      "name": "Saff Wall",
       "nativeID": "c61-saff-wall",
       "project": "native-c61-saff-wall.json",
       "tags": [
-        "c61-saff-wall",
-        "surah 61",
-        "ayah 1"
+        "c61-saff-wall"
       ],
       "thumbnail": "thumbnails/native-c61-saff-wall.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c62-jumua-mosque",
-      "name": "Surah 62 · Jumua Mosque",
+      "name": "Jumua Mosque",
       "nativeID": "c62-jumua-mosque",
       "project": "native-c62-jumua-mosque.json",
       "tags": [
-        "c62-jumua-mosque",
-        "surah 62",
-        "ayah 1"
+        "c62-jumua-mosque"
       ],
       "thumbnail": "thumbnails/native-c62-jumua-mosque.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c63-munafiqun-timbers",
-      "name": "Surah 63 · Munafiqun Timbers",
+      "name": "Munafiqun Timbers",
       "nativeID": "c63-munafiqun-timbers",
       "project": "native-c63-munafiqun-timbers.json",
       "tags": [
-        "c63-munafiqun-timbers",
-        "surah 63",
-        "ayah 1"
+        "c63-munafiqun-timbers"
       ],
       "thumbnail": "thumbnails/native-c63-munafiqun-timbers.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c64-taghabun-oasis",
-      "name": "Surah 64 · Taghabun Oasis",
+      "name": "Taghabun Oasis",
       "nativeID": "c64-taghabun-oasis",
       "project": "native-c64-taghabun-oasis.json",
       "tags": [
-        "c64-taghabun-oasis",
-        "surah 64",
-        "ayah 1"
+        "c64-taghabun-oasis"
       ],
       "thumbnail": "thumbnails/native-c64-taghabun-oasis.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c65-talaq-heavens",
-      "name": "Surah 65 · Talaq Heavens",
+      "name": "Talaq Heavens",
       "nativeID": "c65-talaq-heavens",
       "project": "native-c65-talaq-heavens.json",
       "tags": [
-        "c65-talaq-heavens",
-        "surah 65",
-        "ayah 1"
+        "c65-talaq-heavens"
       ],
       "thumbnail": "thumbnails/native-c65-talaq-heavens.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c66-tahrim-homes",
-      "name": "Surah 66 · Tahrim Homes",
+      "name": "Tahrim Homes",
       "nativeID": "c66-tahrim-homes",
       "project": "native-c66-tahrim-homes.json",
       "tags": [
-        "c66-tahrim-homes",
-        "surah 66",
-        "ayah 1"
+        "c66-tahrim-homes"
       ],
       "thumbnail": "thumbnails/native-c66-tahrim-homes.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c67-mulk-stars",
-      "name": "Surah 67 · Mulk Stars",
+      "name": "Mulk Stars",
       "nativeID": "c67-mulk-stars",
       "project": "native-c67-mulk-stars.json",
       "tags": [
-        "c67-mulk-stars",
-        "surah 67",
-        "ayah 1"
+        "c67-mulk-stars"
       ],
       "thumbnail": "thumbnails/native-c67-mulk-stars.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c67-mulk-water",
-      "name": "Surah 67 · Mulk Water",
+      "name": "Mulk Water",
       "nativeID": "c67-mulk-water",
       "project": "native-c67-mulk-water.json",
       "tags": [
-        "c67-mulk-water",
-        "surah 67",
-        "ayah 1"
+        "c67-mulk-water"
       ],
       "thumbnail": "thumbnails/native-c67-mulk-water.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c68-qalam-garden",
-      "name": "Surah 68 · Qalam Garden",
+      "name": "Qalam Garden",
       "nativeID": "c68-qalam-garden",
       "project": "native-c68-qalam-garden.json",
       "tags": [
-        "c68-qalam-garden",
-        "surah 68",
-        "ayah 17"
+        "c68-qalam-garden"
       ],
       "thumbnail": "thumbnails/native-c68-qalam-garden.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c68-qalam-pen",
-      "name": "Surah 68 · Qalam Pen",
+      "name": "Qalam Pen",
       "nativeID": "c68-qalam-pen",
       "project": "native-c68-qalam-pen.json",
       "tags": [
-        "c68-qalam-pen",
-        "surah 68",
-        "ayah 1"
+        "c68-qalam-pen"
       ],
       "thumbnail": "thumbnails/native-c68-qalam-pen.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c69-haqqa-ruins",
-      "name": "Surah 69 · Haqqa Ruins",
+      "name": "Haqqa Ruins",
       "nativeID": "c69-haqqa-ruins",
       "project": "native-c69-haqqa-ruins.json",
       "tags": [
-        "c69-haqqa-ruins",
-        "surah 69",
-        "ayah 1"
+        "c69-haqqa-ruins"
       ],
       "thumbnail": "thumbnails/native-c69-haqqa-ruins.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c70-maarij-stairway",
-      "name": "Surah 70 · Maarij Stairway",
+      "name": "Maarij Stairway",
       "nativeID": "c70-maarij-stairway",
       "project": "native-c70-maarij-stairway.json",
       "tags": [
-        "c70-maarij-stairway",
-        "surah 70",
-        "ayah 1"
+        "c70-maarij-stairway"
       ],
       "thumbnail": "thumbnails/native-c70-maarij-stairway.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c72-jinn-meteors",
-      "name": "Surah 72 · Jinn Meteors",
+      "name": "Jinn Meteors",
       "nativeID": "c72-jinn-meteors",
       "project": "native-c72-jinn-meteors.json",
       "tags": [
-        "c72-jinn-meteors",
-        "surah 72",
-        "ayah 1"
+        "c72-jinn-meteors"
       ],
       "thumbnail": "thumbnails/native-c72-jinn-meteors.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c73-muzzammil-prayer",
-      "name": "Surah 73 · Muzzammil Prayer",
+      "name": "Muzzammil Prayer",
       "nativeID": "c73-muzzammil-prayer",
       "project": "native-c73-muzzammil-prayer.json",
       "tags": [
-        "c73-muzzammil-prayer",
-        "surah 73",
-        "ayah 1"
+        "c73-muzzammil-prayer"
       ],
       "thumbnail": "thumbnails/native-c73-muzzammil-prayer.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c73-muzzammil-vigil",
-      "name": "Surah 73 · Muzzammil Vigil",
+      "name": "Muzzammil Vigil",
       "nativeID": "c73-muzzammil-vigil",
       "project": "native-c73-muzzammil-vigil.json",
       "tags": [
-        "c73-muzzammil-vigil",
-        "surah 73",
-        "ayah 1"
+        "c73-muzzammil-vigil"
       ],
       "thumbnail": "thumbnails/native-c73-muzzammil-vigil.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c74-muddaththir-dawn",
-      "name": "Surah 74 · Muddaththir Dawn",
+      "name": "Muddaththir Dawn",
       "nativeID": "c74-muddaththir-dawn",
       "project": "native-c74-muddaththir-dawn.json",
       "tags": [
-        "c74-muddaththir-dawn",
-        "surah 74",
-        "ayah 1"
+        "c74-muddaththir-dawn"
       ],
       "thumbnail": "thumbnails/native-c74-muddaththir-dawn.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c75-qiyama-sun-moon",
-      "name": "Surah 75 · Qiyama Sun Moon",
+      "name": "Qiyama Sun Moon",
       "nativeID": "c75-qiyama-sun-moon",
       "project": "native-c75-qiyama-sun-moon.json",
       "tags": [
-        "c75-qiyama-sun-moon",
-        "surah 75",
-        "ayah 1"
+        "c75-qiyama-sun-moon"
       ],
       "thumbnail": "thumbnails/native-c75-qiyama-sun-moon.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c76-insan-garden",
-      "name": "Surah 76 · Insan Garden",
+      "name": "Insan Garden",
       "nativeID": "c76-insan-garden",
       "project": "native-c76-insan-garden.json",
       "tags": [
-        "c76-insan-garden",
-        "surah 76",
-        "ayah 1"
+        "c76-insan-garden"
       ],
       "thumbnail": "thumbnails/native-c76-insan-garden.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c76-insan-table",
-      "name": "Surah 76 · Insan Table",
+      "name": "Insan Table",
       "nativeID": "c76-insan-table",
       "project": "native-c76-insan-table.json",
       "tags": [
-        "c76-insan-table",
-        "surah 76",
-        "ayah 1"
+        "c76-insan-table"
       ],
       "thumbnail": "thumbnails/native-c76-insan-table.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c77-mursalat-smoke",
-      "name": "Surah 77 · Mursalat Smoke",
+      "name": "Mursalat Smoke",
       "nativeID": "c77-mursalat-smoke",
       "project": "native-c77-mursalat-smoke.json",
       "tags": [
-        "c77-mursalat-smoke",
-        "surah 77",
-        "ayah 29"
+        "c77-mursalat-smoke"
       ],
       "thumbnail": "thumbnails/native-c77-mursalat-smoke.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c77-mursalat-winds",
-      "name": "Surah 77 · Mursalat Winds",
+      "name": "Mursalat Winds",
       "nativeID": "c77-mursalat-winds",
       "project": "native-c77-mursalat-winds.json",
       "tags": [
-        "c77-mursalat-winds",
-        "surah 77",
-        "ayah 1"
+        "c77-mursalat-winds"
       ],
       "thumbnail": "thumbnails/native-c77-mursalat-winds.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c78-naba-signs",
-      "name": "Surah 78 · Naba Signs",
+      "name": "Naba Signs",
       "nativeID": "c78-naba-signs",
       "project": "native-c78-naba-signs.json",
       "tags": [
-        "c78-naba-signs",
-        "surah 78",
-        "ayah 1"
+        "c78-naba-signs"
       ],
       "thumbnail": "thumbnails/native-c78-naba-signs.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c79-naziat-tuwa",
-      "name": "Surah 79 · Naziat Tuwa",
+      "name": "Naziat Tuwa",
       "nativeID": "c79-naziat-tuwa",
       "project": "native-c79-naziat-tuwa.json",
       "tags": [
-        "c79-naziat-tuwa",
-        "surah 79",
-        "ayah 1"
+        "c79-naziat-tuwa"
       ],
       "thumbnail": "thumbnails/native-c79-naziat-tuwa.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c80-abasa-harvest",
-      "name": "Surah 80 · Abasa Harvest",
+      "name": "Abasa Harvest",
       "nativeID": "c80-abasa-harvest",
       "project": "native-c80-abasa-harvest.json",
       "tags": [
-        "c80-abasa-harvest",
-        "surah 80",
-        "ayah 24"
+        "c80-abasa-harvest"
       ],
       "thumbnail": "thumbnails/native-c80-abasa-harvest.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c80-abasa-pages",
-      "name": "Surah 80 · Abasa Pages",
+      "name": "Abasa Pages",
       "nativeID": "c80-abasa-pages",
       "project": "native-c80-abasa-pages.json",
       "tags": [
-        "c80-abasa-pages",
-        "surah 80",
-        "ayah 1"
+        "c80-abasa-pages"
       ],
       "thumbnail": "thumbnails/native-c80-abasa-pages.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c81-takwir-sun",
-      "name": "Surah 81 · Takwir Sun",
+      "name": "Takwir Sun",
       "nativeID": "c81-takwir-sun",
       "project": "native-c81-takwir-sun.json",
       "tags": [
-        "c81-takwir-sun",
-        "surah 81",
-        "ayah 1"
+        "c81-takwir-sun"
       ],
       "thumbnail": "thumbnails/native-c81-takwir-sun.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c82-infitar-rift",
-      "name": "Surah 82 · Infitar Rift",
+      "name": "Infitar Rift",
       "nativeID": "c82-infitar-rift",
       "project": "native-c82-infitar-rift.json",
       "tags": [
-        "c82-infitar-rift",
-        "surah 82",
-        "ayah 1"
+        "c82-infitar-rift"
       ],
       "thumbnail": "thumbnails/native-c82-infitar-rift.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c83-mutaffifin-scales",
-      "name": "Surah 83 · Mutaffifin Scales",
+      "name": "Mutaffifin Scales",
       "nativeID": "c83-mutaffifin-scales",
       "project": "native-c83-mutaffifin-scales.json",
       "tags": [
-        "c83-mutaffifin-scales",
-        "surah 83",
-        "ayah 1"
+        "c83-mutaffifin-scales"
       ],
       "thumbnail": "thumbnails/native-c83-mutaffifin-scales.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c84-inshiqaq-twilight",
-      "name": "Surah 84 · Inshiqaq Twilight",
+      "name": "Inshiqaq Twilight",
       "nativeID": "c84-inshiqaq-twilight",
       "project": "native-c84-inshiqaq-twilight.json",
       "tags": [
-        "c84-inshiqaq-twilight",
-        "surah 84",
-        "ayah 1"
+        "c84-inshiqaq-twilight"
       ],
       "thumbnail": "thumbnails/native-c84-inshiqaq-twilight.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c85-buruj-constellations",
-      "name": "Surah 85 · Buruj Constellations",
+      "name": "Buruj Constellations",
       "nativeID": "c85-buruj-constellations",
       "project": "native-c85-buruj-constellations.json",
       "tags": [
-        "c85-buruj-constellations",
-        "surah 85",
-        "ayah 1"
+        "c85-buruj-constellations"
       ],
       "thumbnail": "thumbnails/native-c85-buruj-constellations.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c86-tariq-rain",
-      "name": "Surah 86 · Tariq Rain",
+      "name": "Tariq Rain",
       "nativeID": "c86-tariq-rain",
       "project": "native-c86-tariq-rain.json",
       "tags": [
-        "c86-tariq-rain",
-        "surah 86",
-        "ayah 1"
+        "c86-tariq-rain"
       ],
       "thumbnail": "thumbnails/native-c86-tariq-rain.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-c86-tariq-star",
-      "name": "Surah 86 · Tariq Star",
+      "name": "Tariq Star",
       "nativeID": "c86-tariq-star",
       "project": "native-c86-tariq-star.json",
       "tags": [
-        "c86-tariq-star",
-        "surah 86",
-        "ayah 1"
+        "c86-tariq-star"
       ],
       "thumbnail": "thumbnails/native-c86-tariq-star.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d100-dust",
-      "name": "Surah 100 · Dust",
+      "name": "Dust",
       "nativeID": "d100-dust",
       "project": "native-d100-dust.json",
       "tags": [
-        "d100-dust",
-        "surah 100",
-        "ayah 1"
+        "d100-dust"
       ],
       "thumbnail": "thumbnails/native-d100-dust.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d101-scales",
-      "name": "Surah 101 · Scales",
+      "name": "Scales",
       "nativeID": "d101-scales",
       "project": "native-d101-scales.json",
       "tags": [
-        "d101-scales",
-        "surah 101",
-        "ayah 1"
+        "d101-scales"
       ],
       "thumbnail": "thumbnails/native-d101-scales.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d102-graves",
-      "name": "Surah 102 · Graves",
+      "name": "Graves",
       "nativeID": "d102-graves",
       "project": "native-d102-graves.json",
       "tags": [
-        "d102-graves",
-        "surah 102",
-        "ayah 1"
+        "d102-graves"
       ],
       "thumbnail": "thumbnails/native-d102-graves.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d102-rivalry",
-      "name": "Surah 102 · Rivalry",
+      "name": "Rivalry",
       "nativeID": "d102-rivalry",
       "project": "native-d102-rivalry.json",
       "tags": [
-        "d102-rivalry",
-        "surah 102",
-        "ayah 1"
+        "d102-rivalry"
       ],
       "thumbnail": "thumbnails/native-d102-rivalry.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d103-asr",
-      "name": "Surah 103 · Asr",
+      "name": "Asr",
       "nativeID": "d103-asr",
       "project": "native-d103-asr.json",
       "tags": [
-        "d103-asr",
-        "surah 103",
-        "ayah 1"
+        "d103-asr"
       ],
       "thumbnail": "thumbnails/native-d103-asr.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d104-columns",
-      "name": "Surah 104 · Columns",
+      "name": "Columns",
       "nativeID": "d104-columns",
       "project": "native-d104-columns.json",
       "tags": [
-        "d104-columns",
-        "surah 104",
-        "ayah 1"
+        "d104-columns"
       ],
       "thumbnail": "thumbnails/native-d104-columns.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d106-roads",
-      "name": "Surah 106 · Roads",
+      "name": "Roads",
       "nativeID": "d106-roads",
       "project": "native-d106-roads.json",
       "tags": [
-        "d106-roads",
-        "surah 106",
-        "ayah 1"
+        "d106-roads"
       ],
       "thumbnail": "thumbnails/native-d106-roads.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d107-door",
-      "name": "Surah 107 · Door",
+      "name": "Door",
       "nativeID": "d107-door",
       "project": "native-d107-door.json",
       "tags": [
-        "d107-door",
-        "surah 107",
-        "ayah 1"
+        "d107-door"
       ],
       "thumbnail": "thumbnails/native-d107-door.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d108-river",
-      "name": "Surah 108 · River",
+      "name": "River",
       "nativeID": "d108-river",
       "project": "native-d108-river.json",
       "tags": [
-        "d108-river",
-        "surah 108",
-        "ayah 1"
+        "d108-river"
       ],
       "thumbnail": "thumbnails/native-d108-river.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d109-paths",
-      "name": "Surah 109 · Paths",
+      "name": "Paths",
       "nativeID": "d109-paths",
       "project": "native-d109-paths.json",
       "tags": [
-        "d109-paths",
-        "surah 109",
-        "ayah 1"
+        "d109-paths"
       ],
       "thumbnail": "thumbnails/native-d109-paths.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d110-fath",
-      "name": "Surah 110 · Fath",
+      "name": "Fath",
       "nativeID": "d110-fath",
       "project": "native-d110-fath.json",
       "tags": [
-        "d110-fath",
-        "surah 110",
-        "ayah 1"
+        "d110-fath"
       ],
       "thumbnail": "thumbnails/native-d110-fath.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d110-gate",
-      "name": "Surah 110 · Gate",
+      "name": "Gate",
       "nativeID": "d110-gate",
       "project": "native-d110-gate.json",
       "tags": [
-        "d110-gate",
-        "surah 110",
-        "ayah 1"
+        "d110-gate"
       ],
       "thumbnail": "thumbnails/native-d110-gate.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d111-firewood",
-      "name": "Surah 111 · Firewood",
+      "name": "Firewood",
       "nativeID": "d111-firewood",
       "project": "native-d111-firewood.json",
       "tags": [
-        "d111-firewood",
-        "surah 111",
-        "ayah 1"
+        "d111-firewood"
       ],
       "thumbnail": "thumbnails/native-d111-firewood.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d112-sky",
-      "name": "Surah 112 · Sky",
+      "name": "Sky",
       "nativeID": "d112-sky",
       "project": "native-d112-sky.json",
       "tags": [
-        "d112-sky",
-        "surah 112",
-        "ayah 1"
+        "d112-sky"
       ],
       "thumbnail": "thumbnails/native-d112-sky.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d113-daybreak",
-      "name": "Surah 113 · Daybreak",
+      "name": "Daybreak",
       "nativeID": "d113-daybreak",
       "project": "native-d113-daybreak.json",
       "tags": [
-        "d113-daybreak",
-        "surah 113",
-        "ayah 1"
+        "d113-daybreak"
       ],
       "thumbnail": "thumbnails/native-d113-daybreak.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d114-homes",
-      "name": "Surah 114 · Homes",
+      "name": "Homes",
       "nativeID": "d114-homes",
       "project": "native-d114-homes.json",
       "tags": [
-        "d114-homes",
-        "surah 114",
-        "ayah 1"
+        "d114-homes"
       ],
       "thumbnail": "thumbnails/native-d114-homes.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d87-pasture",
-      "name": "Surah 87 · Pasture",
+      "name": "Pasture",
       "nativeID": "d87-pasture",
       "project": "native-d87-pasture.json",
       "tags": [
-        "d87-pasture",
-        "surah 87",
-        "ayah 1"
+        "d87-pasture"
       ],
       "thumbnail": "thumbnails/native-d87-pasture.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d88-garden",
-      "name": "Surah 88 · Garden",
+      "name": "Garden",
       "nativeID": "d88-garden",
       "project": "native-d88-garden.json",
       "tags": [
-        "d88-garden",
-        "surah 88",
-        "ayah 1"
+        "d88-garden"
       ],
       "thumbnail": "thumbnails/native-d88-garden.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d88-signs",
-      "name": "Surah 88 · Signs",
+      "name": "Signs",
       "nativeID": "d88-signs",
       "project": "native-d88-signs.json",
       "tags": [
-        "d88-signs",
-        "surah 88",
-        "ayah 1"
+        "d88-signs"
       ],
       "thumbnail": "thumbnails/native-d88-signs.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d90-feeding",
-      "name": "Surah 90 · Feeding",
+      "name": "Feeding",
       "nativeID": "d90-feeding",
       "project": "native-d90-feeding.json",
       "tags": [
-        "d90-feeding",
-        "surah 90",
-        "ayah 1"
+        "d90-feeding"
       ],
       "thumbnail": "thumbnails/native-d90-feeding.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d90-pass",
-      "name": "Surah 90 · Pass",
+      "name": "Pass",
       "nativeID": "d90-pass",
       "project": "native-d90-pass.json",
       "tags": [
-        "d90-pass",
-        "surah 90",
-        "ayah 1"
+        "d90-pass"
       ],
       "thumbnail": "thumbnails/native-d90-pass.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d91-sun",
-      "name": "Surah 91 · Sun",
+      "name": "Sun",
       "nativeID": "d91-sun",
       "project": "native-d91-sun.json",
       "tags": [
-        "d91-sun",
-        "surah 91",
-        "ayah 1"
+        "d91-sun"
       ],
       "thumbnail": "thumbnails/native-d91-sun.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d94-relief",
-      "name": "Surah 94 · Relief",
+      "name": "Relief",
       "nativeID": "d94-relief",
       "project": "native-d94-relief.json",
       "tags": [
-        "d94-relief",
-        "surah 94",
-        "ayah 1"
+        "d94-relief"
       ],
       "thumbnail": "thumbnails/native-d94-relief.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d95-city",
-      "name": "Surah 95 · City",
+      "name": "City",
       "nativeID": "d95-city",
       "project": "native-d95-city.json",
       "tags": [
-        "d95-city",
-        "surah 95",
-        "ayah 1"
+        "d95-city"
       ],
       "thumbnail": "thumbnails/native-d95-city.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d95-sinai",
-      "name": "Surah 95 · Sinai",
+      "name": "Sinai",
       "nativeID": "d95-sinai",
       "project": "native-d95-sinai.json",
       "tags": [
-        "d95-sinai",
-        "surah 95",
-        "ayah 1"
+        "d95-sinai"
       ],
       "thumbnail": "thumbnails/native-d95-sinai.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d96-hira",
-      "name": "Surah 96 · Hira",
+      "name": "Hira",
       "nativeID": "d96-hira",
       "project": "native-d96-hira.json",
       "tags": [
-        "d96-hira",
-        "surah 96",
-        "ayah 1"
+        "d96-hira"
       ],
       "thumbnail": "thumbnails/native-d96-hira.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d96-pen",
-      "name": "Surah 96 · Pen",
+      "name": "Pen",
       "nativeID": "d96-pen",
       "project": "native-d96-pen.json",
       "tags": [
-        "d96-pen",
-        "surah 96",
-        "ayah 1"
+        "d96-pen"
       ],
       "thumbnail": "thumbnails/native-d96-pen.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d98-gardens",
-      "name": "Surah 98 · Gardens",
+      "name": "Gardens",
       "nativeID": "d98-gardens",
       "project": "native-d98-gardens.json",
       "tags": [
-        "d98-gardens",
-        "surah 98",
-        "ayah 1"
+        "d98-gardens"
       ],
       "thumbnail": "thumbnails/native-d98-gardens.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d98-pages",
-      "name": "Surah 98 · Pages",
+      "name": "Pages",
       "nativeID": "d98-pages",
       "project": "native-d98-pages.json",
       "tags": [
-        "d98-pages",
-        "surah 98",
-        "ayah 1"
+        "d98-pages"
       ],
       "thumbnail": "thumbnails/native-d98-pages.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-d99-quake",
-      "name": "Surah 99 · Quake",
+      "name": "Quake",
       "nativeID": "d99-quake",
       "project": "native-d99-quake.json",
       "tags": [
-        "d99-quake",
-        "surah 99",
-        "ayah 1"
+        "d99-quake"
       ],
       "thumbnail": "thumbnails/native-d99-quake.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-duha-shelter",
-      "name": "Surah 93 · Duha Shelter",
+      "name": "Duha Shelter",
       "nativeID": "duha-shelter",
       "project": "native-duha-shelter.json",
       "tags": [
-        "duha-shelter",
-        "surah 93",
-        "ayah 1"
+        "duha-shelter"
       ],
       "thumbnail": "thumbnails/native-duha-shelter.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-fajr-iram",
-      "name": "Surah 89 · Fajr Iram",
+      "name": "Fajr Iram",
       "nativeID": "fajr-iram",
       "project": "native-fajr-iram.json",
       "tags": [
-        "fajr-iram",
-        "surah 89",
-        "ayah 1"
+        "fajr-iram"
       ],
       "thumbnail": "thumbnails/native-fajr-iram.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-fajr-thamud",
-      "name": "Surah scene · Fajr Thamud",
+      "name": "Fajr Thamud",
       "nativeID": "fajr-thamud",
       "project": "native-fajr-thamud.json",
       "tags": [
@@ -2137,1315 +1859,1113 @@
       "thumbnail": "thumbnails/native-fajr-thamud.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-fil-kaaba",
-      "name": "Surah 105 · Fil Kaaba",
+      "name": "Fil Kaaba",
       "nativeID": "fil-kaaba",
       "project": "native-fil-kaaba.json",
       "tags": [
-        "fil-kaaba",
-        "surah 105",
-        "ayah 1"
+        "fil-kaaba"
       ],
       "thumbnail": "thumbnails/native-fil-kaaba.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-kahf-cave",
-      "name": "Surah 18 · Kahf Cave",
+      "name": "Kahf Cave",
       "nativeID": "kahf-cave",
       "project": "native-kahf-cave.json",
       "tags": [
-        "kahf-cave",
-        "surah 18",
-        "ayah 1"
+        "kahf-cave"
       ],
       "thumbnail": "thumbnails/native-kahf-cave.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-kahf-gardens",
-      "name": "Surah 18 · Kahf Gardens",
+      "name": "Kahf Gardens",
       "nativeID": "kahf-gardens",
       "project": "native-kahf-gardens.json",
       "tags": [
-        "kahf-gardens",
-        "surah 18",
-        "ayah 32"
+        "kahf-gardens"
       ],
       "thumbnail": "thumbnails/native-kahf-gardens.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-layl-roads",
-      "name": "Surah 92 · Layl Roads",
+      "name": "Layl Roads",
       "nativeID": "layl-roads",
       "project": "native-layl-roads.json",
       "tags": [
-        "layl-roads",
-        "surah 92",
-        "ayah 1"
+        "layl-roads"
       ],
       "thumbnail": "thumbnails/native-layl-roads.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-nuh-ark",
-      "name": "Surah 71 · Nuh Ark",
+      "name": "Nuh Ark",
       "nativeID": "nuh-ark",
       "project": "native-nuh-ark.json",
       "tags": [
-        "nuh-ark",
-        "surah 71",
-        "ayah 1"
+        "nuh-ark"
       ],
       "thumbnail": "thumbnails/native-nuh-ark.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-nur-niche",
-      "name": "Surah 24 · Nur Niche",
+      "name": "Nur Niche",
       "nativeID": "nur-niche",
       "project": "native-nur-niche.json",
       "tags": [
-        "nur-niche",
-        "surah 24",
-        "ayah 35"
+        "nur-niche"
       ],
       "thumbnail": "thumbnails/native-nur-niche.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p02-fire-and-storm",
-      "name": "Surah 2 · Fire And Storm",
+      "name": "Fire And Storm",
       "nativeID": "p02-fire-and-storm",
       "project": "native-p02-fire-and-storm.json",
       "tags": [
-        "p02-fire-and-storm",
-        "surah 2",
-        "ayah 1"
+        "p02-fire-and-storm"
       ],
       "thumbnail": "thumbnails/native-p02-fire-and-storm.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p02-qibla",
-      "name": "Surah 2 · Qibla",
+      "name": "Qibla",
       "nativeID": "p02-qibla",
       "project": "native-p02-qibla.json",
       "tags": [
-        "p02-qibla",
-        "surah 2",
-        "ayah 124"
+        "p02-qibla"
       ],
       "thumbnail": "thumbnails/native-p02-qibla.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p02-river",
-      "name": "Surah 2 · River",
+      "name": "River",
       "nativeID": "p02-river",
       "project": "native-p02-river.json",
       "tags": [
-        "p02-river",
-        "surah 2",
-        "ayah 246"
+        "p02-river"
       ],
       "thumbnail": "thumbnails/native-p02-river.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p02-twelve-springs",
-      "name": "Surah 2 · Twelve Springs",
+      "name": "Twelve Springs",
       "nativeID": "p02-twelve-springs",
       "project": "native-p02-twelve-springs.json",
       "tags": [
-        "p02-twelve-springs",
-        "surah 2",
-        "ayah 40"
+        "p02-twelve-springs"
       ],
       "thumbnail": "thumbnails/native-p02-twelve-springs.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p03-first-house",
-      "name": "Surah 3 · First House",
+      "name": "First House",
       "nativeID": "p03-first-house",
       "project": "native-p03-first-house.json",
       "tags": [
-        "p03-first-house",
-        "surah 3",
-        "ayah 96"
+        "p03-first-house"
       ],
       "thumbnail": "thumbnails/native-p03-first-house.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p03-night-and-day",
-      "name": "Surah 3 · Night And Day",
+      "name": "Night And Day",
       "nativeID": "p03-night-and-day",
       "project": "native-p03-night-and-day.json",
       "tags": [
-        "p03-night-and-day",
-        "surah 3",
-        "ayah 190"
+        "p03-night-and-day"
       ],
       "thumbnail": "thumbnails/native-p03-night-and-day.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p03-tilled-land",
-      "name": "Surah 3 · Tilled Land",
+      "name": "Tilled Land",
       "nativeID": "p03-tilled-land",
       "project": "native-p03-tilled-land.json",
       "tags": [
-        "p03-tilled-land",
-        "surah 3",
-        "ayah 1"
+        "p03-tilled-land"
       ],
       "thumbnail": "thumbnails/native-p03-tilled-land.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p04-emigrants-road",
-      "name": "Surah 4 · Emigrants Road",
+      "name": "Emigrants Road",
       "nativeID": "p04-emigrants-road",
       "project": "native-p04-emigrants-road.json",
       "tags": [
-        "p04-emigrants-road",
-        "surah 4",
-        "ayah 97"
+        "p04-emigrants-road"
       ],
       "thumbnail": "thumbnails/native-p04-emigrants-road.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p04-justice",
-      "name": "Surah 4 · Justice",
+      "name": "Justice",
       "nativeID": "p04-justice",
       "project": "native-p04-justice.json",
       "tags": [
-        "p04-justice",
-        "surah 4",
-        "ayah 58"
+        "p04-justice"
       ],
       "thumbnail": "thumbnails/native-p04-justice.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p04-mount-and-gate",
-      "name": "Surah 4 · Mount And Gate",
+      "name": "Mount And Gate",
       "nativeID": "p04-mount-and-gate",
       "project": "native-p04-mount-and-gate.json",
       "tags": [
-        "p04-mount-and-gate",
-        "surah 4",
-        "ayah 153"
+        "p04-mount-and-gate"
       ],
       "thumbnail": "thumbnails/native-p04-mount-and-gate.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p04-towers",
-      "name": "Surah 4 · Towers",
+      "name": "Towers",
       "nativeID": "p04-towers",
       "project": "native-p04-towers.json",
       "tags": [
-        "p04-towers",
-        "surah 4",
-        "ayah 71"
+        "p04-towers"
       ],
       "thumbnail": "thumbnails/native-p04-towers.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p05-guidance-and-light",
-      "name": "Surah 5 · Guidance And Light",
+      "name": "Guidance And Light",
       "nativeID": "p05-guidance-and-light",
       "project": "native-p05-guidance-and-light.json",
       "tags": [
-        "p05-guidance-and-light",
-        "surah 5",
-        "ayah 44"
+        "p05-guidance-and-light"
       ],
       "thumbnail": "thumbnails/native-p05-guidance-and-light.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p05-holy-land-gate",
-      "name": "Surah 5 · Holy Land Gate",
+      "name": "Holy Land Gate",
       "nativeID": "p05-holy-land-gate",
       "project": "native-p05-holy-land-gate.json",
       "tags": [
-        "p05-holy-land-gate",
-        "surah 5",
-        "ayah 20"
+        "p05-holy-land-gate"
       ],
       "thumbnail": "thumbnails/native-p05-holy-land-gate.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p05-sacred-house",
-      "name": "Surah 5 · Sacred House",
+      "name": "Sacred House",
       "nativeID": "p05-sacred-house",
       "project": "native-p05-sacred-house.json",
       "tags": [
-        "p05-sacred-house",
-        "surah 5",
-        "ayah 94"
+        "p05-sacred-house"
       ],
       "thumbnail": "thumbnails/native-p05-sacred-house.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p05-washing",
-      "name": "Surah 5 · Washing",
+      "name": "Washing",
       "nativeID": "p05-washing",
       "project": "native-p05-washing.json",
       "tags": [
-        "p05-washing",
-        "surah 5",
-        "ayah 1"
+        "p05-washing"
       ],
       "thumbnail": "thumbnails/native-p05-washing.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p06-clustered-dates",
-      "name": "Surah 6 · Clustered Dates",
+      "name": "Clustered Dates",
       "nativeID": "p06-clustered-dates",
       "project": "native-p06-clustered-dates.json",
       "tags": [
-        "p06-clustered-dates",
-        "surah 6",
-        "ayah 95"
+        "p06-clustered-dates"
       ],
       "thumbnail": "thumbnails/native-p06-clustered-dates.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p06-darkness-and-light",
-      "name": "Surah 6 · Darkness And Light",
+      "name": "Darkness And Light",
       "nativeID": "p06-darkness-and-light",
       "project": "native-p06-darkness-and-light.json",
       "tags": [
-        "p06-darkness-and-light",
-        "surah 6",
-        "ayah 1"
+        "p06-darkness-and-light"
       ],
       "thumbnail": "thumbnails/native-p06-darkness-and-light.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p06-falling-leaf",
-      "name": "Surah 6 · Falling Leaf",
+      "name": "Falling Leaf",
       "nativeID": "p06-falling-leaf",
       "project": "native-p06-falling-leaf.json",
       "tags": [
-        "p06-falling-leaf",
-        "surah 6",
-        "ayah 59"
+        "p06-falling-leaf"
       ],
       "thumbnail": "thumbnails/native-p06-falling-leaf.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p06-straight-path",
-      "name": "Surah 6 · Straight Path",
+      "name": "Straight Path",
       "nativeID": "p06-straight-path",
       "project": "native-p06-straight-path.json",
       "tags": [
-        "p06-straight-path",
-        "surah 6",
-        "ayah 151"
+        "p06-straight-path"
       ],
       "thumbnail": "thumbnails/native-p06-straight-path.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p07-forty-nights",
-      "name": "Surah 7 · Forty Nights",
+      "name": "Forty Nights",
       "nativeID": "p07-forty-nights",
       "project": "native-p07-forty-nights.json",
       "tags": [
-        "p07-forty-nights",
-        "surah 7",
-        "ayah 142"
+        "p07-forty-nights"
       ],
       "thumbnail": "thumbnails/native-p07-forty-nights.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p07-garden-tree",
-      "name": "Surah 7 · Garden Tree",
+      "name": "Garden Tree",
       "nativeID": "p07-garden-tree",
       "project": "native-p07-garden-tree.json",
       "tags": [
-        "p07-garden-tree",
-        "surah 7",
-        "ayah 1"
+        "p07-garden-tree"
       ],
       "thumbnail": "thumbnails/native-p07-garden-tree.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p07-pharaoh-works",
-      "name": "Surah 7 · Pharaoh Works",
+      "name": "Pharaoh Works",
       "nativeID": "p07-pharaoh-works",
       "project": "native-p07-pharaoh-works.json",
       "tags": [
-        "p07-pharaoh-works",
-        "surah 7",
-        "ayah 103"
+        "p07-pharaoh-works"
       ],
       "thumbnail": "thumbnails/native-p07-pharaoh-works.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p07-towns-left-empty",
-      "name": "Surah 7 · Towns Left Empty",
+      "name": "Towns Left Empty",
       "nativeID": "p07-towns-left-empty",
       "project": "native-p07-towns-left-empty.json",
       "tags": [
-        "p07-towns-left-empty",
-        "surah 7",
-        "ayah 59"
+        "p07-towns-left-empty"
       ],
       "thumbnail": "thumbnails/native-p07-towns-left-empty.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p09-cave",
-      "name": "Surah 9 · Cave",
+      "name": "Cave",
       "nativeID": "p09-cave",
       "project": "native-p09-cave.json",
       "tags": [
-        "p09-cave",
-        "surah 9",
-        "ayah 38"
+        "p09-cave"
       ],
       "thumbnail": "thumbnails/native-p09-cave.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p09-sacred-mosque",
-      "name": "Surah 9 · Sacred Mosque",
+      "name": "Sacred Mosque",
       "nativeID": "p09-sacred-mosque",
       "project": "native-p09-sacred-mosque.json",
       "tags": [
-        "p09-sacred-mosque",
-        "surah 9",
-        "ayah 1"
+        "p09-sacred-mosque"
       ],
       "thumbnail": "thumbnails/native-p09-sacred-mosque.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p10-adorned-earth",
-      "name": "Surah 10 · Adorned Earth",
+      "name": "Adorned Earth",
       "nativeID": "p10-adorned-earth",
       "project": "native-p10-adorned-earth.json",
       "tags": [
-        "p10-adorned-earth",
-        "surah 10",
-        "ayah 24"
+        "p10-adorned-earth"
       ],
       "thumbnail": "thumbnails/native-p10-adorned-earth.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p10-houses-in-egypt",
-      "name": "Surah 10 · Houses In Egypt",
+      "name": "Houses In Egypt",
       "nativeID": "p10-houses-in-egypt",
       "project": "native-p10-houses-in-egypt.json",
       "tags": [
-        "p10-houses-in-egypt",
-        "surah 10",
-        "ayah 75"
+        "p10-houses-in-egypt"
       ],
       "thumbnail": "thumbnails/native-p10-houses-in-egypt.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p10-sun-and-moon",
-      "name": "Surah 10 · Sun And Moon",
+      "name": "Sun And Moon",
       "nativeID": "p10-sun-and-moon",
       "project": "native-p10-sun-and-moon.json",
       "tags": [
-        "p10-sun-and-moon",
-        "surah 10",
-        "ayah 1"
+        "p10-sun-and-moon"
       ],
       "thumbnail": "thumbnails/native-p10-sun-and-moon.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p11-ark-building",
-      "name": "Surah 11 · Ark Building",
+      "name": "Ark Building",
       "nativeID": "p11-ark-building",
       "project": "native-p11-ark-building.json",
       "tags": [
-        "p11-ark-building",
-        "surah 11",
-        "ayah 1"
+        "p11-ark-building"
       ],
       "thumbnail": "thumbnails/native-p11-ark-building.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p11-empty-homes",
-      "name": "Surah 11 · Empty Homes",
+      "name": "Empty Homes",
       "nativeID": "p11-empty-homes",
       "project": "native-p11-empty-homes.json",
       "tags": [
-        "p11-empty-homes",
-        "surah 11",
-        "ayah 50"
+        "p11-empty-homes"
       ],
       "thumbnail": "thumbnails/native-p11-empty-homes.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p11-madyan-measure",
-      "name": "Surah 11 · Madyan Measure",
+      "name": "Madyan Measure",
       "nativeID": "p11-madyan-measure",
       "project": "native-p11-madyan-measure.json",
       "tags": [
-        "p11-madyan-measure",
-        "surah 11",
-        "ayah 84"
+        "p11-madyan-measure"
       ],
       "thumbnail": "thumbnails/native-p11-madyan-measure.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p11-stones-at-dawn",
-      "name": "Surah 11 · Stones At Dawn",
+      "name": "Stones At Dawn",
       "nativeID": "p11-stones-at-dawn",
       "project": "native-p11-stones-at-dawn.json",
       "tags": [
-        "p11-stones-at-dawn",
-        "surah 11",
-        "ayah 69"
+        "p11-stones-at-dawn"
       ],
       "thumbnail": "thumbnails/native-p11-stones-at-dawn.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p12-caravan-road",
-      "name": "Surah 12 · Caravan Road",
+      "name": "Caravan Road",
       "nativeID": "p12-caravan-road",
       "project": "native-p12-caravan-road.json",
       "tags": [
-        "p12-caravan-road",
-        "surah 12",
-        "ayah 58"
+        "p12-caravan-road"
       ],
       "thumbnail": "thumbnails/native-p12-caravan-road.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p12-dream-fulfilled",
-      "name": "Surah 12 · Dream Fulfilled",
+      "name": "Dream Fulfilled",
       "nativeID": "p12-dream-fulfilled",
       "project": "native-p12-dream-fulfilled.json",
       "tags": [
-        "p12-dream-fulfilled",
-        "surah 12",
-        "ayah 99"
+        "p12-dream-fulfilled"
       ],
       "thumbnail": "thumbnails/native-p12-dream-fulfilled.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p14-ashes-in-wind",
-      "name": "Surah 14 · Ashes In Wind",
+      "name": "Ashes In Wind",
       "nativeID": "p14-ashes-in-wind",
       "project": "native-p14-ashes-in-wind.json",
       "tags": [
-        "p14-ashes-in-wind",
-        "surah 14",
-        "ayah 1"
+        "p14-ashes-in-wind"
       ],
       "thumbnail": "thumbnails/native-p14-ashes-in-wind.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p15-night-road",
-      "name": "Surah 15 · Night Road",
+      "name": "Night Road",
       "nativeID": "p15-night-road",
       "project": "native-p15-night-road.json",
       "tags": [
-        "p15-night-road",
-        "surah 15",
-        "ayah 51"
+        "p15-night-road"
       ],
       "thumbnail": "thumbnails/native-p15-night-road.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p15-sky-and-winds",
-      "name": "Surah 15 · Sky And Winds",
+      "name": "Sky And Winds",
       "nativeID": "p15-sky-and-winds",
       "project": "native-p15-sky-and-winds.json",
       "tags": [
-        "p15-sky-and-winds",
-        "surah 15",
-        "ayah 1"
+        "p15-sky-and-winds"
       ],
       "thumbnail": "thumbnails/native-p15-sky-and-winds.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p16-homes-and-tents",
-      "name": "Surah 16 · Homes And Tents",
+      "name": "Homes And Tents",
       "nativeID": "p16-homes-and-tents",
       "project": "native-p16-homes-and-tents.json",
       "tags": [
-        "p16-homes-and-tents",
-        "surah 16",
-        "ayah 80"
+        "p16-homes-and-tents"
       ],
       "thumbnail": "thumbnails/native-p16-homes-and-tents.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p16-secure-town",
-      "name": "Surah 16 · Secure Town",
+      "name": "Secure Town",
       "nativeID": "p16-secure-town",
       "project": "native-p16-secure-town.json",
       "tags": [
-        "p16-secure-town",
-        "surah 16",
-        "ayah 112"
+        "p16-secure-town"
       ],
       "thumbnail": "thumbnails/native-p16-secure-town.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p16-waymarks-and-stars",
-      "name": "Surah 16 · Waymarks And Stars",
+      "name": "Waymarks And Stars",
       "nativeID": "p16-waymarks-and-stars",
       "project": "native-p16-waymarks-and-stars.json",
       "tags": [
-        "p16-waymarks-and-stars",
-        "surah 16",
-        "ayah 1"
+        "p16-waymarks-and-stars"
       ],
       "thumbnail": "thumbnails/native-p16-waymarks-and-stars.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p17-dawn-prayer",
-      "name": "Surah 17 · Dawn Prayer",
+      "name": "Dawn Prayer",
       "nativeID": "p17-dawn-prayer",
       "project": "native-p17-dawn-prayer.json",
       "tags": [
-        "p17-dawn-prayer",
-        "surah 17",
-        "ayah 78"
+        "p17-dawn-prayer"
       ],
       "thumbnail": "thumbnails/native-p17-dawn-prayer.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p17-ship-in-gale",
-      "name": "Surah 17 · Ship In Gale",
+      "name": "Ship In Gale",
       "nativeID": "p17-ship-in-gale",
       "project": "native-p17-ship-in-gale.json",
       "tags": [
-        "p17-ship-in-gale",
-        "surah 17",
-        "ayah 66"
+        "p17-ship-in-gale"
       ],
       "thumbnail": "thumbnails/native-p17-ship-in-gale.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p17-straight-balance",
-      "name": "Surah 17 · Straight Balance",
+      "name": "Straight Balance",
       "nativeID": "p17-straight-balance",
       "project": "native-p17-straight-balance.json",
       "tags": [
-        "p17-straight-balance",
-        "surah 17",
-        "ayah 22"
+        "p17-straight-balance"
       ],
       "thumbnail": "thumbnails/native-p17-straight-balance.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p17-things-demanded",
-      "name": "Surah 17 · Things Demanded",
+      "name": "Things Demanded",
       "nativeID": "p17-things-demanded",
       "project": "native-p17-things-demanded.json",
       "tags": [
-        "p17-things-demanded",
-        "surah 17",
-        "ayah 90"
+        "p17-things-demanded"
       ],
       "thumbnail": "thumbnails/native-p17-things-demanded.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p18-barrier",
-      "name": "Surah 18 · Barrier",
+      "name": "Barrier",
       "nativeID": "p18-barrier",
       "project": "native-p18-barrier.json",
       "tags": [
-        "p18-barrier",
-        "surah 18",
-        "ayah 83"
+        "p18-barrier"
       ],
       "thumbnail": "thumbnails/native-p18-barrier.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p18-ship-and-wall",
-      "name": "Surah 18 · Ship And Wall",
+      "name": "Ship And Wall",
       "nativeID": "p18-ship-and-wall",
       "project": "native-p18-ship-and-wall.json",
       "tags": [
-        "p18-ship-and-wall",
-        "surah 18",
-        "ayah 60"
+        "p18-ship-and-wall"
       ],
       "thumbnail": "thumbnails/native-p18-ship-and-wall.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p19-gardens-of-eden",
-      "name": "Surah 19 · Gardens Of Eden",
+      "name": "Gardens Of Eden",
       "nativeID": "p19-gardens-of-eden",
       "project": "native-p19-gardens-of-eden.json",
       "tags": [
-        "p19-gardens-of-eden",
-        "surah 19",
-        "ayah 59"
+        "p19-gardens-of-eden"
       ],
       "thumbnail": "thumbnails/native-p19-gardens-of-eden.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p19-mihrab",
-      "name": "Surah 19 · Mihrab",
+      "name": "Mihrab",
       "nativeID": "p19-mihrab",
       "project": "native-p19-mihrab.json",
       "tags": [
-        "p19-mihrab",
-        "surah 19",
-        "ayah 1"
+        "p19-mihrab"
       ],
       "thumbnail": "thumbnails/native-p19-mihrab.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p20-dry-path",
-      "name": "Surah 20 · Dry Path",
+      "name": "Dry Path",
       "nativeID": "p20-dry-path",
       "project": "native-p20-dry-path.json",
       "tags": [
-        "p20-dry-path",
-        "surah 20",
-        "ayah 77"
+        "p20-dry-path"
       ],
       "thumbnail": "thumbnails/native-p20-dry-path.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p20-festival-day",
-      "name": "Surah 20 · Festival Day",
+      "name": "Festival Day",
       "nativeID": "p20-festival-day",
       "project": "native-p20-festival-day.json",
       "tags": [
-        "p20-festival-day",
-        "surah 20",
-        "ayah 56"
+        "p20-festival-day"
       ],
       "thumbnail": "thumbnails/native-p20-festival-day.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p20-garden",
-      "name": "Surah 20 · Garden",
+      "name": "Garden",
       "nativeID": "p20-garden",
       "project": "native-p20-garden.json",
       "tags": [
-        "p20-garden",
-        "surah 20",
-        "ayah 115"
+        "p20-garden"
       ],
       "thumbnail": "thumbnails/native-p20-garden.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p20-level-plain",
-      "name": "Surah 20 · Level Plain",
+      "name": "Level Plain",
       "nativeID": "p20-level-plain",
       "project": "native-p20-level-plain.json",
       "tags": [
-        "p20-level-plain",
-        "surah 20",
-        "ayah 99"
+        "p20-level-plain"
       ],
       "thumbnail": "thumbnails/native-p20-level-plain.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p21-fire-made-cool",
-      "name": "Surah 21 · Fire Made Cool",
+      "name": "Fire Made Cool",
       "nativeID": "p21-fire-made-cool",
       "project": "native-p21-fire-made-cool.json",
       "tags": [
-        "p21-fire-made-cool",
-        "surah 21",
-        "ayah 51"
+        "p21-fire-made-cool"
       ],
       "thumbnail": "thumbnails/native-p21-fire-made-cool.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p21-mountains-and-wind",
-      "name": "Surah 21 · Mountains And Wind",
+      "name": "Mountains And Wind",
       "nativeID": "p21-mountains-and-wind",
       "project": "native-p21-mountains-and-wind.json",
       "tags": [
-        "p21-mountains-and-wind",
-        "surah 21",
-        "ayah 78"
+        "p21-mountains-and-wind"
       ],
       "thumbnail": "thumbnails/native-p21-mountains-and-wind.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p21-orbits",
-      "name": "Surah 21 · Orbits",
+      "name": "Orbits",
       "nativeID": "p21-orbits",
       "project": "native-p21-orbits.json",
       "tags": [
-        "p21-orbits",
-        "surah 21",
-        "ayah 30"
+        "p21-orbits"
       ],
       "thumbnail": "thumbnails/native-p21-orbits.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p23-blessed-landing",
-      "name": "Surah 23 · Blessed Landing",
+      "name": "Blessed Landing",
       "nativeID": "p23-blessed-landing",
       "project": "native-p23-blessed-landing.json",
       "tags": [
-        "p23-blessed-landing",
-        "surah 23",
-        "ayah 23"
+        "p23-blessed-landing"
       ],
       "thumbnail": "thumbnails/native-p23-blessed-landing.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p23-high-ground",
-      "name": "Surah 23 · High Ground",
+      "name": "High Ground",
       "nativeID": "p23-high-ground",
       "project": "native-p23-high-ground.json",
       "tags": [
-        "p23-high-ground",
-        "surah 23",
-        "ayah 45"
+        "p23-high-ground"
       ],
       "thumbnail": "thumbnails/native-p23-high-ground.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p23-seven-heavens",
-      "name": "Surah 23 · Seven Heavens",
+      "name": "Seven Heavens",
       "nativeID": "p23-seven-heavens",
       "project": "native-p23-seven-heavens.json",
       "tags": [
-        "p23-seven-heavens",
-        "surah 23",
-        "ayah 78"
+        "p23-seven-heavens"
       ],
       "thumbnail": "thumbnails/native-p23-seven-heavens.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p24-dark-sea",
-      "name": "Surah 24 · Dark Sea",
+      "name": "Dark Sea",
       "nativeID": "p24-dark-sea",
       "project": "native-p24-dark-sea.json",
       "tags": [
-        "p24-dark-sea",
-        "surah 24",
-        "ayah 39"
+        "p24-dark-sea"
       ],
       "thumbnail": "thumbnails/native-p24-dark-sea.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p24-doors",
-      "name": "Surah 24 · Doors",
+      "name": "Doors",
       "nativeID": "p24-doors",
       "project": "native-p24-doors.json",
       "tags": [
-        "p24-doors",
-        "surah 24",
-        "ayah 1"
+        "p24-doors"
       ],
       "thumbnail": "thumbnails/native-p24-doors.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p25-markets",
-      "name": "Surah 25 · Markets",
+      "name": "Markets",
       "nativeID": "p25-markets",
       "project": "native-p25-markets.json",
       "tags": [
-        "p25-markets",
-        "surah 25",
-        "ayah 1"
+        "p25-markets"
       ],
       "thumbnail": "thumbnails/native-p25-markets.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p26-garden-brought-near",
-      "name": "Surah 26 · Garden Brought Near",
+      "name": "Garden Brought Near",
       "nativeID": "p26-garden-brought-near",
       "project": "native-p26-garden-brought-near.json",
       "tags": [
-        "p26-garden-brought-near",
-        "surah 26",
-        "ayah 69"
+        "p26-garden-brought-near"
       ],
       "thumbnail": "thumbnails/native-p26-garden-brought-near.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p26-laden-ark",
-      "name": "Surah 26 · Laden Ark",
+      "name": "Laden Ark",
       "nativeID": "p26-laden-ark",
       "project": "native-p26-laden-ark.json",
       "tags": [
-        "p26-laden-ark",
-        "surah 26",
-        "ayah 105"
+        "p26-laden-ark"
       ],
       "thumbnail": "thumbnails/native-p26-laden-ark.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p26-thamud-gardens",
-      "name": "Surah 26 · Thamud Gardens",
+      "name": "Thamud Gardens",
       "nativeID": "p26-thamud-gardens",
       "project": "native-p26-thamud-gardens.json",
       "tags": [
-        "p26-thamud-gardens",
-        "surah 26",
-        "ayah 141"
+        "p26-thamud-gardens"
       ],
       "thumbnail": "thumbnails/native-p26-thamud-gardens.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p26-thicket-balance",
-      "name": "Surah 26 · Thicket Balance",
+      "name": "Thicket Balance",
       "nativeID": "p26-thicket-balance",
       "project": "native-p26-thicket-balance.json",
       "tags": [
-        "p26-thicket-balance",
-        "surah 26",
-        "ayah 176"
+        "p26-thicket-balance"
       ],
       "thumbnail": "thumbnails/native-p26-thicket-balance.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p27-mountains-like-clouds",
-      "name": "Surah 27 · Mountains Like Clouds",
+      "name": "Mountains Like Clouds",
       "nativeID": "p27-mountains-like-clouds",
       "project": "native-p27-mountains-like-clouds.json",
       "tags": [
-        "p27-mountains-like-clouds",
-        "surah 27",
-        "ayah 59"
+        "p27-mountains-like-clouds"
       ],
       "thumbnail": "thumbnails/native-p27-mountains-like-clouds.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p28-qarun",
-      "name": "Surah 28 · Qarun",
+      "name": "Qarun",
       "nativeID": "p28-qarun",
       "project": "native-p28-qarun.json",
       "tags": [
-        "p28-qarun",
-        "surah 28",
-        "ayah 76"
+        "p28-qarun"
       ],
       "thumbnail": "thumbnails/native-p28-qarun.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p28-river-city",
-      "name": "Surah 28 · River City",
+      "name": "River City",
       "nativeID": "p28-river-city",
       "project": "native-p28-river-city.json",
       "tags": [
-        "p28-river-city",
-        "surah 28",
-        "ayah 1"
+        "p28-river-city"
       ],
       "thumbnail": "thumbnails/native-p28-river-city.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p29-dwellings",
-      "name": "Surah 29 · Dwellings",
+      "name": "Dwellings",
       "nativeID": "p29-dwellings",
       "project": "native-p29-dwellings.json",
       "tags": [
-        "p29-dwellings",
-        "surah 29",
-        "ayah 1"
+        "p29-dwellings"
       ],
       "thumbnail": "thumbnails/native-p29-dwellings.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p30-winds-and-ships",
-      "name": "Surah 30 · Winds And Ships",
+      "name": "Winds And Ships",
       "nativeID": "p30-winds-and-ships",
       "project": "native-p30-winds-and-ships.json",
       "tags": [
-        "p30-winds-and-ships",
-        "surah 30",
-        "ayah 17"
+        "p30-winds-and-ships"
       ],
       "thumbnail": "thumbnails/native-p30-winds-and-ships.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p33-prophets-houses",
-      "name": "Surah 33 · Prophets Houses",
+      "name": "Prophets Houses",
       "nativeID": "p33-prophets-houses",
       "project": "native-p33-prophets-houses.json",
       "tags": [
-        "p33-prophets-houses",
-        "surah 33",
-        "ayah 28"
+        "p33-prophets-houses"
       ],
       "thumbnail": "thumbnails/native-p33-prophets-houses.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p35-two-waters",
-      "name": "Surah 35 · Two Waters",
+      "name": "Two Waters",
       "nativeID": "p35-two-waters",
       "project": "native-p35-two-waters.json",
       "tags": [
-        "p35-two-waters",
-        "surah 35",
-        "ayah 1"
+        "p35-two-waters"
       ],
       "thumbnail": "thumbnails/native-p35-two-waters.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p37-cup-and-spring",
-      "name": "Surah 37 · Cup And Spring",
+      "name": "Cup And Spring",
       "nativeID": "p37-cup-and-spring",
       "project": "native-p37-cup-and-spring.json",
       "tags": [
-        "p37-cup-and-spring",
-        "surah 37",
-        "ayah 40"
+        "p37-cup-and-spring"
       ],
       "thumbnail": "thumbnails/native-p37-cup-and-spring.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p37-gourd-shore",
-      "name": "Surah 37 · Gourd Shore",
+      "name": "Gourd Shore",
       "nativeID": "p37-gourd-shore",
       "project": "native-p37-gourd-shore.json",
       "tags": [
-        "p37-gourd-shore",
-        "surah 37",
-        "ayah 139"
+        "p37-gourd-shore"
       ],
       "thumbnail": "thumbnails/native-p37-gourd-shore.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p37-ruins-passed",
-      "name": "Surah 37 · Ruins Passed",
+      "name": "Ruins Passed",
       "nativeID": "p37-ruins-passed",
       "project": "native-p37-ruins-passed.json",
       "tags": [
-        "p37-ruins-passed",
-        "surah 37",
-        "ayah 75"
+        "p37-ruins-passed"
       ],
       "thumbnail": "thumbnails/native-p37-ruins-passed.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p39-gates-opened",
-      "name": "Surah 39 · Gates Opened",
+      "name": "Gates Opened",
       "nativeID": "p39-gates-opened",
       "project": "native-p39-gates-opened.json",
       "tags": [
-        "p39-gates-opened",
-        "surah 39",
-        "ayah 68"
+        "p39-gates-opened"
       ],
       "thumbnail": "thumbnails/native-p39-gates-opened.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p40-night-for-rest",
-      "name": "Surah 40 · Night For Rest",
+      "name": "Night For Rest",
       "nativeID": "p40-night-for-rest",
       "project": "native-p40-night-for-rest.json",
       "tags": [
-        "p40-night-for-rest",
-        "surah 40",
-        "ayah 56"
+        "p40-night-for-rest"
       ],
       "thumbnail": "thumbnails/native-p40-night-for-rest.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p41-lamps-of-heaven",
-      "name": "Surah 41 · Lamps Of Heaven",
+      "name": "Lamps Of Heaven",
       "nativeID": "p41-lamps-of-heaven",
       "project": "native-p41-lamps-of-heaven.json",
       "tags": [
-        "p41-lamps-of-heaven",
-        "surah 41",
-        "ayah 1"
+        "p41-lamps-of-heaven"
       ],
       "thumbnail": "thumbnails/native-p41-lamps-of-heaven.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p42-harvest",
-      "name": "Surah 42 · Harvest",
+      "name": "Harvest",
       "nativeID": "p42-harvest",
       "project": "native-p42-harvest.json",
       "tags": [
-        "p42-harvest",
-        "surah 42",
-        "ayah 1"
+        "p42-harvest"
       ],
       "thumbnail": "thumbnails/native-p42-harvest.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p43-rivers-of-egypt",
-      "name": "Surah 43 · Rivers Of Egypt",
+      "name": "Rivers Of Egypt",
       "nativeID": "p43-rivers-of-egypt",
       "project": "native-p43-rivers-of-egypt.json",
       "tags": [
-        "p43-rivers-of-egypt",
-        "surah 43",
-        "ayah 46"
+        "p43-rivers-of-egypt"
       ],
       "thumbnail": "thumbnails/native-p43-rivers-of-egypt.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p50-before-sunrise",
-      "name": "Surah 50 · Before Sunrise",
+      "name": "Before Sunrise",
       "nativeID": "p50-before-sunrise",
       "project": "native-p50-before-sunrise.json",
       "tags": [
-        "p50-before-sunrise",
-        "surah 50",
-        "ayah 36"
+        "p50-before-sunrise"
       ],
       "thumbnail": "thumbnails/native-p50-before-sunrise.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p51-gardens-at-dawn",
-      "name": "Surah 51 · Gardens At Dawn",
+      "name": "Gardens At Dawn",
       "nativeID": "p51-gardens-at-dawn",
       "project": "native-p51-gardens-at-dawn.json",
       "tags": [
-        "p51-gardens-at-dawn",
-        "surah 51",
-        "ayah 15"
+        "p51-gardens-at-dawn"
       ],
       "thumbnail": "thumbnails/native-p51-gardens-at-dawn.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p52-setting-stars",
-      "name": "Surah 52 · Setting Stars",
+      "name": "Setting Stars",
       "nativeID": "p52-setting-stars",
       "project": "native-p52-setting-stars.json",
       "tags": [
-        "p52-setting-stars",
-        "surah 52",
-        "ayah 29"
+        "p52-setting-stars"
       ],
       "thumbnail": "thumbnails/native-p52-setting-stars.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p53-overturned-towns",
-      "name": "Surah 53 · Overturned Towns",
+      "name": "Overturned Towns",
       "nativeID": "p53-overturned-towns",
       "project": "native-p53-overturned-towns.json",
       "tags": [
-        "p53-overturned-towns",
-        "surah 53",
-        "ayah 33"
+        "p53-overturned-towns"
       ],
       "thumbnail": "thumbnails/native-p53-overturned-towns.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p56-shade-and-water",
-      "name": "Surah 56 · Shade And Water",
+      "name": "Shade And Water",
       "nativeID": "p56-shade-and-water",
       "project": "native-p56-shade-and-water.json",
       "tags": [
-        "p56-shade-and-water",
-        "surah 56",
-        "ayah 1"
+        "p56-shade-and-water"
       ],
       "thumbnail": "thumbnails/native-p56-shade-and-water.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p69-lofty-garden",
-      "name": "Surah 69 · Lofty Garden",
+      "name": "Lofty Garden",
       "nativeID": "p69-lofty-garden",
       "project": "native-p69-lofty-garden.json",
       "tags": [
-        "p69-lofty-garden",
-        "surah 69",
-        "ayah 19"
+        "p69-lofty-garden"
       ],
       "thumbnail": "thumbnails/native-p69-lofty-garden.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p70-east-and-west",
-      "name": "Surah 70 · East And West",
+      "name": "East And West",
       "nativeID": "p70-east-and-west",
       "project": "native-p70-east-and-west.json",
       "tags": [
-        "p70-east-and-west",
-        "surah 70",
-        "ayah 36"
+        "p70-east-and-west"
       ],
       "thumbnail": "thumbnails/native-p70-east-and-west.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p74-open-scrolls",
-      "name": "Surah 74 · Open Scrolls",
+      "name": "Open Scrolls",
       "nativeID": "p74-open-scrolls",
       "project": "native-p74-open-scrolls.json",
       "tags": [
-        "p74-open-scrolls",
-        "surah 74",
-        "ayah 38"
+        "p74-open-scrolls"
       ],
       "thumbnail": "thumbnails/native-p74-open-scrolls.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p75-recital",
-      "name": "Surah 75 · Recital",
+      "name": "Recital",
       "nativeID": "p75-recital",
       "project": "native-p75-recital.json",
       "tags": [
-        "p75-recital",
-        "surah 75",
-        "ayah 16"
+        "p75-recital"
       ],
       "thumbnail": "thumbnails/native-p75-recital.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p78-gardens-and-vines",
-      "name": "Surah 78 · Gardens And Vines",
+      "name": "Gardens And Vines",
       "nativeID": "p78-gardens-and-vines",
       "project": "native-p78-gardens-and-vines.json",
       "tags": [
-        "p78-gardens-and-vines",
-        "surah 78",
-        "ayah 31"
+        "p78-gardens-and-vines"
       ],
       "thumbnail": "thumbnails/native-p78-gardens-and-vines.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-p79-earth-spread",
-      "name": "Surah 79 · Earth Spread",
+      "name": "Earth Spread",
       "nativeID": "p79-earth-spread",
       "project": "native-p79-earth-spread.json",
       "tags": [
-        "p79-earth-spread",
-        "surah 79",
-        "ayah 27"
+        "p79-earth-spread"
       ],
       "thumbnail": "thumbnails/native-p79-earth-spread.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-qadr-night",
-      "name": "Surah 97 · Qadr Night",
+      "name": "Qadr Night",
       "nativeID": "qadr-night",
       "project": "native-qadr-night.json",
       "tags": [
-        "qadr-night",
-        "surah 97",
-        "ayah 1"
+        "qadr-night"
       ],
       "thumbnail": "thumbnails/native-qadr-night.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-tur-sinai",
-      "name": "Surah 52 · Tur Sinai",
+      "name": "Tur Sinai",
       "nativeID": "tur-sinai",
       "project": "native-tur-sinai.json",
       "tags": [
-        "tur-sinai",
-        "surah 52",
-        "ayah 1"
+        "tur-sinai"
       ],
       "thumbnail": "thumbnails/native-tur-sinai.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-yusuf-egypt",
-      "name": "Surah 12 · Yusuf Egypt",
+      "name": "Yusuf Egypt",
       "nativeID": "yusuf-egypt",
       "project": "native-yusuf-egypt.json",
       "tags": [
-        "yusuf-egypt",
-        "surah 12",
-        "ayah 21"
+        "yusuf-egypt"
       ],
       "thumbnail": "thumbnails/native-yusuf-egypt.webp"
     },
     {
-      "category": "Surah scenes",
+      "category": "Story scenes",
       "id": "native-yusuf-well",
-      "name": "Surah 12 · Yusuf Well",
+      "name": "Yusuf Well",
       "nativeID": "yusuf-well",
       "project": "native-yusuf-well.json",
       "tags": [
-        "yusuf-well",
-        "surah 12",
-        "ayah 1"
+        "yusuf-well"
       ],
       "thumbnail": "thumbnails/native-yusuf-well.webp"
     },

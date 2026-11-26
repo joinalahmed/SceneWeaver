@@ -1,11 +1,11 @@
 # SwiftUI, React and Studio parity
 
-Version 0.2.0 includes the entire original scene library: **428 scenes**. The optional `SceneWeaverCatalog` Swift product and `studio/assets/catalog.json` expose the same IDs.
+Version 0.2.1 includes the entire original scene library: **428 scenes**. The optional `SceneWeaverCatalog` Swift product and `studio/assets/catalog.json` expose the same IDs.
 
 | Library | Scenes |
 | --- | ---: |
 | Cities | 23 |
-| Surah scenes and variants | 241 |
+| Story scenes and variants | 241 |
 | Dua categories | 27 |
 | Individual dua scenes | 127 |
 | Landscapes | 2 |
@@ -39,7 +39,7 @@ Platform gradients, font rendering, color spaces and antialiasing can differ. Cu
 
 The core `SceneWeaver` product remains independent of the catalog and has no bundled artwork. Add `SceneWeaverCatalog` to opt into the complete original visual library. No application data, Quran text dataset, location history or app services are included.
 
-The React package contains the renderer, components and TypeScript declarations. Host the contents of the `sceneweaver-library-0.2.0.zip` release asset under your site's `/scenes/` directory, retaining relative paths. Pass `/scenes/catalog.json` to `SceneLibrary`, and use its selected project URL with `SceneView`. The same files are served by the public demo.
+The React package contains the renderer, components and TypeScript declarations. Host the contents of the `sceneweaver-library-0.2.1.zip` release asset under your site's `/scenes/` directory, retaining relative paths. Pass `/scenes/catalog.json` to `SceneLibrary`, and use its selected project URL with `SceneView`. The same files are served by the public demo.
 
 Saved procedural projects embed the verified compressed runtime and saved image projects embed their artwork, so they can be reopened without the catalog server. The WASI adapter and Swift runtime notices are in `studio/assets/runtime/`; retain these notices when redistributing the library.
 

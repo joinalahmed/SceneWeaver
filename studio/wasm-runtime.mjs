@@ -9,7 +9,7 @@ async function initialize(source){
  if(compressed.length>30000000)throw Error('Swift renderer exceeds 30 MB.');
  const bytes=compressed[0]===31&&compressed[1]===139?new Uint8Array(await new Response(new Blob([compressed]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer()):compressed;
  const digest=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(x=>x.toString(16).padStart(2,'0')).join('');
- if(digest!==RUNTIME_SHA256)throw Error('This scene needs a different SceneWeaver runtime version. Update the component or re-export the scene.');
+ if(![RUNTIME_SHA256,'6325afd6cb3e63f88f9cbb5c1e958d08dfd28176e37e5c4a200ebec19e0b87c4'].includes(digest))throw Error('This scene needs a different SceneWeaver runtime version. Update the component or re-export the scene.');
  const module=await WebAssembly.compile(bytes);
  if(WebAssembly.Module.imports(module).some(i=>i.module!=='wasi_snapshot_preview1'))throw Error('Unsupported scene runtime imports.');
  const wasi=new WASI([],['TZ=UTC','SWIFT_DETERMINISTIC_HASHING=1'],[new OpenFile(new File([])),ConsoleStdout.lineBuffered(()=>{}),ConsoleStdout.lineBuffered(()=>{})]);

@@ -8,7 +8,7 @@ final class CatalogTests:XCTestCase {
         XCTAssertEqual(SceneCatalog.scenes.count,428)
         XCTAssertEqual(Set(SceneCatalog.scenes.map(\.id)).count,428)
         XCTAssertEqual(SceneCatalog.scenes.filter{$0.category=="Cities"}.count,23)
-        XCTAssertEqual(SceneCatalog.scenes.filter{$0.category=="Surah scenes"}.count,241)
+        XCTAssertEqual(SceneCatalog.scenes.filter{$0.category=="Story scenes"}.count,241)
         XCTAssertEqual(SceneCatalog.scenes.filter{$0.category=="Dua categories"}.count,27)
         XCTAssertEqual(SceneCatalog.scenes.filter{$0.category=="Dua scenes"}.count,127)
         for id in ["masjid-al-haram","masjid-an-nabawi","alpine","harbor","coastal-town","gallery-layered"]{XCTAssertNotNil(SceneCatalog.scene(id:id))}

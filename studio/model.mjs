@@ -149,7 +149,7 @@ export function validateProject(input, { allowSources = false } = {}) {
     );
   return {
     version: 1,
-    name: string(input.name, "Project name"),
+    name: input.nativeScene ? string(input.name, "Project name").replace(/^Surah (?:\d+|scene) · /, "") : string(input.name, "Project name"),
     settings: {
       hour: finite(settings.hour, 0, 23.99, "Displayed hour"),
       weather: settings.weather,
