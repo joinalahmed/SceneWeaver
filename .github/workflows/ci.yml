@@ -1,0 +1,13 @@
+name: Swift
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v7
+      - name: Test geometry and schedules
+        run: swift test
+      - name: Build the iOS library and examples
+        run: xcodebuild -scheme SceneWeaver -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build
