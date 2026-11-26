@@ -22,7 +22,7 @@ Choose Alpine hideaway, Harbor at dusk or a blank canvas. Import aligned PNG, We
 
 Set layer depth, ambient dimming, light colors and radius. Preview weather, daylight transitions, overscan and different viewport ratios. All image plates share one authored canvas aspect ratio. Transparent PNG or WebP works best; opaque images cover the live sky.
 
-The playback button pauses the **preview**. Native export uses SceneWeaver's ambient animation and system Reduce Motion behavior. The displayed hour is also a preview; exported `ComposedScene()` follows the clock, or accepts a fixed `previewDate`.
+Play previews a full day in 60 seconds: the time slider, sky and lights advance together with ambient motion. Pause freezes the scene at its current frame; resume continues without a jump. Scrubbing the time slider or choosing Day, Sunset or Night stops playback. New scenes open paused, and playback does not advance while the tab is hidden. Native export uses SceneWeaver's ambient animation and system Reduce Motion behavior. The displayed hour is also a preview; exported `ComposedScene()` follows the clock, or accepts a fixed `previewDate`.
 
 ## Export
 

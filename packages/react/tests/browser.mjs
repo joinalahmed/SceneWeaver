@@ -40,7 +40,7 @@ try {
   assert.equal(
     await pixel(),
     night,
-    "Paused motion must render a stable rest pose.",
+    "Paused motion must retain a stable frame.",
   );
   await page.evaluate(() => window.sceneTest.setHour(10));
   await page.waitForTimeout(150);

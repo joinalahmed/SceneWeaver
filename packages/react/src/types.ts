@@ -72,7 +72,7 @@ export interface SceneViewProps
   /** Omit to use the saved project hour; "local" follows the local clock every minute. */
   hour?: number | "local";
   weather?: SceneWeather;
-  /** Render ambient motion at its rest pose. System Reduce Motion is always respected. */
+  /** Freeze ambient motion at its current frame. System Reduce Motion renders the rest pose. */
   paused?: boolean;
   /** Optional description. Without a label the canvas is decorative. */
   label?: string;

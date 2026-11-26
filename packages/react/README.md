@@ -11,7 +11,7 @@ React 18 and 19 · TypeScript declarations · ESM · SSR-safe client initializat
 Install the built package from the public GitHub release:
 
 ```sh
-npm install https://github.com/joinalahmed/SceneWeaver/releases/download/react-v0.1.1/sceneweaver-react-0.1.1.tgz
+npm install https://github.com/joinalahmed/SceneWeaver/releases/download/react-v0.1.2/sceneweaver-react-0.1.2.tgz
 ```
 
 The package is distributed through GitHub Releases; it is not currently published to the npm registry. React is a peer dependency and is not bundled into the component. Use Node 20+ for package tooling.
@@ -59,7 +59,7 @@ For source projects with `asset.src`, image URLs resolve relative to the project
 | `baseURL` | Base for relative asset paths when passing a project object. |
 | `hour` | Number from 0 to 23.99; omit to use the saved hour, or use `"local"` to follow the local clock every minute. |
 | `weather` | `clear`, `partlyCloudy`, `cloudy`, `fog`, `drizzle`, `rain`, `snow` or `thunderstorm`. Defaults to the saved condition. |
-| `paused` | Render motion at its rest pose. Omit to use the project's motion setting. System Reduce Motion is always honored. |
+| `paused` | Freeze ambient motion at its current frame. Omit to use the project's motion setting. System Reduce Motion is always honored. |
 | `label` | Accessible scene description. Without one, the canvas is decorative. |
 | `children` | Normal React content above the drawing, including interactive controls. |
 | `fallback` | Optional content while the project and artwork load. |

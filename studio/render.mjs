@@ -1,5 +1,6 @@
 import { artworkRect, skyAt, ramp } from "./model.mjs";
 import { drawAtmosphere, drawWeather, rgba as rgb } from "./atmosphere.mjs";
+import { createAnimationClock } from "./playback.mjs";
 export function createRenderer(canvas, getProject, getImages, onFrame) {
   const ctx = canvas.getContext("2d"),
     material = document.createElement("canvas"),
@@ -7,11 +8,12 @@ export function createRenderer(canvas, getProject, getImages, onFrame) {
   if (!ctx || !m) throw new Error("Canvas 2D is unavailable in this browser.");
   const plates = new Map();
   let raf,
-    start = performance.now(),
-    last = 0,
-    frozen = 0,
-    wasMoving = true;
+    last = 0;
+  const animationTime = createAnimationClock();
   const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+  const visibilityChanged = () =>
+    animationTime(performance.now(), false, reduced.matches);
+  document.addEventListener("visibilitychange", visibilityChanged);
   function frame(ms) {
     raf = requestAnimationFrame(frame);
     if (ms - last < 40) return;
@@ -32,11 +34,12 @@ export function createRenderer(canvas, getProject, getImages, onFrame) {
     }
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, w, h);
-    const moving = p.settings.motion && !reduced.matches;
-    if (moving && !wasMoving) start = ms - frozen * 1000;
-    const time = moving ? (ms - start) / 1000 : 0;
-    if (moving) frozen = time;
-    wasMoving = moving;
+    const moving = !reduced.matches;
+    const time = animationTime(
+      ms,
+      p.settings.motion && moving,
+      reduced.matches,
+    );
     const s = p.settings,
       horizon = h - s.ground,
       sky = skyAt(s.hour, s.schedule);
@@ -153,6 +156,7 @@ export function createRenderer(canvas, getProject, getImages, onFrame) {
   return {
     destroy() {
       cancelAnimationFrame(raf);
+      document.removeEventListener("visibilitychange", visibilityChanged);
       plates.clear();
     },
   };

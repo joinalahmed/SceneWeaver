@@ -10,7 +10,9 @@ import {
   timeLabel,
 } from "./model.mjs";
 import { generateSwift, zipFiles } from "./export.mjs";
-import { createRenderer, decodeArtwork } from "./render.mjs?v=atmosphere-2";
+import { createRenderer, decodeArtwork } from "./render.mjs?v=playback-3";
+
+import { advanceDayHour } from "./playback.mjs";
 
 const $ = (selector) => document.querySelector(selector);
 const icon = (name) =>
@@ -31,6 +33,41 @@ let project = blankProject(),
   guides = true,
   currentFrame,
   loading = false;
+let playing = false,
+  playTimer,
+  playTimestamp;
+function syncPlayback() {
+  $("#play").innerHTML = icon(playing ? "pause" : "play");
+  $("#play").setAttribute(
+    "aria-label",
+    playing ? "Pause day cycle" : "Play day cycle",
+  );
+  $("#play").setAttribute("aria-pressed", playing);
+}
+function setPlayback(value, save = true) {
+  playing = value;
+  clearInterval(playTimer);
+  if (playing) {
+    playTimestamp = performance.now();
+    playTimer = setInterval(() => {
+      const now = performance.now();
+      if (!document.hidden) {
+        project.settings.hour = advanceDayHour(
+          project.settings.hour,
+          now - playTimestamp,
+        );
+        $("#hour").value = project.settings.hour;
+        $("#hour-label").textContent = timeLabel(project.settings.hour);
+      }
+      playTimestamp = now;
+    }, 120);
+  } else if (save) changed(false);
+  syncPlayback();
+}
+document.addEventListener("visibilitychange", () => {
+  playTimestamp = performance.now();
+});
+
 let catalog = [],
   toastTimer,
   saveTimer,
@@ -151,6 +188,7 @@ async function persist() {
   await storage("readwrite", (store) => store.put(project, "current"));
 }
 async function applyProject(input, { undo = true } = {}) {
+  setPlayback(false, false);
   const next = validateProject(input),
     decoded = new Map();
   await Promise.all(
@@ -203,12 +241,7 @@ function render() {
   $("#empty-state").hidden = project.layers.length > 0;
   $("#scene-summary").textContent =
     `${project.name} · ${project.layers.filter((l) => l.visible).length} visible layers`;
-  $("#play").innerHTML = icon(s.motion ? "pause" : "play");
-  $("#play").setAttribute(
-    "aria-label",
-    s.motion ? "Pause ambient motion" : "Play ambient motion",
-  );
-  $("#play").setAttribute("aria-pressed", s.motion);
+  syncPlayback();
   $("#layers").innerHTML = [...project.layers]
     .reverse()
     .map(
@@ -271,7 +304,7 @@ function positionHandles() {
 }
 createRenderer(
   $("#preview"),
-  () => project,
+  () => ({ ...project, settings: { ...project.settings, motion: playing } }),
   () => images,
   (frame) => {
     currentFrame = frame;
@@ -428,8 +461,12 @@ $("#handles").addEventListener("keydown", (e) => {
 });
 
 for (const key of ["hour", "ground", "overscan"]) {
-  $("#" + key).addEventListener("pointerdown", checkpoint);
+  $("#" + key).addEventListener("pointerdown", () => {
+    if (key === "hour") setPlayback(false);
+    checkpoint();
+  });
   $("#" + key).addEventListener("input", (e) => {
+    if (key === "hour") setPlayback(false);
     project.settings[key] = Number(e.target.value);
     $(
       "#" +
@@ -465,15 +502,18 @@ $("#project-name").onchange = (e) => {
   if (value) commit(() => (project.name = value));
   else render();
 };
-$("#play").onclick = () =>
-  commit(() => (project.settings.motion = !project.settings.motion));
-document
-  .querySelectorAll("[data-hour]")
-  .forEach(
-    (b) =>
-      (b.onclick = () =>
-        commit(() => (project.settings.hour = Number(b.dataset.hour)))),
-  );
+$("#play").onclick = () => {
+  if (!playing) checkpoint();
+  setPlayback(!playing);
+};
+document.querySelectorAll("[data-hour]").forEach(
+  (b) =>
+    (b.onclick = () =>
+      commit(() => {
+        setPlayback(false, false);
+        project.settings.hour = Number(b.dataset.hour);
+      })),
+);
 $(".inspector").addEventListener("pointerdown", (e) => {
   if (e.target.matches("input[type=range],input[type=color]")) checkpoint();
 });

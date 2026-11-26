@@ -25,6 +25,51 @@ try {
   await page.goto(process.env.STUDIO_URL || "http://127.0.0.1:5173/studio/");
   await page.locator('[data-layer="alpine-cabin"]').waitFor();
   assert.equal(await page.locator(".layer").count(), 3);
+  assert.equal(
+    await page.locator("#play").getAttribute("aria-pressed"),
+    "false",
+  );
+  const initialHour = Number(await page.locator("#hour").inputValue());
+  await page
+    .getByRole("button", { name: "Play day cycle", exact: true })
+    .click();
+  await page.waitForFunction(
+    (hour) => Number(document.querySelector("#hour").value) > hour + 0.1,
+    initialHour,
+  );
+  await page
+    .getByRole("button", { name: "Pause day cycle", exact: true })
+    .click();
+  const frozenHour = await page.locator("#hour").inputValue();
+  await page.waitForTimeout(120);
+  const frozenFrame = await page
+    .locator("#preview")
+    .evaluate((c) => c.toDataURL());
+  await page.waitForTimeout(250);
+  assert.equal(await page.locator("#hour").inputValue(), frozenHour);
+  assert.equal(
+    await page.locator("#preview").evaluate((c) => c.toDataURL()),
+    frozenFrame,
+    "Pause freezes ambient motion as well as the day cycle",
+  );
+  await page.locator("#play").click();
+  await page.waitForFunction(
+    (hour) => Number(document.querySelector("#hour").value) > Number(hour),
+    frozenHour,
+  );
+  await page.locator('[data-hour="10"]').click();
+  assert.equal(
+    await page.locator("#play").getAttribute("aria-pressed"),
+    "false",
+  );
+  assert.equal(Number(await page.locator("#hour").inputValue()), 10);
+  await page.locator("#play").click();
+  await page.locator("#hour").fill("17");
+  assert.equal(
+    await page.locator("#play").getAttribute("aria-pressed"),
+    "false",
+  );
+
   await page.locator('[data-layer="alpine-cabin"]').click();
   await page.locator('[data-hour="22"]').click();
   await page.locator('[data-tool="lamp"]').click();
