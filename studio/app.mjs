@@ -10,7 +10,7 @@ import {
   timeLabel,
 } from "./model.mjs";
 import { generateSwift, zipFiles } from "./export.mjs";
-import { createRenderer, decodeArtwork } from "./render.mjs";
+import { createRenderer, decodeArtwork } from "./render.mjs?v=atmosphere-2";
 
 const $ = (selector) => document.querySelector(selector);
 const icon = (name) =>

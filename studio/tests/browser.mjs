@@ -147,6 +147,71 @@ try {
     });
   }
   await page.screenshot({ path: `${output}/studio.png`, fullPage: true });
+  // A half-transparent plate must keep its alpha while receiving the native
+  // color multiplier. Multiplying against an opaque fill brightens its edges.
+  const edge = await page.evaluate(async () => {
+    const { createRenderer, decodeArtwork } = await import(
+      new URL("render.mjs", location.href)
+    );
+    const { blankProject } = await import(new URL("model.mjs", location.href));
+    const project = blankProject();
+    Object.assign(project.settings, {
+      hour: 12,
+      motion: false,
+      ground: 0,
+      aspectRatio: 1,
+      overscan: 1,
+    });
+    const source = document.createElement("canvas");
+    source.width = source.height = 100;
+    const sourceContext = source.getContext("2d");
+    sourceContext.fillStyle = "rgba(200,100,50,0.5)";
+    sourceContext.fillRect(0, 0, 100, 100);
+    const image = await decodeArtwork(source.toDataURL());
+    const canvas = document.createElement("canvas");
+    canvas.style.cssText =
+      "position:fixed;width:100px;height:100px;opacity:0;left:0;top:0";
+    canvas.getContext("2d", { willReadFrequently: true });
+    document.body.append(canvas);
+    const images = new Map([["edge", image]]);
+    async function pixel() {
+      return new Promise((resolve) => {
+        const renderer = createRenderer(
+          canvas,
+          () => project,
+          () => images,
+          () => {
+            const pixel = [
+              ...canvas
+                .getContext("2d", { willReadFrequently: true })
+                .getImageData(
+                  Math.floor(canvas.width / 2),
+                  Math.floor(canvas.height / 2),
+                  1,
+                  1,
+                ).data,
+            ];
+            renderer.destroy();
+            resolve(pixel);
+          },
+        );
+      });
+    }
+    const base = await pixel();
+    project.layers = [
+      { id: "edge", visible: true, depth: 0, dim: 0.46, lights: [] },
+    ];
+    const painted = await pixel();
+    canvas.remove();
+    return { base, painted };
+  });
+  for (let c = 0; c < 3; c++)
+    assert.ok(
+      Math.abs(
+        edge.painted[c] - ([200, 100, 50][c] * 0.5 + edge.base[c] * 0.5),
+      ) <= 2,
+      "Translucent artwork retains its color and alpha",
+    );
   assert.deepEqual(errors, []);
   console.log(
     `PASS browser composition, light placement and drag, reorder, project round trip, persistence, artwork import, ZIP export and mobile layout. Artifacts: ${output}`,

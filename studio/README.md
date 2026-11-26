@@ -35,7 +35,9 @@ Export SwiftUI downloads a ZIP containing:
 
 Add the view and assets to an app target linked to SceneWeaver. Merge imagesets if the app already has an asset catalog. Hidden layers are omitted from the SwiftUI composition but preserved in the project.
 
-The browser preview approximates SwiftUI's Canvas rendering. Plate framing and daylight palette interpolation follow the engine; weather, gradients and antialiasing can differ. Verify final output in Xcode. Studio currently composes image plates and lights; arbitrary native Canvas callbacks and procedural pen scenes are outside its project format.
+The browser runs a JavaScript Canvas renderer, while exported scenes run SwiftUI. Image framing, daylight interpolation, the sun curve, cloud banks, moon visibility, ground palette, precipitation and storm timing follow the native image-scene formulas. Browser and SwiftUI gradients, color spaces and antialiasing can still differ; this is not a pixel-identical native preview.
+
+Studio and React support image plates, floodlights and lamps. Native `ScenePen` geometry, custom Canvas callbacks, overlays, incidental birds/aircraft/traffic, RTL placement and scene-specific reserved heights are outside the web project format. The starter artwork also differs from the native gallery. Verify the exported composition in Xcode on your target device.
 
 ## React
 

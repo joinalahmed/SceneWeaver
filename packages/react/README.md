@@ -11,7 +11,7 @@ React 18 and 19 · TypeScript declarations · ESM · SSR-safe client initializat
 Install the built package from the public GitHub release:
 
 ```sh
-npm install https://github.com/joinalahmed/SceneWeaver/releases/download/react-v0.1.0/sceneweaver-react-0.1.0.tgz
+npm install https://github.com/joinalahmed/SceneWeaver/releases/download/react-v0.1.1/sceneweaver-react-0.1.1.tgz
 ```
 
 The package is distributed through GitHub Releases; it is not currently published to the npm registry. React is a peer dependency and is not bundled into the component. Use Node 20+ for package tooling.
@@ -110,7 +110,7 @@ The helper resolves image URLs and returns validated JSON with embedded artwork.
 
 ## Renderer and limits
 
-This is the web Canvas renderer, not a wrapper around native SwiftUI. Its framing and lighting are shared with Studio; final native SwiftUI output can differ. It composes images and authored lights; arbitrary Swift drawing closures are not converted to JavaScript. No catalog artwork, fonts, network service or location provider is bundled into the component.
+This is the web Canvas renderer, not a wrapper around native SwiftUI. It shares Studio’s image framing, lighting and native-derived sky/weather formulas; color spaces, gradients and antialiasing can differ from SwiftUI. It composes images and authored lights; arbitrary Swift drawing closures are not converted to JavaScript. No catalog artwork, fonts, network service or location provider is bundled into the component.
 
 ## Develop
 

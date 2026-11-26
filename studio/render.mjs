@@ -1,24 +1,9 @@
-import { artworkRect, skyAt, mix, ramp, clamp } from "./model.mjs";
-const rgb = (v, a = 1) =>
-  `rgba(${v.map((x) => Math.round(clamp(x, 0, 1) * 255)).join(",")},${a})`;
-const noise = (i, s) => {
-  const v = Math.sin(i * 12.9898 + s * 78.233) * 43758.5453;
-  return v - Math.floor(v);
-};
-const overcast = {
-  clear: 0,
-  partlyCloudy: 0.18,
-  cloudy: 0.55,
-  fog: 0.62,
-  drizzle: 0.55,
-  rain: 0.68,
-  snow: 0.55,
-  thunderstorm: 0.82,
-};
+import { artworkRect, skyAt, ramp } from "./model.mjs";
+import { drawAtmosphere, drawWeather, rgba as rgb } from "./atmosphere.mjs";
 export function createRenderer(canvas, getProject, getImages, onFrame) {
   const ctx = canvas.getContext("2d"),
     material = document.createElement("canvas"),
-    m = material.getContext("2d");
+    m = material.getContext("2d", { willReadFrequently: true });
   if (!ctx || !m) throw new Error("Canvas 2D is unavailable in this browser.");
   const plates = new Map();
   let raf,
@@ -54,36 +39,8 @@ export function createRenderer(canvas, getProject, getImages, onFrame) {
     wasMoving = moving;
     const s = p.settings,
       horizon = h - s.ground,
-      sky = skyAt(s.hour, s.schedule),
-      cloud = overcast[s.weather];
-    const grey = mix([0.17, 0.19, 0.23], [0.06, 0.07, 0.09], sky.darkness),
-      top = mix(sky.top, grey, cloud),
-      low = mix(sky.low, grey, cloud);
-    const grad = ctx.createLinearGradient(0, 0, 0, horizon);
-    grad.addColorStop(0, rgb(top));
-    grad.addColorStop(1, rgb(low));
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, w, h);
-    if (sky.darkness > 0.3) {
-      for (let i = 0; i < 110; i++) {
-        ctx.globalAlpha =
-          ramp(sky.darkness, 0.3, 0.9) *
-          (1 - cloud) *
-          (0.3 + noise(i, 6) * 0.7) *
-          (0.85 + 0.15 * Math.sin(time * 0.6 + i));
-        ctx.fillStyle = "#e9ebed";
-        ctx.beginPath();
-        ctx.arc(
-          noise(i, 2) * w,
-          noise(i, 3) * Math.max(0, horizon - 30),
-          0.45 + noise(i, 4),
-          0,
-          Math.PI * 2,
-        );
-        ctx.fill();
-      }
-      ctx.globalAlpha = 1;
-    }
+      sky = skyAt(s.hour, s.schedule);
+    drawAtmosphere(ctx, w, h, s, sky, time, moving);
     function halo(x, y, r, color) {
       const g = ctx.createRadialGradient(x, y, 0, x, y, r);
       g.addColorStop(0, color);
@@ -91,46 +48,6 @@ export function createRenderer(canvas, getProject, getImages, onFrame) {
       ctx.fillStyle = g;
       ctx.fillRect(x - r, y - r, r * 2, r * 2);
     }
-    const [_, rise, , , set] = s.schedule;
-    if (s.hour >= rise && s.hour <= set && cloud < 0.7) {
-      const phase = (s.hour - rise) / (set - rise),
-        x = w * (0.12 + phase * 0.76),
-        y = horizon - 45 - Math.sin(phase * Math.PI) * Math.min(h * 0.55, 180);
-      halo(x, y, 45, `rgba(255,208,116,${0.25 * (1 - cloud)})`);
-      ctx.fillStyle = "#ffd37e";
-      ctx.beginPath();
-      ctx.arc(x, y, 10, 0, Math.PI * 2);
-      ctx.fill();
-    }
-    if (sky.darkness > 0.6) {
-      const x = w * 0.82,
-        y = Math.max(30, h * 0.2);
-      halo(x, y, 42, `rgba(212,220,244,${sky.darkness * 0.12})`);
-      ctx.fillStyle = `rgba(247,239,201,${sky.darkness})`;
-      ctx.beginPath();
-      ctx.arc(x, y, 13, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = rgb(mix(top, low, y / horizon));
-      ctx.beginPath();
-      ctx.arc(x + 6, y - 4, 12, 0, Math.PI * 2);
-      ctx.fill();
-    }
-    if (cloud > 0 || s.weather === "clear") {
-      for (let i = 0; i < (cloud > 0.3 ? 8 : 3); i++) {
-        const x = ((noise(i, 91) * w + time * (3 + i)) % (w + 200)) - 100,
-          y = h * (0.12 + noise(i, 92) * 0.26);
-        ctx.fillStyle = `rgba(200,210,211,${(0.035 + cloud * 0.13) * (1 - sky.darkness * 0.6)})`;
-        ctx.beginPath();
-        ctx.ellipse(x, y, 50 + i * 8, 9 + i * 2, 0, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-    const floor = ctx.createLinearGradient(0, horizon - 32, 0, h);
-    floor.addColorStop(0, "transparent");
-    floor.addColorStop(32 / (s.ground + 32), "#111c25");
-    floor.addColorStop(1, "#070d13");
-    ctx.fillStyle = floor;
-    ctx.fillRect(0, horizon - 32, w, s.ground + 32);
     const motion = moving ? Math.sin(time * 0.06) : 0,
       rects = new Map();
     for (const layer of p.layers) {
@@ -156,15 +73,17 @@ export function createRenderer(canvas, getProject, getImages, onFrame) {
         const dim = layer.dim,
           dark = sky.darkness,
           glow = sky.glow;
-        m.globalCompositeOperation = "multiply";
-        m.fillStyle = rgb([
+        // A diagonal color matrix matches SwiftUI's colorMultiply filter,
+        // preserving the plate's alpha (including antialiased edges).
+        const pixels = m.getImageData(0, 0, pw, ph);
+        const tint = [
           1 - dark * dim,
           1 - dark * (dim - 0.025) - glow * 0.025,
           1 - dark * (dim - 0.12) - glow * 0.065,
-        ]);
-        m.fillRect(0, 0, pw, ph);
-        m.globalCompositeOperation = "destination-in";
-        m.drawImage(image, 0, 0, pw, ph);
+        ];
+        for (let i = 0; i < pixels.data.length; i += 4)
+          for (let c = 0; c < 3; c++) pixels.data[i + c] *= tint[c];
+        m.putImageData(pixels, 0, 0);
         m.globalCompositeOperation = "source-atop";
         for (const light of layer.lights.filter((l) => l.type === "flood")) {
           const x = light.x * pw,
@@ -227,46 +146,7 @@ export function createRenderer(canvas, getProject, getImages, onFrame) {
     // Removed layers must release their cached image surfaces.
     for (const key of plates.keys())
       if (!p.layers.some((l) => l.id === key)) plates.delete(key);
-    const ground = ctx.createLinearGradient(0, horizon, 0, h);
-    ground.addColorStop(0, "transparent");
-    ground.addColorStop(1, "#070d13");
-    ctx.fillStyle = ground;
-    ctx.fillRect(0, horizon, w, s.ground);
-    if (["drizzle", "rain", "snow", "thunderstorm"].includes(s.weather)) {
-      const snow = s.weather === "snow",
-        count = s.weather === "drizzle" ? 50 : 130;
-      ctx.strokeStyle = "rgba(207,226,239,.38)";
-      ctx.fillStyle = "rgba(233,242,245,.7)";
-      ctx.lineWidth = 0.7;
-      for (let i = 0; i < count; i++) {
-        const x = (noise(i, 81) * w - time * (snow ? 5 : 40) + w * 100) % w,
-          y = (noise(i, 82) * h + time * (snow ? 17 : 280)) % h;
-        if (snow) {
-          ctx.beginPath();
-          ctx.arc(
-            x + Math.sin(i + time * 0.4) * 5,
-            y,
-            1 + noise(i, 9),
-            0,
-            Math.PI * 2,
-          );
-          ctx.fill();
-        } else {
-          ctx.beginPath();
-          ctx.moveTo(x, y);
-          ctx.lineTo(x - 3, y + 11);
-          ctx.stroke();
-        }
-      }
-    }
-    if (s.weather === "fog") {
-      ctx.fillStyle = "rgba(168,184,186,.20)";
-      ctx.fillRect(0, h * 0.45, w, h * 0.55);
-    }
-    if (moving && s.weather === "thunderstorm" && time % 11 < 0.12) {
-      ctx.fillStyle = "rgba(216,225,255,.32)";
-      ctx.fillRect(0, 0, w, h);
-    }
+    drawWeather(ctx, w, h, s, time, moving);
     onFrame({ rects, width: w, height: h, sky });
   }
   raf = requestAnimationFrame(frame);
