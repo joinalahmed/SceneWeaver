@@ -9,8 +9,10 @@ const temporary = await mkdtemp(
   path.join(os.tmpdir(), "sceneweaver-react-consumer-"),
 );
 try {
+  // Keep npm lifecycle output out of its JSON result across npm versions.
+  execFileSync('npm', ['run','build'], {cwd:root,stdio:'pipe'});
   const packed = JSON.parse(
-    execFileSync("npm", ["pack", "--json", "--pack-destination", temporary], {
+    execFileSync("npm", ["pack", "--json", "--ignore-scripts", "--pack-destination", temporary], {
       cwd: root,
       encoding: "utf8",
     }).trim(),
