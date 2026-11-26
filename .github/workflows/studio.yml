@@ -5,6 +5,7 @@ on:
     paths:
       [
         "studio/**",
+        "packages/react/**",
         "scripts/validate-studio-assets.mjs",
         ".github/workflows/studio.yml",
       ]
@@ -12,6 +13,7 @@ on:
     paths:
       [
         "studio/**",
+        "packages/react/**",
         "scripts/validate-studio-assets.mjs",
         ".github/workflows/studio.yml",
       ]
@@ -30,6 +32,11 @@ jobs:
         run: |
           node --test studio/tests/*.test.mjs
           node scripts/validate-studio-assets.mjs
+      - name: Build and test the React package
+        run: |
+          npm ci --prefix packages/react
+          npm test --prefix packages/react
+          npm run test:package --prefix packages/react
       - name: Install browser test tools
         run: |
           npm install --prefix "$RUNNER_TEMP/studio-tests" --no-package-lock --ignore-scripts playwright@1.65.1
@@ -43,6 +50,11 @@ jobs:
           server_pid=$!
           trap 'kill "$server_pid"' EXIT
           node studio/tests/browser.mjs
+          for react_version in 18.3.1 19.3.1; do
+            npm install --prefix packages/react --no-save --package-lock=false "react@$react_version" "react-dom@$react_version"
+            npm run build:example --prefix packages/react
+            npm run test:browser --prefix packages/react
+          done
       - uses: actions/upload-pages-artifact@v5.0.0
         if: github.event_name != 'pull_request'
         with:

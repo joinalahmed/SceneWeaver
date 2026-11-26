@@ -38,6 +38,51 @@ let catalog = [],
 const selectedLayer = () => project.layers.find((l) => l.id === selected);
 const selectedLight = () =>
   selectedLayer()?.lights.find((l) => l.id === lightID);
+function setInspector(tab) {
+  document.body.dataset.inspector = tab;
+  $("#layer-properties").hidden = tab !== "layer";
+  $("#scene-settings").hidden = tab !== "scene";
+  document
+    .querySelectorAll("[data-inspector][role=tab]")
+    .forEach((button) =>
+      button.setAttribute("aria-selected", button.dataset.inspector === tab),
+    );
+}
+function setPanel(panel) {
+  document.body.dataset.panel = panel;
+  document
+    .querySelectorAll("#mobile-nav [data-panel]")
+    .forEach((button) =>
+      button.setAttribute("aria-pressed", button.dataset.panel === panel),
+    );
+}
+function fitArtboard() {
+  const area = $("#stage-area");
+  if (!area.clientWidth || !area.clientHeight) return;
+  const css = getComputedStyle(area),
+    caption = $(".artboard-caption");
+  const width =
+    area.clientWidth -
+    parseFloat(css.paddingLeft) -
+    parseFloat(css.paddingRight);
+  const height =
+    area.clientHeight -
+    parseFloat(css.paddingTop) -
+    parseFloat(css.paddingBottom) -
+    caption.offsetHeight -
+    8;
+  $(".artboard").style.width =
+    `${Math.max(1, Math.min(width, Math.max(40, height) * project.settings.viewport))}px`;
+}
+document
+  .querySelectorAll("[data-inspector][role=tab]")
+  .forEach(
+    (button) => (button.onclick = () => setInspector(button.dataset.inspector)),
+  );
+document
+  .querySelectorAll("#mobile-nav [data-panel]")
+  .forEach((button) => (button.onclick = () => setPanel(button.dataset.panel)));
+new ResizeObserver(fitArtboard).observe($("#stage-area"));
 function toast(message) {
   $("#toast").textContent = message;
   $("#toast").classList.add("visible");
@@ -119,6 +164,8 @@ async function applyProject(input, { undo = true } = {}) {
   selected = next.layers.at(-1)?.id ?? null;
   lightID = null;
   tool = "select";
+  setInspector("layer");
+  setPanel("canvas");
   changed();
 }
 function setTool(value) {
@@ -129,7 +176,7 @@ function setTool(value) {
   $("#stage").style.cursor = tool === "select" ? "default" : "crosshair";
   $("#placement-hint").textContent =
     tool === "select"
-      ? "Select a layer, then place a light on its artwork."
+      ? "Select a layer to edit its lights."
       : `Click on the selected layer to place a ${tool === "lamp" ? "lamp" : "floodlight"}. Drag its handle to refine.`;
 }
 function render() {
@@ -149,7 +196,8 @@ function render() {
       (o) => Math.abs(Number(o.value) - s.viewport) < 0.001,
     )?.value ?? "";
   $("#stage").style.aspectRatio = s.viewport;
-  $("#stage").style.width = `min(100%, ${s.viewport * 56}vh)`;
+  $("#stage").style.width = "100%";
+  fitArtboard();
   $("#layer-count").textContent =
     `${project.layers.length} layer${project.layers.length === 1 ? "" : "s"}`;
   $("#empty-state").hidden = project.layers.length > 0;
@@ -244,6 +292,8 @@ $("#layers").addEventListener("click", (e) => {
   if (el) {
     selected = el.dataset.layer;
     lightID = null;
+    setInspector("layer");
+    setPanel("canvas");
     render();
   }
 });
@@ -299,6 +349,7 @@ $("#stage").addEventListener("pointerdown", (e) => {
     layer = selectedLayer();
   if (!layer?.visible) return;
   if (handle) {
+    setInspector("layer");
     e.preventDefault();
     checkpoint();
     lightID = handle.dataset.handle;
@@ -308,6 +359,7 @@ $("#stage").addEventListener("pointerdown", (e) => {
     return;
   }
   if (tool === "select") return;
+  setInspector("layer");
   const rect = currentFrame?.rects.get(selected),
     box = $("#stage").getBoundingClientRect();
   if (!rect) return;
@@ -359,6 +411,7 @@ $("#handles").addEventListener("keydown", (e) => {
   if (![...arrows, "Enter", " "].includes(e.key)) return;
   e.preventDefault();
   lightID = e.target.dataset.handle;
+  setInspector("layer");
   if (arrows.includes(e.key)) {
     checkpoint();
     const light = selectedLight(),

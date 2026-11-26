@@ -1,0 +1,49 @@
+{
+  "name": "sceneweaver-react",
+  "version": "0.1.0",
+  "description": "React scenes with live skies, layered artwork, weather and lighting. Compatible with SceneWeaver Studio projects.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joinalahmed/SceneWeaver.git",
+    "directory": "packages/react"
+  },
+  "homepage": "https://github.com/joinalahmed/SceneWeaver/tree/main/packages/react",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "build:example": "node scripts/example.mjs",
+    "test:browser": "node tests/browser.mjs",
+    "prepack": "npm run build",
+    "test:package": "node tests/package.mjs"
+  },
+  "peerDependencies": {
+    "react": ">=18 <20"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.3",
+    "esbuild": "0.28.2",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "typescript": "7.0.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -19,6 +19,7 @@ export function createRenderer(canvas, getProject, getImages, onFrame) {
   const ctx = canvas.getContext("2d"),
     material = document.createElement("canvas"),
     m = material.getContext("2d");
+  if (!ctx || !m) throw new Error("Canvas 2D is unavailable in this browser.");
   const plates = new Map();
   let raf,
     start = performance.now(),

@@ -12,6 +12,10 @@ python3 -m http.server 5173
 
 Open http://localhost:5173/studio/. ES modules and catalog requests require HTTP rather than opening `index.html` directly.
 
+## Workspace
+
+The light editor keeps layers on the left, a fitted artboard in the center, and Layer / Scene properties on the right. The Scene tab contains weather, framing and daylight controls. On phones, use the bottom Layers / Canvas / Properties navigation; the canvas opens first.
+
 ## Compose
 
 Choose Alpine hideaway, Harbor at dusk or a blank canvas. Import aligned PNG, WebP or JPEG plates. Order them front to back in the layer list; the underlying project and native export use back-to-front drawing order. Select a plate, use Lamp or Floodlight, then click on the artwork. Drag the handle or edit normalized coordinates in the inspector. Arrow keys nudge a focused light. Undo or ⌘/Ctrl+Z restores the last scene edit; ⌘/Ctrl+S saves a project copy.
@@ -32,6 +36,10 @@ Export SwiftUI downloads a ZIP containing:
 Add the view and assets to an app target linked to SceneWeaver. Merge imagesets if the app already has an asset catalog. Hidden layers are omitted from the SwiftUI composition but preserved in the project.
 
 The browser preview approximates SwiftUI's Canvas rendering. Plate framing and daylight palette interpolation follow the engine; weather, gradients and antialiasing can differ. Verify final output in Xcode. Studio currently composes image plates and lights; arbitrary native Canvas callbacks and procedural pen scenes are outside its project format.
+
+## React
+
+[The React component](../packages/react/README.md) renders these same projects and shares this renderer. Use Save project to obtain embedded JSON, then pass the object or a hosted JSON URL to React's `SceneView`. The [live React playground](https://joinalahmed.github.io/SceneWeaver/react/) is built from the package during deployment.
 
 ## Development
 

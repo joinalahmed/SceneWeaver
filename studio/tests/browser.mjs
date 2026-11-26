@@ -56,6 +56,7 @@ try {
     await page.locator(".layer").first().getAttribute("data-layer"),
     "alpine-cabin",
   );
+  await page.locator("#scene-tab").click();
   await page.locator("#weather").selectOption("rain");
   const save = page.waitForEvent("download");
   await page.locator("#save-project").click();
@@ -109,8 +110,11 @@ try {
       () => document.documentElement.scrollWidth <= window.innerWidth,
     ),
   );
+  await page.locator('#mobile-nav [data-panel="layers"]').click();
   await page.locator("#preset").selectOption("alpine");
-  await page.locator('[data-layer="alpine-cabin"]').waitFor();
+  await page
+    .locator('[data-layer="alpine-cabin"]')
+    .waitFor({ state: "attached" });
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.locator('[data-layer="alpine-cabin"]').click();
   await page.waitForTimeout(6000);

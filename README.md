@@ -24,6 +24,20 @@ Compose scenes visually: import aligned artwork, reorder layers, place and drag 
 
 The web preview approximates SwiftUI; the export runs on the native engine. No account or build step is needed. [Run locally and read the workflow](studio/README.md).
 
+## React component
+
+Use the shared web renderer in a React 18 or 19 app:
+
+```tsx
+import { SceneView } from 'sceneweaver-react';
+
+<SceneView project="/scenes/my-project.json" hour={18.6} weather="clear" />
+```
+
+**[React playground →](https://joinalahmed.github.io/SceneWeaver/react/)** · [Installation and component API](packages/react/README.md)
+
+The package accepts Studio JSON projects and includes TypeScript declarations, controlled time/weather, loading and error callbacks, accessible overlays and lifecycle cleanup. Install its built tarball from the React GitHub release; it is not yet on the npm registry.
+
 ## Screenshots
 
 Captured from the running iOS example, using only code-drawn content.
