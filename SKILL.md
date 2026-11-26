@@ -18,6 +18,10 @@ Read [README.md](README.md) for installation and runnable examples. For the curr
 
 When this skill is read outside a checkout, use the [public repository](https://github.com/joinalahmed/SceneWeaver) to obtain those files. Match the consumer's resolved package version rather than assuming main has the same API. Add the `SceneWeaver` library product to the consumer target before importing it.
 
+## Scene assets and the browser configurator
+
+For new artwork or asset-catalog scenes, use the focused [sceneweaver-assets skill](skills/sceneweaver-assets/SKILL.md). [SceneWeaver Studio](https://joinalahmed.github.io/SceneWeaver/) composes image plates and lights and exports a SwiftUI view with an Xcode asset catalog. Read [asset-authoring.md](docs/asset-authoring.md) for its project format. Browser previews approximate the native renderer; verify the generated composition in Xcode.
+
 ## Choose a composition
 
 Use `SceneDefinition(draw:)` for silhouettes and code-drawn geometry. The pen separates solids, cutouts, colored tints, gradients and lights; drawing order across these groups is determined by the renderer. Use `render:` with `LayeredArtwork` when the illustration needs authored detail or depth-based occlusion. Use `overlay:` for content above the scene but below precipitation.

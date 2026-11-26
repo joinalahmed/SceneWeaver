@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "name": "Alpine hideaway",
+  "settings": {
+    "hour": 18.6,
+    "weather": "clear",
+    "ground": 36,
+    "aspectRatio": 1.5,
+    "overscan": 1.12,
+    "viewport": 1.5,
+    "motion": true,
+    "schedule": [5, 6, 12, 15, 18, 19.5]
+  },
+  "layers": [
+    {
+      "id": "alpine-distance",
+      "name": "Distant peaks",
+      "visible": true,
+      "depth": 0.4,
+      "dim": 0.46,
+      "asset": {
+        "name": "Alpine_distance",
+        "src": "alpine/distance.svg"
+      },
+      "lights": []
+    },
+    {
+      "id": "alpine-cabin",
+      "name": "Lakeside cabin",
+      "visible": true,
+      "depth": 1.3,
+      "dim": 0.46,
+      "asset": {
+        "name": "Alpine_cabin",
+        "src": "alpine/cabin.svg"
+      },
+      "lights": [
+        {
+          "id": "cabin-flood",
+          "type": "flood",
+          "x": 0.765,
+          "y": 0.76,
+          "radius": 0.18,
+          "intensity": 0.5,
+          "color": "#ffd78a"
+        },
+        {
+          "id": "cabin-lamp",
+          "type": "lamp",
+          "x": 0.799,
+          "y": 0.735,
+          "radius": 0.014,
+          "intensity": 0.34,
+          "color": "#ffd78a"
+        },
+        {
+          "id": "window-one",
+          "type": "lamp",
+          "x": 0.726,
+          "y": 0.789,
+          "radius": 0.01,
+          "intensity": 0.34,
+          "color": "#ffd78a"
+        },
+        {
+          "id": "window-two",
+          "type": "lamp",
+          "x": 0.797,
+          "y": 0.789,
+          "radius": 0.012,
+          "intensity": 0.34,
+          "color": "#ffd78a"
+        }
+      ]
+    },
+    {
+      "id": "alpine-foreground",
+      "name": "Pines & shoreline",
+      "visible": true,
+      "depth": 2.8,
+      "dim": 0.25,
+      "asset": {
+        "name": "Alpine_foreground",
+        "src": "alpine/foreground.svg"
+      },
+      "lights": []
+    }
+  ]
+}

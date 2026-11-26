@@ -3,3 +3,8 @@
 .DS_Store
 **/xcuserdata/
 *.xcuserstate
+
+# Browser development artifacts
+node_modules/
+test-results/
+playwright-report/

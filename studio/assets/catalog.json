@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "scenes": [
+    {
+      "id": "alpine",
+      "name": "Alpine hideaway",
+      "project": "alpine.json"
+    },
+    {
+      "id": "harbor",
+      "name": "Harbor at dusk",
+      "project": "harbor.json"
+    }
+  ]
+}

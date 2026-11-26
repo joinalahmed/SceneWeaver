@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#191c1b" />
+    <meta
+      name="description"
+      content="Compose layered SceneWeaver scenes in your browser. Place lights, preview weather, and export SwiftUI and an Xcode asset catalog."
+    />
+    <title>SceneWeaver Studio</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%23191c1b'/%3E%3Cpath d='m7 29 9-17 7 11 5-8 6 14' fill='none' stroke='%23dfad79' stroke-width='3'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="fonts.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Existing-UI refinement following Anti-Slop-FrontEnd (2026-11-26).
+     Retain the forest/amber tokens and native Canvas motion. Prioritize the
+     artboard, readable tool properties and a flat, ordered layer stack.
+     Guidance: https://github.com/vijay2411/Anti-Slop-FrontEnd -->
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="icon-definitions"
+      aria-hidden="true"
+    >
+      <defs>
+        <symbol id="i-brand" viewBox="0 0 24 24">
+          <path d="m3 17 6-11 5 8 3-5 4 8M3 21l6-11 5 8 3-5 4 8" />
+        </symbol>
+        <symbol id="i-cursor" viewBox="0 0 24 24">
+          <path d="m5 3 14 10-7 1-3 7Z" />
+        </symbol>
+        <symbol id="i-lamp" viewBox="0 0 24 24">
+          <circle cx="12" cy="10" r="4" />
+          <path d="M9 16h6m-5 3h4M12 1v2M3 10H1m22 0h-2M4 3l2 2m14-2-2 2" />
+        </symbol>
+        <symbol id="i-flood" viewBox="0 0 24 24">
+          <path d="m5 8 9-3 3 9-9 3Z" />
+          <path d="m8 17-2 4m7-15 3-4m2 8h5M19 4l3-2" />
+        </symbol>
+        <symbol id="i-upload" viewBox="0 0 24 24">
+          <path d="M12 16V3m-5 5 5-5 5 5M4 14v6h16v-6" />
+        </symbol>
+        <symbol id="i-export" viewBox="0 0 24 24">
+          <path d="M14 3h7v7m0-7L10 14M10 4H4v16h16v-6" />
+        </symbol>
+        <symbol id="i-eye" viewBox="0 0 24 24">
+          <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6Z" />
+          <circle cx="12" cy="12" r="2.5" />
+        </symbol>
+        <symbol id="i-eyeOff" viewBox="0 0 24 24">
+          <path
+            d="m3 3 18 18M9 6a13 13 0 0 1 3 0c6 0 10 6 10 6a17 17 0 0 1-4 4M6 7a17 17 0 0 0-4 5s4 6 10 6a14 14 0 0 0 4-1"
+          />
+        </symbol>
+        <symbol id="i-undo" viewBox="0 0 24 24">
+          <path d="m8 5-5 5 5 5M3 10h11a6 6 0 0 1 0 12" />
+        </symbol>
+        <symbol id="i-grid" viewBox="0 0 24 24">
+          <path d="M8 3v18M16 3v18M3 8h18M3 16h18" />
+        </symbol>
+        <symbol id="i-cloud" viewBox="0 0 24 24">
+          <path d="M6 18a5 5 0 0 1-1-10 7 7 0 0 1 13-1 5.5 5.5 0 0 1 0 11Z" />
+        </symbol>
+        <symbol id="i-plus" viewBox="0 0 24 24">
+          <path d="M12 5v14M5 12h14" />
+        </symbol>
+        <symbol id="i-code" viewBox="0 0 24 24">
+          <path d="m7 6-6 6 6 6M17 6l6 6-6 6M14 3l-4 18" />
+        </symbol>
+        <symbol id="i-close" viewBox="0 0 24 24">
+          <path d="m5 5 14 14M19 5 5 19" />
+        </symbol>
+        <symbol id="i-back" viewBox="0 0 24 24">
+          <path d="M12 4v16m-6-6 6 6 6-6" />
+        </symbol>
+        <symbol id="i-front" viewBox="0 0 24 24">
+          <path d="M12 20V4m-6 6 6-6 6 6" />
+        </symbol>
+        <symbol id="i-play" viewBox="0 0 24 24">
+          <path d="m8 4 12 8-12 8Z" />
+        </symbol>
+        <symbol id="i-pause" viewBox="0 0 24 24">
+          <path d="M8 5v14M16 5v14" />
+        </symbol>
+        <symbol id="i-copy" viewBox="0 0 24 24">
+          <path d="M8 8h12v13H8zM16 8V3H3v13h5" />
+        </symbol>
+      </defs>
+    </svg>
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="SceneWeaver Studio home"
+        ><span class="brand-icon"
+          ><svg class="icon" aria-hidden="true">
+            <use href="#i-brand" /></svg></span
+        ><span>SceneWeaver <b>Studio</b></span
+        ><span class="beta">SCENE EDITOR</span></a
+      >
+      <div class="top-actions">
+        <span class="local-note"
+          ><i></i><span id="save-status">Stored on this device</span></span
+        ><button
+          id="undo"
+          class="undo-button"
+          aria-label="Undo last edit"
+          title="Undo · ⌘Z / Ctrl+Z"
+          disabled
+        >
+          <svg class="icon" aria-hidden="true">
+            <use href="#i-undo" />
+          </svg></button
+        ><button id="open-project">Open project</button
+        ><button id="save-project">Save project</button
+        ><button id="export" class="primary">
+          <svg class="icon" aria-hidden="true"><use href="#i-export" /></svg>
+          Export SwiftUI
+        </button>
+      </div>
+    </header>
+    <main class="workspace">
+      <aside class="sidebar library" aria-label="Scene layers">
+        <div class="panel-heading">
+          <span class="eyebrow">SCENE LIBRARY</span
+          ><span class="pill" id="layer-count">0 layers</span>
+        </div>
+        <label class="field-label" for="preset">Start with a scene</label
+        ><select id="preset">
+          <option value="">Loading scenes…</option>
+        </select>
+        <div class="project-heading">
+          <input
+            id="project-name"
+            aria-label="Project name"
+            value="Untitled scene"
+            maxlength="100"
+          /><span class="project-subtitle">Your scene, layer by layer.</span>
+        </div>
+        <div class="section-label">
+          <h2>Layers</h2>
+          <button class="small" id="add-layer" title="Import image layers">
+            <svg class="icon" aria-hidden="true"><use href="#i-plus" /></svg>
+            Add
+          </button>
+        </div>
+        <p class="help compact">Front at the top. Drag to reorder.</p>
+        <div id="layers" class="layers"></div>
+        <div
+          class="drop-zone"
+          id="drop-zone"
+          tabindex="0"
+          role="button"
+          aria-label="Import artwork"
+        >
+          <span class="drop-icon"
+            ><svg class="icon" aria-hidden="true">
+              <use href="#i-upload" /></svg></span
+          ><strong>Import artwork</strong
+          ><span
+            >Drop transparent PNG or WebP layers<br />or click to choose
+            images</span
+          >
+        </div>
+        <div class="library-bottom">
+          <span class="eyebrow">WORKING WITH LAYERS</span>
+          <p>Same canvas. Transparent sky.<br />Keep every plate aligned.</p>
+          <a
+            href="https://github.com/joinalahmed/SceneWeaver/blob/main/skills/sceneweaver-assets/SKILL.md"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Asset authoring guide
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-export" /></svg></a
+          ><a
+            href="https://github.com/joinalahmed/SceneWeaver"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Engine documentation
+            <svg class="icon" aria-hidden="true"><use href="#i-export" /></svg
+          ></a>
+          <div class="keyboard-note">
+            <kbd>⌘ S</kbd> Save a copy <kbd>⌘ Z</kbd> Undo
+          </div>
+        </div>
+      </aside>
+      <section class="editor" aria-label="Live scene preview">
+        <div class="editor-toolbar">
+          <div class="tool-group" role="group" aria-label="Canvas tools">
+            <button
+              class="tool active"
+              data-tool="select"
+              title="Select or move a light"
+            >
+              <svg class="icon" aria-hidden="true"><use href="#i-cursor" /></svg
+              ><span>Select</span></button
+            ><button
+              class="tool"
+              data-tool="lamp"
+              title="Click on the artwork to place a lamp"
+            >
+              <svg class="icon" aria-hidden="true"><use href="#i-lamp" /></svg
+              ><span>Lamp</span></button
+            ><button
+              class="tool"
+              data-tool="flood"
+              title="Click on the artwork to place a floodlight"
+            >
+              <svg class="icon" aria-hidden="true"><use href="#i-flood" /></svg
+              ><span>Floodlight</span>
+            </button>
+          </div>
+          <div class="viewport-controls">
+            <label for="viewport" class="sr-only">Preview format</label
+            ><select id="viewport">
+              <option value="1.5">Landscape · 3:2</option>
+              <option value="1.7777777778">Wide · 16:9</option>
+              <option value="1">Square · 1:1</option>
+              <option value="0.5625">Portrait · 9:16</option></select
+            ><button
+              id="toggle-guides"
+              class="icon-button"
+              aria-pressed="true"
+              title="Show light handles"
+            >
+              <svg class="icon" aria-hidden="true"><use href="#i-grid" /></svg>
+            </button>
+          </div>
+        </div>
+        <div class="stage-area" id="stage-area">
+          <div class="canvas-heading">
+            <div>
+              <h1>Scene canvas</h1>
+              <p>Compose a place. Give it atmosphere.</p>
+            </div>
+            <span class="canvas-mode">SWIFTUI / 2D</span>
+          </div>
+          <div class="preview-label">
+            <span><i></i> LIVE CANVAS</span
+            ><span id="scene-summary">Preparing your scene</span>
+          </div>
+          <div class="stage" id="stage">
+            <canvas
+              id="preview"
+              role="img"
+              aria-label="Animated scene preview"
+            ></canvas>
+            <div id="handles" class="handles"></div>
+            <div class="empty-state" id="empty-state" hidden>
+              <span>Start with a little atmosphere.</span>
+              <p>Add an image layer or choose a starter scene.</p>
+            </div>
+          </div>
+          <div class="canvas-caption">
+            <span id="placement-hint"
+              >Select a layer, then place a light on its artwork.</span
+            ><span class="preview-disclaimer"
+              >Browser approximation · check in Xcode</span
+            >
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="timeline-heading">
+            <div>
+              <span class="eyebrow">TIME OF DAY</span
+              ><strong id="hour-label">18:36</strong>
+            </div>
+            <div class="timeline-actions">
+              <button class="small" data-hour="10">Day</button
+              ><button class="small" data-hour="18">Sunset</button
+              ><button class="small" data-hour="22">Night</button
+              ><button
+                class="play-button"
+                id="play"
+                aria-label="Pause ambient motion"
+                aria-pressed="true"
+              >
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-pause" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <input
+            type="range"
+            id="hour"
+            min="0"
+            max="23.99"
+            step="0.01"
+            value="18.6"
+            aria-label="Time of day"
+          />
+          <div class="timeline-ticks">
+            <span>00:00</span><span>Dawn</span><span>Noon</span
+            ><span>Sunset</span><span>24:00</span>
+          </div>
+        </div>
+        <div class="export-note">
+          <span class="code-symbol"
+            ><svg class="icon" aria-hidden="true"><use href="#i-code" /></svg
+          ></span>
+          <p>
+            <strong>Ready for your app.</strong> SwiftUI view + asset catalog +
+            editable project.
+          </p>
+          <button id="view-code" class="text-button">
+            Inspect Swift
+            <svg class="icon" aria-hidden="true"><use href="#i-export" /></svg>
+          </button>
+        </div>
+      </section>
+      <aside class="sidebar inspector" aria-label="Scene and layer settings">
+        <div class="panel-heading">
+          <span class="eyebrow">INSPECTOR</span
+          ><span class="subtle">Properties</span>
+        </div>
+        <section class="inspector-section">
+          <div class="section-label">
+            <h2>Atmosphere</h2>
+            <svg class="icon" aria-hidden="true"><use href="#i-cloud" /></svg>
+          </div>
+          <label class="field-label" for="weather">Weather</label
+          ><select id="weather">
+            <option value="clear">Clear skies</option>
+            <option value="partlyCloudy">Partly cloudy</option>
+            <option value="cloudy">Overcast</option>
+            <option value="fog">Fog</option>
+            <option value="drizzle">Drizzle</option>
+            <option value="rain">Rain</option>
+            <option value="snow">Snow</option>
+            <option value="thunderstorm">Thunderstorm</option>
+          </select>
+          <div class="range-label">
+            <label for="ground">Ground height</label
+            ><output id="ground-value">36 pt</output>
+          </div>
+          <input id="ground" type="range" min="0" max="160" step="1" />
+          <div class="range-label">
+            <label for="overscan">Edge overscan</label
+            ><output id="overscan-value">112%</output>
+          </div>
+          <input id="overscan" type="range" min="1" max="1.6" step="0.01" />
+          <div class="input-row">
+            <label for="art-aspect">Artwork ratio</label
+            ><input
+              id="art-aspect"
+              type="number"
+              min="0.25"
+              max="4"
+              step="0.01"
+            />
+          </div>
+          <p class="help">
+            All plates share this ratio. Keep their original canvases aligned.
+          </p>
+        </section>
+        <section class="inspector-section" id="layer-inspector"></section>
+        <section class="inspector-section" id="light-inspector"></section>
+        <details class="inspector-section">
+          <summary>Daylight schedule</summary>
+          <p class="help">
+            Local hours, from first light to nightfall. The exported view uses
+            these transitions.
+          </p>
+          <div id="schedule" class="schedule"></div>
+        </details>
+        <div class="inspector-footer">
+          Changes are saved on this device.<br />Save a project file to keep a
+          portable copy.
+        </div>
+      </aside>
+    </main>
+    <input
+      id="image-input"
+      type="file"
+      accept="image/png,image/webp,image/jpeg"
+      multiple
+      hidden
+    /><input
+      id="project-input"
+      type="file"
+      accept=".json,application/json"
+      hidden
+    />
+    <dialog id="code-dialog" aria-labelledby="code-title">
+      <div class="dialog-heading">
+        <div>
+          <span class="eyebrow">SWIFTUI EXPORT</span>
+          <h2 id="code-title">Your scene, in code.</h2>
+        </div>
+        <button id="close-code" aria-label="Close Swift code">
+          <svg class="icon" aria-hidden="true"><use href="#i-close" /></svg>
+        </button>
+      </div>
+      <p class="help">
+        The ZIP includes this view, an asset catalog and your editable project.
+        Add SceneWeaver to your app, then drag in the exported files.
+      </p>
+      <pre><code id="swift-code"></code></pre>
+      <div class="dialog-footer">
+        <button id="copy-code">Copy code</button
+        ><button id="download-code">Download Swift</button
+        ><button id="export-dialog" class="primary">
+          Download complete ZIP ↗
+        </button>
+      </div>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <noscript
+      >This configurator needs JavaScript. Your artwork is processed locally in
+      your browser.</noscript
+    >
+    <script type="module" src="app.mjs"></script>
+  </body>
+</html>

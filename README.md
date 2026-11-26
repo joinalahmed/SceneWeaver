@@ -14,6 +14,16 @@ Combine live skies, weather, vector drawings and layered artwork in one Canvas-b
 
 Requires **iOS 17+** or **macOS 14+**, Swift 5.9+. MIT licensed.
 
+## Browser configurator
+
+**[Open SceneWeaver Studio →](https://joinalahmed.github.io/SceneWeaver/)**
+
+Compose scenes visually: import aligned artwork, reorder layers, place and drag lamps or floodlights, and tune depth, framing, weather and daylight. Save portable projects, then export a ZIP with SwiftUI code and an Xcode asset catalog. Your artwork stays in the browser.
+
+![SceneWeaver Studio with the alpine scene and layer inspector](docs/screenshots/studio.png)
+
+The web preview approximates SwiftUI; the export runs on the native engine. No account or build step is needed. [Run locally and read the workflow](studio/README.md).
+
 ## Screenshots
 
 Captured from the running iOS example, using only code-drawn content.
@@ -125,6 +135,10 @@ The script builds a temporary app using the example scene without its gallery co
 The package targets iOS first and also builds on macOS for previews and geometry tests. It is a decorative 2D renderer, not a physics or 3D game engine. Canvas content is accessibility-hidden; place meaningful labels and controls in the host UI. The default animation interval is 24 fps; profile your own artwork and custom layers on your target devices.
 
 ## For coding agents
+
+- [Scene integration skill](SKILL.md): build and modify native SceneWeaver compositions.
+- [Asset creation skill](skills/sceneweaver-assets/SKILL.md): turn a scene requirement into aligned plates, lighting coordinates and a Studio catalog entry.
+
 
 Read [SKILL.md](SKILL.md) when integrating SceneWeaver or authoring a scene. The guide covers API selection, coordinate systems, layer occlusion, lighting, time, accessibility and validation. Tools that support `SKILL.md` can use this repository as the skill directory.
 
