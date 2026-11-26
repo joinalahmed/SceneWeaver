@@ -60,3 +60,7 @@ Studio v1 composes images, depth motion and lighting. Native `LayeredArtwork.can
 Run `node scripts/validate-studio-assets.mjs` and `node --test studio/tests/*.test.mjs`. Open Studio and inspect the new scene in daylight and at night, at narrow and wide viewport ratios, and with motion paused. Check transparent edges, plate registration, fixture alignment and foreground occlusion. Confirm no side gaps appear at the chosen depth and overscan.
 
 Export the scene, check the ZIP's asset names and generated Swift, and build it in a consumer when the asset change introduces a new composition behavior. A browser screenshot is a preview, not proof that SwiftUI is pixel-identical. Report the added files, the intended depth order, any required native callback and the verification performed.
+
+## Full catalog and parity
+
+Before authoring new content, search the existing 428-scene catalog. Reuse a scene or its registered plates when appropriate. Read [parity maintenance](../../docs/parity.md) for the canonical Swift recipe location, live WebAssembly rebuild, native resource registration, inventory coverage checks and distribution requirements. Studio and React use the same complete library; keep their `nativeID` values aligned with `SceneWeaverCatalog`. Validate native and browser rendering after changing geometry, actor placement, framing or lights.

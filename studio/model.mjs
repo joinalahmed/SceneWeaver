@@ -1,3 +1,4 @@
+import { validateNativeScene } from "./native-scene.mjs";
 export const WEATHER = [
   "clear",
   "partlyCloudy",
@@ -97,6 +98,14 @@ export function validateProject(input, { allowSources = false } = {}) {
         radius: finite(light.radius, 0.001, 1, "Light radius"),
         intensity: finite(light.intensity, 0, 1, "Light intensity"),
         color: light.color,
+        ...(light.fixture
+          ? {
+              fixture: true,
+              near: light.near === true,
+              reflection: finite(light.reflection ?? 0, 0, 0.5, "Reflection"),
+              phaseIndex: finite(light.phaseIndex ?? 0, 0, 1000, "Light phase"),
+            }
+          : {}),
       };
     });
     return {
@@ -107,6 +116,25 @@ export function validateProject(input, { allowSources = false } = {}) {
       dim: finite(l.dim, 0, 0.9, "Ambient dimming"),
       asset,
       lights,
+      ...(l.crowd
+        ? {
+            crowd: ["orbit", "crossing"].includes(l.crowd)
+              ? l.crowd
+              : (() => {
+                  throw Error("Invalid crowd pattern.");
+                })(),
+          }
+        : {}),
+      ...(l.clock
+        ? {
+            clock: {
+              x: finite(l.clock.x, 0, 1, "Clock X"),
+              y: finite(l.clock.y, 0, 1, "Clock Y"),
+              radius: finite(l.clock.radius, 0.001, 0.2, "Clock radius"),
+            },
+          }
+        : {}),
+      ...(l.boat ? { boat: validateBoat(l.boat) } : {}),
       ...(l.water !== undefined
         ? { water: l.water === null ? null : validateWater(l.water) }
         : {}),
@@ -136,8 +164,15 @@ export function validateProject(input, { allowSources = false } = {}) {
       viewport: finite(settings.viewport, 0.5, 2.5, "Viewport aspect ratio"),
       motion: settings.motion !== false,
       schedule: [...schedule],
+      ...(settings.reservedHeight ? {reservedHeight:{widthFactor:finite(settings.reservedHeight.widthFactor,0,4,"Reserved height factor"),offset:finite(settings.reservedHeight.offset,0,300,"Reserved height offset")}} : {}),
+      ...(settings.showsSunPath === undefined ? {} : {showsSunPath:settings.showsSunPath !== false}),
     },
     layers,
+    ...(input.nativeScene
+      ? {
+          nativeScene: validateNativeReference(input.nativeScene, allowSources),
+        }
+      : {}),
   };
 }
 export function blankProject() {
@@ -245,4 +280,33 @@ function validateWater(water) {
   if (result.x + result.width > 1.000001 || result.y + result.height > 1.000001)
     throw Error("Water bounds must stay inside the artwork.");
   return result;
+}
+
+function validateNativeReference(value, allowSources) {
+  const id = string(value.id, "Native scene ID");
+  if (!/^[a-zA-Z0-9_-]+$/.test(id)) throw Error("Invalid native scene ID.");
+  const runtime={};
+  if(value.runtimeData){if(typeof value.runtimeData!=="string"||!/^data:application\/wasm(?:\+gzip)?;base64,[A-Za-z0-9+/=]+$/.test(value.runtimeData)||value.runtimeData.length>40000000)throw Error("Invalid embedded Swift runtime.");runtime.runtimeData=value.runtimeData;}
+  else if(value.runtimeSrc){if(!allowSources||!/^runtime\/[a-zA-Z0-9_.-]+\.wasm(?:\.gz)?$/.test(value.runtimeSrc))throw Error("Invalid Swift runtime source.");runtime.runtimeSrc=value.runtimeSrc;}
+  if (value.data) return { id, data: validateNativeScene(value.data),...runtime };
+  if (
+    allowSources &&
+    typeof value.src === "string" &&
+    /^library\/[a-zA-Z0-9_.-]+\.json(?:\.gz)?$/.test(value.src)
+  )
+    return { id, src: value.src,...runtime };
+  throw Error("Missing embedded native scene geometry.");
+}
+
+function validateBoat(boat) {
+  if (!/^#[0-9a-fA-F]{6}$/.test(boat.color)) throw Error("Invalid boat color.");
+  return {
+    x: finite(boat.x, 0, 1, "Boat X"),
+    y: finite(boat.y, 0, 1, "Boat Y"),
+    amplitude: finite(boat.amplitude, 0, 0.5, "Boat drift"),
+    frequency: finite(boat.frequency, 0, 10, "Boat speed"),
+    width: finite(boat.width, 1, 200, "Boat width"),
+    height: finite(boat.height, 0.001, 0.2, "Boat height"),
+    color: boat.color,
+  };
 }

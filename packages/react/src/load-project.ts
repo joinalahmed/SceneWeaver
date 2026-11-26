@@ -1,3 +1,5 @@
+import { attachNativeRuntime } from "../../../studio/wasm-runtime.mjs";
+import { readNativeGeometry } from "../../../studio/native-load.mjs";
 import { validateProject } from "../../../studio/model.mjs";
 import type {
   EmbeddedSceneProject,
@@ -53,6 +55,7 @@ export async function loadSceneProject(
   // root-relative URLs as well as the catalog-relative Studio source format.
   const raw = input as {
     layers?: Array<{ asset?: { src?: unknown; data?: unknown } }>;
+    nativeScene?: { id: string; src?: string; data?: unknown; runtimeSrc?:string;runtimeData?:string };
   };
   const candidate =
     raw && typeof raw === "object"
@@ -72,7 +75,9 @@ export async function loadSceneProject(
             : raw.layers,
         }
       : input;
-  const result = validateProject(candidate) as EmbeddedSceneProject;
+  const result = validateProject(candidate, {
+    allowSources: true,
+  }) as EmbeddedSceneProject;
   await Promise.all(
     result.layers.map(async (layer, index) => {
       const original = raw.layers![index]?.asset;
@@ -99,6 +104,18 @@ export async function loadSceneProject(
       layer.asset = { name: layer.asset.name, data: dataURL(type, bytes) };
     }),
   );
+  if (raw.nativeScene?.src && !raw.nativeScene.data) {
+    const response = await fetchResponse(
+      resolveURL(raw.nativeScene.src, base),
+      options.signal,
+    );
+    result.nativeScene = {
+      ...result.nativeScene,
+      id: raw.nativeScene.id,
+      data: await readNativeGeometry(response),
+    };
+  }
+  if(result.nativeScene) await attachNativeRuntime(result.nativeScene,base ?? (typeof document==='undefined'?undefined:document.baseURI));
   aborted(options.signal);
   return validateProject(result) as EmbeddedSceneProject;
 }

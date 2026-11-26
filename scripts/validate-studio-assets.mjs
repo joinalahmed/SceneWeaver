@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+import {gunzipSync} from "node:zlib";
+import {createHash} from "node:crypto";
+import {validateNativeScene} from "../studio/native-scene.mjs";
 import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
@@ -27,6 +30,8 @@ for (const scene of catalog.scenes) {
     JSON.parse(await readFile(path.join(root, scene.project), "utf8")),
     { allowSources: true },
   );
+  if(project.nativeScene?.src){const buffer=await readFile(path.join(root,project.nativeScene.src));validateNativeScene(JSON.parse((buffer[0]===31?gunzipSync(buffer):buffer).toString("utf8")));}
+  if(scene.thumbnail)await readFile(path.join(root,scene.thumbnail));
   for (const layer of project.layers) {
     if (!layer.asset.src)
       throw Error(
@@ -66,3 +71,13 @@ for (const scene of catalog.scenes) {
   }
   console.log(`PASS ${scene.name}: ${project.layers.length} aligned plates`);
 }
+
+const inventory=JSON.parse(await readFile(path.join(root,"swift-inventory.json"),"utf8"));
+const nativeIDs=new Set(catalog.scenes.map(s=>s.nativeID));
+if(inventory.length!==catalog.scenes.length||inventory.some(s=>!nativeIDs.has(s.id)))throw Error("SwiftUI and web catalog inventories differ.");
+const manifest=JSON.parse(await readFile(path.join(root,"runtime/manifest.json"),"utf8"));
+const hash=bytes=>createHash("sha256").update(bytes).digest("hex");
+for(const [file,expected] of Object.entries(manifest.sources))if(hash(await readFile(path.resolve(root,"../..",file)))!==expected)throw Error(`Rebuild the Swift browser runtime after changing ${file}.`);
+const compressed=await readFile(path.join(root,"runtime/sceneweaver-0.2.0.wasm.gz"));
+if(hash(compressed)!==manifest.compressedSha256||hash(gunzipSync(compressed))!==manifest.sha256)throw Error("Browser Swift runtime checksum mismatch.");
+console.log(`PASS catalog parity: ${inventory.length} matching scenes and verified Swift runtime sources.`);

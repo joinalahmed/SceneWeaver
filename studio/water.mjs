@@ -31,3 +31,18 @@ export function drawWater(ctx, rect, water, time, darkness) {
   }
   ctx.restore();
 }
+
+export function drawBoat(ctx, rect, boat, time) {
+  const x =
+      rect.x +
+      rect.width * (boat.x + Math.sin(time * boat.frequency) * boat.amplitude),
+    y = rect.y + rect.height * boat.y;
+  ctx.fillStyle = boat.color;
+  ctx.beginPath();
+  ctx.moveTo(x - boat.width / 2, y);
+  ctx.lineTo(x + boat.width / 2, y);
+  ctx.lineTo(x + boat.width * 0.3, y + rect.height * boat.height);
+  ctx.lineTo(x - boat.width * 0.3, y + rect.height * boat.height);
+  ctx.closePath();
+  ctx.fill();
+}

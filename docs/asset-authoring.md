@@ -1,6 +1,6 @@
 # Scene assets and Studio projects
 
-Studio's built-in scenes are public, code-authored SVG illustrations. Their geometry and project files are covered by the repository's MIT license. User-imported artwork retains its own license. Agent workflow: [sceneweaver-assets/SKILL.md](../skills/sceneweaver-assets/SKILL.md).
+The public catalog includes procedural Swift recipes, SVG illustrations and the original layered raster artwork, all explicitly released for redistribution. Their geometry and project files are covered by the repository's MIT license. User-imported artwork retains its own license. Agent workflow: [sceneweaver-assets/SKILL.md](../skills/sceneweaver-assets/SKILL.md).
 
 ## Catalog layout
 
@@ -72,3 +72,9 @@ Inspect daylight, dusk and night, both landscape and portrait framing, and pause
 ### Animated water
 
 A layer can include `"water": {"x": 0, "y": 0.73, "width": 1, "height": 0.27, "opacity": 0.28}`. Bounds use normalized artwork coordinates and must fit inside the plate. Put this on the background water plate; later foreground plates naturally occlude the ripples. Studio and React animate the highlights, and SwiftUI export emits the matching Canvas layer. Omit it for dry scenes; `null` explicitly disables it. The Studio checkbox uses a bottom-quarter region by default; edit the project JSON for a different water boundary.
+
+## Keeping the full library aligned
+
+Register new scenes in both `SceneCatalog` (through `CatalogRecipes` for procedural content) and the web catalog with the same `nativeID`. Include category, tags and a lazy-loaded WebP thumbnail. Add native image resources for new image compositions. Run `node scripts/validate-studio-assets.mjs` to verify full native/web coverage.
+
+Procedural source belongs in `Sources/SceneWeaverCatalog/Recipes`; do not maintain a separate JavaScript copy of a canonical Swift recipe. Rebuild the live Swift runtime after recipe changes. Follow [the parity maintenance workflow](parity.md). Image plates remain independently editable in Studio; procedural geometry is a native drawing layer with optional image overlays.

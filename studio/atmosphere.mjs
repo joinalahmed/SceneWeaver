@@ -1,3 +1,4 @@
+import { drawAircraft, drawBirds } from "./incidental.mjs";
 // Canvas translation of SceneView.swift's atmosphere for image-layer scenes.
 import { mix, ramp } from "./model.mjs";
 export const unit = (i, salt) => {
@@ -16,11 +17,11 @@ export const OVERCAST = {
   snow: 0.55,
   thunderstorm: 0.82,
 };
-export function sunPoint(width, horizon, hour, dates) {
+export function sunPoint(width, horizon, hour, dates, arc = 128) {
   const [dawn, rise, , , set, night] = dates,
     noon = (rise + set) / 2;
   const level = Math.cos((Math.PI * (set - rise)) / 24),
-    scale = 114 / Math.max(1 - level, 0.05);
+    scale = (arc - 14) / Math.max(1 - level, 0.05);
   const height = (Math.cos((Math.PI * (hour - noon)) / 12) - level) * scale;
   return {
     x: 18 + ((hour - dawn) / (night - dawn)) * (width - 36),
@@ -30,7 +31,13 @@ export function sunPoint(width, horizon, hour, dates) {
         : horizon + 21 * (1 - Math.exp(height / 21)),
   };
 }
-export function groundColor(skyLow, darkness, glow, overcast) {
+export function groundColor(
+  skyLow,
+  darkness,
+  glow,
+  overcast,
+  illustrated = false,
+) {
   const daylight = 1 - ramp(darkness, 0.12, 0.85);
   const clear = mix(
     [0.16, 0.23, 0.31],
@@ -38,7 +45,7 @@ export function groundColor(skyLow, darkness, glow, overcast) {
     Math.min(1, Math.max(0, glow)) * 0.8,
   );
   return mix(
-    [0.07, 0.07, 0.08],
+    illustrated ? [0.02, 0.03, 0.06] : [0.07, 0.07, 0.08],
     mix(clear, skyLow, 0.12 + 0.16 * overcast),
     daylight * 0.75,
   );
@@ -77,7 +84,8 @@ function bank(ctx, x, y, w, h, v) {
 }
 export function drawAtmosphere(ctx, w, h, s, sky, time, moving) {
   const horizon = h - s.ground,
-    top = horizon - 128,
+    top =
+      horizon - (s.reservedHeight === undefined ? 128 : s.reservedHeight + 4),
     cloud = OVERCAST[s.weather],
     dark = sky.darkness;
   const grey = mix([0.17, 0.19, 0.23], [0.06, 0.07, 0.09], dark),
@@ -88,9 +96,15 @@ export function drawAtmosphere(ctx, w, h, s, sky, time, moving) {
   g.addColorStop(1, rgba(low));
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, w, h);
-  if (sky.glow > 0.02 && cloud < 0.8) {
+  if (s.showsSunPath !== false && sky.glow > 0.02 && cloud < 0.8) {
     const morning = s.hour < (s.schedule[1] + s.schedule[4]) / 2;
-    const p = sunPoint(w, horizon, s.schedule[morning ? 1 : 4], s.schedule);
+    const p = sunPoint(
+      w,
+      horizon,
+      s.schedule[morning ? 1 : 4],
+      s.schedule,
+      horizon - top,
+    );
     halo(
       ctx,
       p.x,
@@ -132,9 +146,13 @@ export function drawAtmosphere(ctx, w, h, s, sky, time, moving) {
     }
   }
   const moonOpacity = ramp(dark, 0.7, 0.92) * (1 - ramp(cloud, 0.3, 0.8));
-  if (moonOpacity > 0.02) {
-    const x = w * 0.82,
-      y = horizon - 96;
+  if (!s.ownMoon && moonOpacity > 0.02) {
+    const standard = s.showsSunPath !== false && !s.illustrated;
+    const x = w * (standard ? (s.rtl ? 0.18 : 0.82) : 0.8),
+      y = standard
+        ? horizon -
+          (s.reservedHeight === undefined ? 96 : s.reservedHeight - 10)
+        : top - 12;
     ctx.save();
     ctx.globalAlpha = moonOpacity;
     halo(ctx, x, y, 46, rgba([1, 1, 1], 0.16 * (1 - cloud)));
@@ -151,8 +169,12 @@ export function drawAtmosphere(ctx, w, h, s, sky, time, moving) {
     ctx.restore();
     ctx.restore();
   }
-  if (s.hour >= s.schedule[1] && s.hour <= s.schedule[4]) {
-    const p = sunPoint(w, horizon, s.hour, s.schedule),
+  if (
+    s.showsSunPath !== false &&
+    s.hour >= s.schedule[1] &&
+    s.hour <= s.schedule[4]
+  ) {
+    const p = sunPoint(w, horizon, s.hour, s.schedule, horizon - top),
       lowSun = 1 - ramp(horizon - p.y, 4, 70),
       visibility = 1 - ramp(cloud, 0.2, 0.82);
     if (visibility > 0.01) {
@@ -195,6 +217,8 @@ export function drawAtmosphere(ctx, w, h, s, sky, time, moving) {
       );
     }
   }
+  if (s.wild === false && moving && s.showsSunPath !== false)
+    drawAircraft(ctx, w, horizon, time, dark, s.weather, s.illustrated, s.rtl);
   const count =
     { clear: 2, partlyCloudy: 4, fog: 2, thunderstorm: 7 }[s.weather] ?? 6;
   const tone = mix(
@@ -254,13 +278,22 @@ export function drawAtmosphere(ctx, w, h, s, sky, time, moving) {
     }
     ctx.restore();
   }
+  if (s.wild === false && moving) drawBirds(ctx, w, top, time, dark, s.weather);
   const start = Math.max(0, horizon - 32),
     span = Math.max(1, h - start),
     floor = ctx.createLinearGradient(0, start, 0, h);
   floor.addColorStop(0, "transparent");
   floor.addColorStop(
     Math.min(1, Math.max(0, (horizon - start) / span)),
-    rgba(groundColor(low, dark, sky.glow, cloud)),
+    rgba(
+      groundColor(
+        low,
+        dark,
+        sky.glow,
+        cloud,
+        s.illustrated || s.showsSunPath === false,
+      ),
+    ),
   );
   floor.addColorStop(1, "black");
   ctx.fillStyle = floor;

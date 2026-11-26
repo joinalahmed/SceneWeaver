@@ -1,25 +1,45 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
-import { SceneView } from "../dist/index.js";
+import { SceneView, SceneLibrary } from "../dist/index.js";
 import type { SceneWeather } from "../dist/index.js";
 function App() {
   const [scene, setScene] = useState("alpine"),
     [hour, setHour] = useState(18.6),
     [weather, setWeather] = useState<SceneWeather>("clear"),
-    [paused, setPaused] = useState(false);
-  const url = new URL(`../assets/${scene}.json`, location.href).href;
+    [paused, setPaused] = useState(false),
+    [catalog, setCatalog] = useState<
+      Array<{ id: string; name: string; category?: string; project: string }>
+    >([]),
+    [libraryOpen, setLibraryOpen] = useState(false);
+  const catalogURL = new URL(
+    "../assets/catalog.json?v=library-5",
+    location.href,
+  ).href;
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch(catalogURL, { signal: controller.signal })
+      .then((r) => r.json())
+      .then((data) => setCatalog(data.scenes))
+      .catch(() => {});
+    return () => controller.abort();
+  }, [catalogURL]);
+  const selected = catalog.find((entry) => entry.id === scene);
+  const url = new URL(
+    `../assets/${selected?.project ?? `${scene}.json`}`,
+    location.href,
+  ).href;
   return (
     <main className="playground">
       <header>
         <a href="../">← SceneWeaver Studio</a>
-        <span>REACT / 0.1</span>
+        <span>REACT / 0.2</span>
       </header>
       <section className="intro">
         <div>
           <p className="eyebrow">React component example</p>
           <h1>SceneWeaver for React</h1>
           <p>
-            Render a Studio project with controlled time, weather and lighting.
+            Explore all 428 scenes with live animation, weather and lighting.
           </p>
         </div>
         <a
@@ -36,21 +56,41 @@ function App() {
         hour={hour}
         weather={weather}
         paused={paused}
-        label={
-          scene === "alpine"
-            ? "A cabin beside an alpine lake"
-            : "A lighthouse overlooking a harbor"
-        }
+        label={selected?.name ?? "Scene preview"}
         className="demo-scene"
         style={{ borderRadius: 0 }}
         fallback={<span>Loading artwork…</span>}
       />
+      <button
+        onClick={() => setLibraryOpen(!libraryOpen)}
+        aria-expanded={libraryOpen}
+      >
+        Browse full scene library
+      </button>
+      {libraryOpen && (
+        <SceneLibrary
+          catalogURL={catalogURL}
+          onSelect={(entry) => {
+            setScene(entry.id);
+            setLibraryOpen(false);
+          }}
+        />
+      )}
       <section className="controls" aria-label="Scene controls">
         <label>
           Composition
           <select value={scene} onChange={(e) => setScene(e.target.value)}>
-            <option value="alpine">Alpine hideaway</option>
-            <option value="harbor">Harbor at dusk</option>
+            {(catalog.length
+              ? catalog
+              : [
+                  { id: "alpine", name: "Alpine hideaway" },
+                  { id: "harbor", name: "Harbor at dusk" },
+                ]
+            ).map((entry) => (
+              <option key={entry.id} value={entry.id}>
+                {entry.name}
+              </option>
+            ))}
           </select>
         </label>
         <label>
@@ -73,6 +113,10 @@ function App() {
             onChange={(e) => setWeather(e.target.value as SceneWeather)}
           >
             <option value="clear">Clear</option>
+            <option value="partlyCloudy">Partly cloudy</option>
+            <option value="cloudy">Cloudy</option>
+            <option value="fog">Fog</option>
+            <option value="drizzle">Drizzle</option>
             <option value="rain">Rain</option>
             <option value="snow">Snow</option>
             <option value="thunderstorm">Thunderstorm</option>
@@ -96,7 +140,7 @@ function App() {
           </p>
         </div>
         <pre>
-          <code>{`import { SceneView } from "sceneweaver-react";\n\n<SceneView\n  project="/scenes/my-project.json"\n  hour={${hour.toFixed(1)}}\n  weather="${weather}"\n  paused={${paused}}\n/>`}</code>
+          <code>{`import { SceneView, SceneLibrary } from "sceneweaver-react";\n\n<SceneView\n  project="/scenes/my-project.json"\n  hour={${hour.toFixed(1)}}\n  weather="${weather}"\n  paused={${paused}}\n/>`}</code>
         </pre>
       </section>
       <footer>

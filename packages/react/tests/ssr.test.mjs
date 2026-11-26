@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { createElement } from "react";
 import { renderToString } from "react-dom/server";
-import { SceneView } from "../dist/index.js";
+import { SceneView, SceneLibrary, ScenePen, ScenePath } from "../dist/index.js";
 const project = {
   version: 1,
   name: "SSR",
@@ -51,4 +51,14 @@ test("invalid runtime input does not crash SSR before client-side validation", (
   assert.doesNotThrow(() =>
     renderToString(createElement(SceneView, { project: null })),
   );
+});
+
+test("procedural definitions and the full library are SSR safe", () => {
+  const view=renderToString(createElement(SceneView,{definition:{draw(pen){pen.block(0,20,30)}}}));
+  assert.match(view,/data-scene-state="loading"/);
+  const library=renderToString(createElement(SceneLibrary,{catalogURL:"/scenes/catalog.json",onSelect(){}}));
+  assert.match(library,/Search/);
+  const pen=new ScenePen({width:402,horizon:224});pen.at(100).block(0,20,30);
+  assert.equal(pen.toGeometry().day.solids.length,1);
+  assert.ok(new ScenePath().moveTo(0,0).lineTo(4,8).description.includes('L'));
 });

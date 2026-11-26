@@ -62,7 +62,7 @@ try {
     );
     await writeFile(
       path.join(consumer, "consumer.tsx"),
-      `import {SceneView,loadSceneProject,type SceneProject} from 'sceneweaver-react';\nconst project: SceneProject={version:1,name:'Consumer',settings:{hour:18,weather:'clear',ground:36,aspectRatio:1.5,overscan:1.12,viewport:1.5,motion:true,schedule:[5,6,12,15,18,19.5]},layers:[]};\nconst view=<SceneView project={project} hour="local" weather="rain" paused label="Landscape"><button>Open book</button></SceneView>;\nconst json={version:1,settings:{weather:'clear'},layers:[]}; const fromJSON=<SceneView project={json}/>;\nconst loaded=loadSceneProject(project);\nvoid [view,fromJSON,loaded];\n`,
+      `import {SceneView,SceneLibrary,ScenePen,ScenePath,loadSceneProject,type SceneProject} from 'sceneweaver-react';\nconst project: SceneProject={version:1,name:'Consumer',settings:{hour:18,weather:'clear',ground:36,aspectRatio:1.5,overscan:1.12,viewport:1.5,motion:true,schedule:[5,6,12,15,18,19.5]},layers:[]};\nconst view=<SceneView project={project} hour="local" weather="rain" paused label="Landscape"><button>Open book</button></SceneView>;\nconst json={version:1,settings:{weather:'clear'},layers:[]}; const fromJSON=<SceneView project={json}/>;\nconst loaded=loadSceneProject(project);\nconst library=<SceneLibrary catalogURL="/scenes/catalog.json" onSelect={(entry,url)=>{console.log(entry.id,url)}}/>; const procedural=<SceneView definition={{draw(pen){pen.at(40).block(0,20,30)},overlay(context,frame){context.fillRect(0,0,frame.size.width,1)}}}/>; const pen=new ScenePen({width:402,horizon:224}); const path=new ScenePath(); void [view,fromJSON,loaded,library,procedural,pen,path];\n`,
     );
     execFileSync(
       path.join(root, "node_modules/.bin/tsc"),

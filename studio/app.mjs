@@ -1,3 +1,6 @@
+import { attachNativeRuntime } from "./wasm-runtime.mjs";
+import { readNativeGeometry } from "./native-load.mjs";
+import { mountLibrary } from "./library.mjs";
 import {
   validateProject,
   blankProject,
@@ -8,9 +11,9 @@ import {
   clamp,
   reorder,
   timeLabel,
-} from "./model.mjs?v=motion-4";
-import { generateSwift, zipFiles } from "./export.mjs?v=motion-4";
-import { createRenderer, decodeArtwork } from "./render.mjs?v=motion-4";
+} from "./model.mjs?v=library-5";
+import { generateSwift, zipFiles } from "./export.mjs?v=library-5";
+import { createRenderer, decodeArtwork } from "./render.mjs?v=library-5";
 
 const $ = (selector) => document.querySelector(selector);
 const icon = (name) =>
@@ -153,6 +156,7 @@ async function persist() {
 async function applyProject(input, { undo = true } = {}) {
   const next = validateProject(input),
     decoded = new Map();
+  if(next.nativeScene?.runtimeData) await attachNativeRuntime(next.nativeScene);
   await Promise.all(
     next.layers.map(async (layer) =>
       decoded.set(layer.id, await decodeArtwork(layer.asset.data)),
@@ -199,10 +203,11 @@ function render() {
   $("#stage").style.width = "100%";
   fitArtboard();
   $("#layer-count").textContent =
-    `${project.layers.length} layer${project.layers.length === 1 ? "" : "s"}`;
-  $("#empty-state").hidden = project.layers.length > 0;
+    `${project.layers.length + (project.nativeScene ? 1 : 0)} layers`;
+  $("#empty-state").hidden =
+    project.layers.length > 0 || Boolean(project.nativeScene);
   $("#scene-summary").textContent =
-    `${project.name} · ${project.layers.filter((l) => l.visible).length} visible layers`;
+    `${project.name} · ${project.layers.filter((l) => l.visible).length + (project.nativeScene ? 1 : 0)} visible layers`;
   $("#play").innerHTML = icon(s.motion ? "pause" : "play");
   $("#play").setAttribute(
     "aria-label",
@@ -212,17 +217,23 @@ function render() {
   $("#play").title = s.motion
     ? "Pause scene animation"
     : "Animate clouds, water and artwork";
-  $("#layers").innerHTML = [...project.layers]
-    .reverse()
-    .map(
-      (l) =>
-        `<div class="layer ${selected === l.id ? "selected" : ""} ${l.visible ? "" : "hidden"}" data-layer="${escape(l.id)}" draggable="true"><button class="layer-select" aria-label="Select ${escape(l.name)}" aria-pressed="${selected === l.id}"><img class="layer-thumb" alt="" src="${escape(l.asset.data)}"><span><span class="layer-name">${escape(l.name)}</span><span class="layer-meta">Depth ${l.depth.toFixed(1)} · ${l.lights.length} light${l.lights.length === 1 ? "" : "s"}</span></span></button><button class="eye" data-visible="${escape(l.id)}" title="${l.visible ? "Hide" : "Show"} layer" aria-label="${l.visible ? "Hide" : "Show"} ${escape(l.name)}">${icon(l.visible ? "eye" : "eyeOff")}</button></div>`,
-    )
-    .join("");
+  $("#layers").innerHTML =
+    [...project.layers]
+      .reverse()
+      .map(
+        (l) =>
+          `<div class="layer ${selected === l.id ? "selected" : ""} ${l.visible ? "" : "hidden"}" data-layer="${escape(l.id)}" draggable="true"><button class="layer-select" aria-label="Select ${escape(l.name)}" aria-pressed="${selected === l.id}"><img class="layer-thumb" alt="" src="${escape(l.asset.data)}"><span><span class="layer-name">${escape(l.name)}</span><span class="layer-meta">Depth ${l.depth.toFixed(1)} · ${l.lights.length} light${l.lights.length === 1 ? "" : "s"}</span></span></button><button class="eye" data-visible="${escape(l.id)}" title="${l.visible ? "Hide" : "Show"} layer" aria-label="${l.visible ? "Hide" : "Show"} ${escape(l.name)}">${icon(l.visible ? "eye" : "eyeOff")}</button></div>`,
+      )
+      .join("") +
+    (project.nativeScene
+      ? `<div class="layer ${selected === null ? "selected" : ""}" data-native><button class="layer-select"><span class="layer-thumb" style="display:grid;place-items:center">◇</span><span><span class="layer-name">${escape(project.name)}</span><span class="layer-meta">Native drawing · live materials</span></span></button></div>`
+      : "");
   const l = selectedLayer();
   $("#layer-inspector").innerHTML = l
     ? `<div class="section-label"><h2>Selected layer</h2><span class="subtle">${project.layers.indexOf(l) + 1} / ${project.layers.length}</span></div><label class="field-label" for="layer-name">Layer name</label><input id="layer-name" type="text" maxlength="100" value="${escape(l.name)}"><label class="field-label" for="asset-name" style="margin-top:14px">Xcode asset name</label><input id="asset-name" type="text" maxlength="64" value="${escape(l.asset.name)}"><div class="range-label"><label for="depth">Motion depth</label><output id="depth-value">${l.depth.toFixed(1)}</output></div><input id="depth" type="range" min="0" max="8" step="0.1" value="${l.depth}"><div class="range-label"><label for="dim">Night dimming</label><output id="dim-value">${Math.round(l.dim * 100)}%</output></div><input id="dim" type="range" min="0" max="0.9" step="0.01" value="${l.dim}"><label class="help" style="display:flex;gap:8px;align-items:center;margin-top:12px"><input type="checkbox" id="water-motion" ${l.water ? "checked" : ""}> Animate water on this layer</label><div class="layer-actions"><button id="layer-back" ${project.layers.indexOf(l) === 0 ? "disabled" : ""} title="Move backward">${icon("back")} Back</button><button id="layer-front" ${project.layers.indexOf(l) === project.layers.length - 1 ? "disabled" : ""} title="Move forward">${icon("front")} Front</button><button id="delete-layer" class="danger">Delete</button></div><div class="range-label"><span>Lights on this plate</span><span>${l.lights.length}</span></div><div class="lights-list">${l.lights.map((x, i) => `<button data-light="${escape(x.id)}" class="${x.id === lightID ? "active" : ""}">${icon(x.type === "lamp" ? "lamp" : "flood")} ${i + 1}</button>`).join("") || '<span class="help">Choose Lamp or Floodlight above the canvas.</span>'}</div>`
-    : '<h2>No layer selected</h2><p class="help">Choose a layer or import aligned transparent artwork to begin.</p>';
+    : project.nativeScene
+      ? `<h2>Native drawing</h2><p class="help">${escape(project.name)} includes silhouettes, cutouts, colored materials and night lights. Image layers added above it stay independently editable.</p><button id="remove-native" class="danger">Remove native drawing</button>`
+      : '<h2>No layer selected</h2><p class="help">Choose a layer or import aligned transparent artwork to begin.</p>';
   const light = selectedLight();
   $("#light-inspector").innerHTML = light
     ? `<div class="section-label"><h2>${light.type === "lamp" ? "Lamp" : "Floodlight"}</h2><button class="small" id="delete-light" aria-label="Delete selected light">Remove</button></div><div class="input-row"><label for="light-x">X position</label><input id="light-x" type="number" min="0" max="1" step="0.001" value="${light.x.toFixed(3)}"></div><div class="input-row"><label for="light-y">Y position</label><input id="light-y" type="number" min="0" max="1" step="0.001" value="${light.y.toFixed(3)}"></div><div class="range-label"><label for="light-radius">${light.type === "lamp" ? "Halo" : "Flood"} radius</label><output id="radius-value">${light.radius.toFixed(3)}</output></div><input id="light-radius" type="range" min="0.001" max="${light.type === "lamp" ? ".08" : ".6"}" step="0.001" value="${light.radius}">${light.type === "flood" ? `<div class="range-label"><label for="light-intensity">Intensity</label><output id="intensity-value">${Math.round(light.intensity * 100)}%</output></div><input id="light-intensity" type="range" min="0" max="1" step="0.01" value="${light.intensity}">` : ""}<div class="input-row"><label for="light-color">Light color</label><input id="light-color" type="color" value="${light.color}"></div><p class="help">Positions are normalized to the image, from its top left. Night lighting fades in automatically.</p>`
@@ -284,6 +295,13 @@ createRenderer(
 );
 
 $("#layers").addEventListener("click", (e) => {
+  if (e.target.closest("[data-native]")) {
+    selected = null;
+    lightID = null;
+    setInspector("layer");
+    render();
+    return;
+  }
   const visibility = e.target.closest("[data-visible]");
   if (visibility) {
     commit(() => {
@@ -478,6 +496,9 @@ document
       (b.onclick = () =>
         commit(() => (project.settings.hour = Number(b.dataset.hour)))),
   );
+$(".inspector").addEventListener("click", (e) => {
+  if (e.target.id === "remove-native") commit(() => delete project.nativeScene);
+});
 $(".inspector").addEventListener("change", (e) => {
   if (e.target.id === "water-motion" && selectedLayer()) {
     commit(() => {
@@ -524,6 +545,9 @@ $(".inspector").addEventListener("input", (e) => {
     light.color = e.target.value;
     changed(false);
   }
+});
+$(".inspector").addEventListener("click", (e) => {
+  if (e.target.id === "remove-native") commit(() => delete project.nativeScene);
 });
 $(".inspector").addEventListener("change", (e) => {
   const l = selectedLayer(),
@@ -801,7 +825,7 @@ async function exportBundle() {
     }
     files.push({
       name: "README.txt",
-      data: `${p.name}\n\n1. Add https://github.com/joinalahmed/SceneWeaver to your Xcode app target (0.1.0 or later).\n2. Add ComposedScene.swift and Assets.xcassets to the app target. If you already have an asset catalog, merge the imagesets into it.\n3. Use ComposedScene() in your UI. It follows the current clock; provide previewDate to inspect a fixed time.\n\nThe artwork and lamp coordinates are exported together. Browser rendering approximates the native Canvas engine; check your final composition on an iOS simulator or device.\n\nThe built-in artwork is MIT licensed (copyright 2026 Joinal Ahmed). Your imported artwork retains its own license.\nProject preview hour: ${timeLabel(p.settings.hour)}.\n`,
+      data: `${p.name}\n\n1. Add https://github.com/joinalahmed/SceneWeaver to your Xcode app target (0.2.0 or later)${p.nativeScene ? ", including the SceneWeaverCatalog product" : ""}.\n2. Add ComposedScene.swift and Assets.xcassets to the app target. If you already have an asset catalog, merge the imagesets into it.\n3. Use ComposedScene() in your UI. It follows the current clock; provide previewDate to inspect a fixed time.\n\nThe artwork and lamp coordinates are exported together. Browser rendering approximates the native Canvas engine; check your final composition on an iOS simulator or device.\n\nThe built-in artwork is MIT licensed (copyright 2026 Joinal Ahmed). Your imported artwork retains its own license.\nProject preview hour: ${timeLabel(p.settings.hour)}.\n`,
     });
     download(zipFiles(files), `${slug()}-swiftui.zip`);
     toast(
@@ -831,10 +855,17 @@ $("#preset").onchange = async (e) => {
   }
 };
 async function loadPreset(entry, { undo = true } = {}) {
-  const url = new URL(`assets/${entry.project}?v=motion-4`, location.href),
+  const url = new URL(`assets/${entry.project}?v=library-5`, location.href),
     response = await fetch(url);
   if (!response.ok) throw Error("Could not load the starter scene.");
   const p = validateProject(await response.json(), { allowSources: true });
+  if (p.nativeScene?.src) {
+    const geometry = await fetch(new URL(p.nativeScene.src, url));
+    if (!geometry.ok) throw Error("Could not load native geometry.");
+    p.nativeScene = {...p.nativeScene,data:await readNativeGeometry(geometry)};
+    delete p.nativeScene.src;
+    await attachNativeRuntime(p.nativeScene,url);
+  }
   for (const l of p.layers) {
     const assetURL = new URL(l.asset.src, url);
     if (
@@ -888,9 +919,15 @@ document.addEventListener("keydown", (e) => {
 
 async function start() {
   try {
-    const response = await fetch("assets/catalog.json");
+    const response = await fetch("assets/catalog.json?v=library-5");
     if (!response.ok) throw Error("Could not load the scene catalog.");
     catalog = (await response.json()).scenes;
+    mountLibrary({
+      button: $("#browse-library"),
+      dialog: $("#library-dialog"),
+      catalog,
+      onSelect: loadPreset,
+    });
     $("#preset").innerHTML =
       catalog
         .map(
@@ -907,7 +944,9 @@ async function start() {
       saved = validateProject(saved);
       // Upgrade only byte-identical starter water artwork. Preserve custom
       // images, edited regions, and explicit opt-outs (water: null).
-      for (const entry of catalog) {
+      for (const entry of catalog.filter((entry) =>
+        ["alpine", "harbor"].includes(entry.id),
+      )) {
         const starter = await (
           await fetch(
             new URL(

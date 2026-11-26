@@ -18,7 +18,7 @@ The light editor keeps layers on the left, a fitted artboard in the center, and 
 
 ## Compose
 
-Choose Alpine hideaway, Harbor at dusk or a blank canvas. Import aligned PNG, WebP or JPEG plates. Order them front to back in the layer list; the underlying project and native export use back-to-front drawing order. Select a plate, use Lamp or Floodlight, then click on the artwork. Drag the handle or edit normalized coordinates in the inspector. Arrow keys nudge a focused light. Undo or ⌘/Ctrl+Z restores the last scene edit; ⌘/Ctrl+S saves a project copy.
+Use **Browse library** to search all 428 original scenes by name, category or tag, or start with a blank canvas. Import aligned PNG, WebP or JPEG plates. Order them front to back in the layer list; the underlying project and native export use back-to-front drawing order. Select a plate, use Lamp or Floodlight, then click on the artwork. Drag the handle or edit normalized coordinates in the inspector. Arrow keys nudge a focused light. Undo or ⌘/Ctrl+Z restores the last scene edit; ⌘/Ctrl+S saves a project copy.
 
 Set layer depth, ambient dimming, light colors and radius. Preview weather, daylight transitions, overscan and different viewport ratios. All image plates share one authored canvas aspect ratio. Transparent PNG or WebP works best; opaque images cover the live sky.
 
@@ -28,16 +28,14 @@ Play and Pause control ambient animation at the selected time of day. Pause free
 
 Export SwiftUI downloads a ZIP containing:
 
-- `ComposedScene.swift`, compatible with SceneWeaver 0.1.0+.
+- `ComposedScene.swift`, compatible with SceneWeaver 0.2.0+. Procedural scenes also require the `SceneWeaverCatalog` product.
 - `Assets.xcassets` with universal PNG imagesets. SVG starter plates are rasterized locally.
 - `sceneweaver-project.json` with all authored layers and embedded original artwork.
 - `README.txt` with integration and asset licensing notes.
 
 Add the view and assets to an app target linked to SceneWeaver. Merge imagesets if the app already has an asset catalog. Hidden layers are omitted from the SwiftUI composition but preserved in the project.
 
-The browser runs a JavaScript Canvas renderer, while exported scenes run SwiftUI. Image framing, daylight interpolation, the sun curve, cloud banks, moon visibility, ground palette, precipitation and storm timing follow the native image-scene formulas. Browser and SwiftUI gradients, color spaces and antialiasing can still differ; this is not a pixel-identical native preview.
-
-Studio and React support image plates, floodlights and lamps. Native `ScenePen` geometry, custom Canvas callbacks, overlays, incidental birds/aircraft/traffic, RTL placement and scene-specific reserved heights are outside the web project format. The starter artwork also differs from the native gallery. Verify the exported composition in Xcode on your target device.
+The 421 procedural scenes execute the canonical Swift recipes live through WebAssembly; the browser paints their paths with Canvas 2D. Seven image compositions supply the remaining scenes. Studio and React share the complete catalog, atmospheric formulas, actors, lighting and artwork. Platform gradients, color spaces and antialiasing can differ. See [parity and runtime maintenance](../docs/parity.md).
 
 ## React
 

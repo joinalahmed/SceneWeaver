@@ -7,6 +7,11 @@ on:
         "studio/**",
         "packages/react/**",
         "scripts/validate-studio-assets.mjs",
+        "scripts/fetch-catalog.py",
+        "Sources/SceneWeaverCatalog/**",
+        "Sources/SceneWeaver/ScenePen.swift",
+        "Tools/WasmRuntime/**",
+        "scripts/build-wasm.py",
         ".github/workflows/studio.yml",
       ]
   pull_request:
@@ -15,6 +20,11 @@ on:
         "studio/**",
         "packages/react/**",
         "scripts/validate-studio-assets.mjs",
+        "scripts/fetch-catalog.py",
+        "Sources/SceneWeaverCatalog/**",
+        "Sources/SceneWeaver/ScenePen.swift",
+        "Tools/WasmRuntime/**",
+        "scripts/build-wasm.py",
         ".github/workflows/studio.yml",
       ]
   workflow_dispatch:
@@ -28,6 +38,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - name: Fetch verified scene catalog assets
+        run: python3 scripts/fetch-catalog.py
       - name: Validate projects, geometry and exports
         run: |
           node --test studio/tests/*.test.mjs

@@ -288,6 +288,39 @@ try {
     [32, 63, 73, 255],
     "Ripples stay inside the authored water region",
   );
+  const crowdArea=await page.evaluate(async()=>{
+    const {drawCrowd}=await import(new URL('crowds.mjs',location.href));
+    const c=document.createElement('canvas');c.width=402;c.height=268;const ctx=c.getContext('2d');
+    drawCrowd(ctx,{x:0,y:0,width:402,height:268},'orbit',2,0.5);
+    const pixels=ctx.getImageData(0,0,402,268).data;let area=0;for(let i=3;i<pixels.length;i+=4)if(pixels[i])area++;return area;
+  });
+  assert.ok(crowdArea>100 && crowdArea<6000,'Crowd ellipses remain separate subpaths without connecting floor polygons');
+  // Exercise the shipped full library through the same UI consumers use.
+  await page.setViewportSize({width:1440,height:1000});
+  await page.locator('#browse-library').click();
+  await page.getByRole('searchbox',{name:'Search scene library'}).fill('London');
+  assert.equal(await page.locator('.catalog-card').count(),1);
+  await page.getByRole('button',{name:'Open London',exact:true}).click();
+  await page.locator('dialog[open]').waitFor({state:'hidden',timeout:30000});
+  await page.locator('[data-native]').waitFor();
+  if(await page.locator('#play').getAttribute('aria-pressed')==='false')await page.locator('#play').click();
+  const nativeFirst=await previewFrame();await page.waitForTimeout(450);
+  assert.notEqual(await previewFrame(),nativeFirst,'Live Swift catalog animates');
+  await page.locator('#play').click();await page.waitForTimeout(120);
+  const nativePaused=await previewFrame();await page.waitForTimeout(200);
+  assert.equal(await previewFrame(),nativePaused,'Live Swift geometry freezes on pause');
+  await page.screenshot({path:`${output}/catalog-london.png`});
+  await page.locator('#browse-library').click();
+  await page.getByRole('searchbox',{name:'Search scene library'}).fill('Makkah');
+  await page.getByRole('button',{name:'Open Makkah · Masjid al-Haram',exact:true}).click();
+  await page.locator('dialog[open]').waitFor({state:'hidden'});
+  assert.equal(await page.locator('.layer').count(),2);
+  await page.screenshot({path:`${output}/catalog-makkah.png`});
+  await page.locator('#browse-library').click();
+  await page.getByRole('searchbox',{name:'Search scene library'}).fill('');
+  assert.equal(await page.locator('.catalog-card').count(),428);
+  await page.screenshot({path:`${output}/full-library.png`});
+  await page.locator('[data-close-library]').click();
   assert.deepEqual(errors, []);
   console.log(
     `PASS browser composition, light placement and drag, reorder, project round trip, persistence, artwork import, ZIP export and mobile layout. Artifacts: ${output}`,

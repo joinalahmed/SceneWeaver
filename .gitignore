@@ -14,3 +14,13 @@ packages/react/dist/
 packages/react/build/
 packages/react/*.tgz
 studio/react/
+
+# Canonical recipe sources are copied by the Wasm build script.
+Tools/WasmRuntime/Sources/SceneWeaver/ScenePen.swift
+Tools/WasmRuntime/Sources/Recipes/*.swift
+!Tools/WasmRuntime/Sources/Recipes/Runtime.swift
+!Tools/WasmRuntime/Sources/Recipes/main.swift
+Tools/WasmRuntime/.build/
+
+# Keep only the compressed, integrity-checked browser runtime in Git.
+studio/assets/runtime/*.wasm

@@ -9,19 +9,20 @@ public struct SceneView: View {
     private let scene: SceneDefinition?
     private let showsSunPath: Bool
     private let ground: CGFloat
+    private let paused: Bool
     public static let arc: CGFloat = 128
     public static let dip: CGFloat = 24
 
     public init(schedule: DaylightSchedule, now: Date? = nil, weather: SceneWeather? = nil,
-                scene: SceneDefinition? = nil, showsSunPath: Bool = true, ground: CGFloat = 30) {
+                scene: SceneDefinition? = nil, showsSunPath: Bool = true, ground: CGFloat = 30, paused: Bool = false) {
         self.schedule = schedule; self.now = now; self.weather = weather; self.scene = scene
-        self.showsSunPath = showsSunPath; self.ground = ground
+        self.showsSunPath = showsSunPath; self.ground = ground; self.paused = paused
     }
 
     public var body: some View {
         TimelineView(.periodic(from: .now, by: 60)) { clock in
             SceneCanvas(schedule: schedule, now: now ?? clock.date, weather: weather,
-                        scene: scene, showsSunPath: showsSunPath, ground: ground)
+                        scene: scene, showsSunPath: showsSunPath, ground: ground, paused: paused)
         }
     }
 }
@@ -39,22 +40,24 @@ private struct SceneCanvas: View {
 
     /// How much dark ground lies under the horizon, including the spacing above
     /// any labels laid over the scene.
+    var paused = false
+    @State private var animationClock = SceneAnimationClock()
     var ground: CGFloat = 30
 
     public static let arc: CGFloat = 128
     public static let dip: CGFloat = 24
 
     public init(schedule: DaylightSchedule, now: Date = .now, weather: SceneWeather? = nil,
-                scene: SceneDefinition? = nil, showsSunPath: Bool = true, ground: CGFloat = 30) {
+                scene: SceneDefinition? = nil, showsSunPath: Bool = true, ground: CGFloat = 30, paused: Bool = false) {
         self.schedule = schedule; self.now = now; self.weather = weather; self.city = scene
-        self.showsSunPath = showsSunPath; self.ground = ground
+        self.showsSunPath = showsSunPath; self.ground = ground; self.paused = paused
     }
 
     public var body: some View {
         let moment = sky()
-        TimelineView(.animation(minimumInterval: 1.0 / 24, paused: reduceMotion)) { timeline in
+        TimelineView(.animation(minimumInterval: 1.0 / 24, paused: reduceMotion || paused)) { timeline in
             Canvas { context, size in
-                draw(&context, size, time: reduceMotion ? 0 : timeline.date.timeIntervalSinceReferenceDate, moment: moment)
+                draw(&context, size, time: animationClock.time(at: timeline.date, playing: !paused && !reduceMotion, reduced: reduceMotion), moment: moment)
             }
         }
         .accessibilityHidden(true)
@@ -238,7 +241,7 @@ private struct SceneCanvas: View {
             overlay(&context, SceneFrame(size: size, horizon: horizon, time: time, date: now,
                                          darkness: dark, glow: moment.glow, motionEnabled: animated,
                                          contentColor: Self.color(Self.mix(cityPalette(skyLow: skyLow, darkness: dark, glow: moment.glow).landmark, skyLow, 0.16)),
-                                         layoutDirection: layoutDirection))
+                                         layoutDirection: layoutDirection, weather: condition))
         }
         if animated, lights > 0.3, city?.wild != true { traffic(&context, size, horizon: horizon, time: time, strength: lights) }
         precipitation(&context, size, horizon: horizon, time: time)
@@ -620,7 +623,7 @@ private struct SceneCanvas: View {
                       darkness: Double, glow: Double, lights: Double, time: Double) {
         if let render = city?.render {
             render(&context, SceneFrame(size: size, horizon: horizon, time: time, date: now,
-                                        darkness: darkness, glow: glow, motionEnabled: animated))
+                                        darkness: darkness, glow: glow, motionEnabled: animated, layoutDirection: layoutDirection, weather: condition))
             return
         }
         let dark: RGB = (0.02, 0.03, 0.06)

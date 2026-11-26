@@ -18,6 +18,17 @@ export type {
   EmbeddedSceneProject,
   LoadSceneOptions,
 } from "./types.js";
+import { blankProject } from "../../../studio/model.mjs";
+const EMPTY_PROJECT: EmbeddedSceneProject = {
+  version: 1,
+  name: "Procedural scene",
+  settings: {
+    ...blankProject().settings,
+    weather: "clear",
+    schedule: [5, 6, 12, 15, 18, 19.5],
+  },
+  layers: [],
+};
 interface Resource {
   source: SceneViewProps["project"];
   baseURL?: string;
@@ -41,11 +52,13 @@ const asError = (error: unknown): Error =>
   error instanceof Error ? error : new Error(String(error));
 /** Responsive Canvas scenes using the same renderer as SceneWeaver Studio. */
 export function SceneView({
-  project,
+  project = EMPTY_PROJECT,
+  definition,
   baseURL,
   hour,
   weather,
   paused,
+  showsSunPath,
   label,
   children,
   fallback = null,
@@ -64,6 +77,10 @@ export function SceneView({
   const callbacks = useRef({ onReady, onError });
   const currentProject = useRef<EmbeddedSceneProject | null>(null);
   const visible = useRef(true);
+  const currentDefinition = useRef(definition);
+  useEffect(() => {
+    currentDefinition.current = definition;
+  }, [definition]);
   const [resource, setResource] = useState<Resource | null>(null);
   const [clockHour, setClockHour] = useState<number | undefined>(undefined);
   const [rendererError, setRendererError] = useState<Error | null>(null);
@@ -147,6 +164,7 @@ export function SceneView({
                 : (hour ?? saved.settings.hour),
             weather: weather ?? saved.settings.weather,
             motion: paused === undefined ? saved.settings.motion : !paused,
+            ...(showsSunPath === undefined ? {} : {showsSunPath}),
           },
         }) as EmbeddedSceneProject,
         error: null,
@@ -154,7 +172,7 @@ export function SceneView({
     } catch (error) {
       return { project: null, error: asError(error) };
     }
-  }, [resource, project, baseURL, hour, clockHour, weather, paused]);
+  }, [resource, project, baseURL, hour, clockHour, weather, paused, showsSunPath]);
   const error = resolved.error ?? rendererError;
   useEffect(() => {
     currentProject.current = resolved.project;
@@ -186,6 +204,7 @@ export function SceneView({
         () => (visible.current ? currentProject.current : null),
         () => resource.images,
         () => {},
+        { getDefinition: () => currentDefinition.current },
       );
     } catch (error) {
       setRendererError(asError(error));
@@ -244,3 +263,16 @@ export function SceneView({
     </div>
   );
 }
+
+export { SceneLibrary } from "./library.js";
+export type { SceneLibraryEntry, SceneLibraryProps } from "./library.js";
+
+export { ScenePen, ScenePath } from "./pen.js";
+export type {
+  SceneDefinition,
+  SceneFrame,
+  ScenePenOptions,
+  SceneColor,
+  ScenePoint,
+  SceneTransform,
+} from "./pen.js";

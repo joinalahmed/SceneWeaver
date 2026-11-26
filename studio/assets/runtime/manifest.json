@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "sha256": "6325afd6cb3e63f88f9cbb5c1e958d08dfd28176e37e5c4a200ebec19e0b87c4",
+  "compressedSha256": "54d2268c4ad9c38bb51737fe34cd534811f51a562e85e5fb468dd23d1d9f7fea",
+  "sources": {
+    "Sources/SceneWeaver/ScenePen.swift": "d9d7a1ee570c23ab8f492f99c13ccdd67c40d0214079239cd15bc75cd4233b6c",
+    "Sources/SceneWeaverCatalog/Recipes/CatalogRecipes.swift": "094feaabf95c33eb6cc8eae2fa1fb7e0862342e6d9c3ab9507f65cf04890665c",
+    "Sources/SceneWeaverCatalog/Recipes/Cityscapes.swift": "1cafe889663a9c152a75a14ab6539cfc00b46fd3e7521be288413e6bdd56fbfc",
+    "Sources/SceneWeaverCatalog/Recipes/DuaScenes.swift": "160ff8af603fda03213234865b028401ccab6f176d8d3710c873976c203b0f91",
+    "Sources/SceneWeaverCatalog/Recipes/DuaScenesByDua.swift": "db7336eb273b0b510ff16f49989f324e2570699b48e9c866d46c5b817cd6c4c3",
+    "Sources/SceneWeaverCatalog/Recipes/SceneAssets.swift": "d5cda4893875e470bd086c1280aeb9624ec3d313b09e6c4a63c11c331debda04",
+    "Sources/SceneWeaverCatalog/Recipes/SurahScenes.swift": "233e68fc04a1a9d24f9a3e93af6ff4407deb249ff0a10ad5e6b3dac7ea501bcf",
+    "Sources/SceneWeaverCatalog/Recipes/SurahScenesA.swift": "d581f4d348e6016899c3ae01c33a8580fd4d534cce235add21e7ddff7f78c409",
+    "Sources/SceneWeaverCatalog/Recipes/SurahScenesB.swift": "f0fc7668d014e9cea73dcfdae309d58aa9836ad50dd4ef6e446a40f2d166c755",
+    "Sources/SceneWeaverCatalog/Recipes/SurahScenesC.swift": "21d534c16fd65c99e50e95314cd6454807f2d177542c29f8b210dc7696d26348",
+    "Sources/SceneWeaverCatalog/Recipes/SurahScenesD.swift": "be7713bd436edea1aa71101dedb5e383bfcff5b5a653a1201fc779cd4e389dc1",
+    "Sources/SceneWeaverCatalog/Recipes/SurahScenesPortions.swift": "6896fe0d2e6d858d9e64b3077cd742af4207d5d3468f80a925f5bbfbadc93604",
+    "Tools/WasmRuntime/Sources/SwiftUI/Calendar.swift": "b64da868bdc7af1c69419b6e7030f0dc2ec52da1bb3d27dbc8c2d58b6373be94",
+    "Tools/WasmRuntime/Sources/SwiftUI/Color.swift": "b501392fbe0881af46c48a1c58a5be2568e58580f891747ef07f0521739cdc21",
+    "Tools/WasmRuntime/Sources/SwiftUI/Geometry.swift": "0d937980a2fb60cf9d6c6a51ec1a3b4bc95e95e2f1c7dc0e88d4345af7de1e53",
+    "Tools/WasmRuntime/Sources/SwiftUI/Values.swift": "012116b912f05015323eef90bb44f6076187d98ce53c1424c8e367e795d22f31",
+    "Tools/WasmRuntime/Sources/Recipes/Runtime.swift": "d983d116d83e3134e3fc8cdf7a61e112aa5783d63733fdadf3a07c1a264c407a",
+    "Tools/WasmRuntime/Sources/Recipes/main.swift": "fd8b94cf1d25e54e1ebbb0ca63d86c22101cc4181367d6ae5dad3b083a3a1dab",
+    "Tools/WasmRuntime/Sources/SceneWeaver/ArtworkLayout.swift": "15e187ec6c9383c1b78fff4841f24c5793175c37bfb18fe0bc251e7ec09a6dc7",
+    "Tools/WasmRuntime/Package.swift": "e16fea1ed3ede96923547097d52ea0a22ae54a5c4a5ef90ed90646ed45100047",
+    "scripts/build-wasm.py": "e53bf5d94055e4afb7122515eb3cb99d8c38de99b1bea7a1cff0bb9cf11160de"
+  }
+}

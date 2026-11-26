@@ -70,3 +70,7 @@ Canvas scenes are accessibility-hidden. Put meaningful text, controls and access
 Build the consumer target and inspect the rendered result. For framing or lighting changes, compare daylight and night at the narrowest supported width; include wide layouts, RTL or Reduce Motion when the change affects them. Confirm that lamps align with fixtures, silhouettes retain cutouts, and foreground plates occlude the intended content.
 
 For engine changes, run `swift test` and the iOS build command in the README. For example changes, also build `SceneWeaverExamples`. Use [scripts/capture-screenshots.py](scripts/capture-screenshots.py) to regenerate the documented iOS gallery screenshots when the example's appearance changes. Do not substitute generated mockups for runtime screenshots.
+
+## Full catalog and parity
+
+Before authoring new content, search the existing 428-scene catalog. Reuse a scene or its registered plates when appropriate. Read [parity maintenance](docs/parity.md) for the canonical Swift recipe location, live WebAssembly rebuild, native resource registration, inventory coverage checks and distribution requirements. Studio and React use the same complete library; keep their `nativeID` values aligned with `SceneWeaverCatalog`. Validate native and browser rendering after changing geometry, actor placement, framing or lights.

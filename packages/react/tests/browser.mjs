@@ -130,6 +130,20 @@ try {
     path: `${output}/react-playground.png`,
     fullPage: true,
   });
+  assert.equal(await demo.locator('select').first().locator('option').count(),428);
+  await demo.getByRole('button',{name:'Browse full scene library'}).click();
+  await demo.getByRole('searchbox',{name:'Search scene library'}).fill('London');
+  await demo.getByRole('button',{name:'Open London',exact:true}).click();
+  await demo.locator('[data-scene-state="ready"] canvas[aria-label="London"]').waitFor({timeout:30000});
+  const livePixel=()=>demo.locator('canvas').evaluate(c=>c.toDataURL());
+  const london=await livePixel();await demo.waitForTimeout(300);assert.notEqual(await livePixel(),london,'React executes live Swift geometry');
+  await demo.getByRole('button',{name:'Pause motion',exact:true}).click();await demo.waitForTimeout(100);
+  const pausedLondon=await livePixel();await demo.waitForTimeout(150);assert.equal(await livePixel(),pausedLondon);
+  await demo.getByRole('button',{name:'Browse full scene library'}).click();
+  await demo.getByRole('searchbox',{name:'Search scene library'}).fill('Madinah');
+  await demo.getByRole('button',{name:'Open Madinah · Masjid an-Nabawi',exact:true}).click();
+  await demo.locator('[data-scene-state="ready"] canvas[aria-label="Madinah · Masjid an-Nabawi"]').waitFor();
+  await demo.screenshot({path:`${output}/react-catalog-madinah.png`,fullPage:true});
   await demo.setViewportSize({ width: 375, height: 812 });
   await demo.screenshot({ path: `${output}/react-mobile.png`, fullPage: true });
   assert.ok(

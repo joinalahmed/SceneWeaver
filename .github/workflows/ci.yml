@@ -11,3 +11,5 @@ jobs:
         run: swift test
       - name: Build the iOS library and examples
         run: xcodebuild -scheme SceneWeaver -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build
+      - name: Build the iOS scene catalog
+        run: xcodebuild -scheme SceneWeaverCatalog -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build

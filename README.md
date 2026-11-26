@@ -10,7 +10,7 @@ Combine live skies, weather, vector drawings and layered artwork in one Canvas-b
 - Ordered transparent image and Canvas layers with subtle depth motion.
 - Alpha-clipped floodlighting and lamps that illuminate after dusk.
 - Reduce Motion support and optional RTL landmark repositioning without reflection.
-- No external dependencies, bundled artwork, location access, analytics or network requests.
+- Independent core engine; optional full scene catalog. No location access or analytics.
 
 Requires **iOS 17+** or **macOS 14+**, Swift 5.9+. MIT licensed.
 
@@ -22,7 +22,9 @@ Compose scenes visually: import aligned artwork, reorder layers, place and drag 
 
 ![SceneWeaver Studio with the alpine scene and layer inspector](docs/screenshots/studio.png)
 
-The web preview approximates SwiftUI; the export runs on the native engine. No account or build step is needed. [Run locally and read the workflow](studio/README.md).
+Browse all **428 original scenes**, including cities, surah and dua scenes, landscapes, and the detailed Makkah/Madinah illustrations. The 421 procedural scenes execute their original Swift recipes live through WebAssembly. Studio and React share the same renderer and assets. [Parity and distribution details](docs/parity.md). No account or build step is needed. [Run locally and read the workflow](studio/README.md).
+
+![Searchable complete original scene library](docs/screenshots/library.png)
 
 ## React component
 
@@ -59,10 +61,23 @@ https://github.com/joinalahmed/SceneWeaver
 Or add the package and product in `Package.swift`:
 
 ```swift
-.package(url: "https://github.com/joinalahmed/SceneWeaver.git", from: "0.1.0")
+.package(url: "https://github.com/joinalahmed/SceneWeaver.git", from: "0.2.0")
 // In your target's dependencies:
 .product(name: "SceneWeaver", package: "SceneWeaver")
 ```
+
+## Full scene library
+
+Add the optional `SceneWeaverCatalog` product to your target, then use:
+
+```swift
+import SceneWeaverCatalog
+
+SceneCatalogGallery() // Search all 428 scenes
+SceneCatalogView(id: "london", hour: 19)
+```
+
+React exports `SceneLibrary`, `ScenePen` and `ScenePath` alongside `SceneView`. Download the full library archive from [v0.2.0](https://github.com/joinalahmed/SceneWeaver/releases/tag/v0.2.0) to host the same assets in your own app. See [React integration](packages/react/README.md).
 
 ## Draw a scene
 

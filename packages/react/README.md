@@ -11,7 +11,7 @@ React 18 and 19 · TypeScript declarations · ESM · SSR-safe client initializat
 Install the built package from the public GitHub release:
 
 ```sh
-npm install https://github.com/joinalahmed/SceneWeaver/releases/download/react-v0.1.2/sceneweaver-react-0.1.2.tgz
+npm install https://github.com/joinalahmed/SceneWeaver/releases/download/react-v0.2.0/sceneweaver-react-0.2.0.tgz
 ```
 
 The package is distributed through GitHub Releases; it is not currently published to the npm registry. React is a peer dependency and is not bundled into the component. Use Node 20+ for package tooling.
@@ -110,7 +110,7 @@ The helper resolves image URLs and returns validated JSON with embedded artwork.
 
 ## Renderer and limits
 
-This is the web Canvas renderer, not a wrapper around native SwiftUI. It shares Studio’s image framing, lighting and native-derived sky/weather formulas; color spaces, gradients and antialiasing can differ from SwiftUI. It composes images and authored lights; arbitrary Swift drawing closures are not converted to JavaScript. No catalog artwork, fonts, network service or location provider is bundled into the component.
+This is the web Canvas renderer, not a wrapper around native SwiftUI. It shares Studio’s image framing, lighting and native-derived sky/weather formulas; color spaces, gradients and antialiasing can differ from SwiftUI. It composes artwork, actors, procedural geometry and Canvas callbacks. The original catalog recipes execute live as Swift WebAssembly; custom JavaScript definitions use the exported ScenePen API. No catalog artwork, fonts, network service or location provider is bundled into the component.
 
 ## Develop
 
@@ -127,3 +127,23 @@ Then serve the repository root with `python3 -m http.server 5173` and open `/stu
 `npm pack` produces an installable tarball containing the bundled component, TypeScript declarations, README and license. Build tools and test fixtures are excluded. The build imports the shared renderer directly from `studio/`; changes to Studio's renderer automatically reach the React bundle.
 
 Water animation is optional per layer: `water: { x: 0, y: 0.73, width: 1, height: 0.27, opacity: 0.28 }` defines a normalized rectangle on the artwork. Highlights render after that plate and before later layers, so foreground objects occlude them. Set `water: null` to disable it. Pausing holds the current animation frame; it does not advance the displayed hour.
+
+## Full original library
+
+Version 0.2.0 exposes all 428 original scenes through the public demo. To self-host, download `sceneweaver-library-0.2.0.zip` from the [native release](https://github.com/joinalahmed/SceneWeaver/releases/tag/v0.2.0), extract its contents into `public/scenes/`, and retain the runtime license notices.
+
+```tsx
+import { useState } from 'react';
+import { SceneView, SceneLibrary } from 'sceneweaver-react';
+
+export function Gallery() {
+  const [project, setProject] = useState('/scenes/alpine.json');
+  return <>
+    <SceneView project={project} hour={19} />
+    <SceneLibrary catalogURL="/scenes/catalog.json"
+      onSelect={(_, url) => setProject(url)} />
+  </>;
+}
+```
+
+Procedural catalog projects load the integrity-checked Swift WebAssembly runtime relative to their project URL. The same original recipes execute at the current width, time, night level, clock hour and RTL direction. `onReady` waits for that runtime. Custom programmatic scenes can instead use `definition={{ draw(pen) { ... }, overlay(context, frame) { ... } }}`; `ScenePen` and `ScenePath` are exported with TypeScript declarations. See [cross-platform capabilities](../../docs/parity.md).

@@ -1,6 +1,6 @@
 {
   "name": "sceneweaver-react",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "React scenes with live skies, layered artwork, weather and lighting. Compatible with SceneWeaver Studio projects.",
   "type": "module",
   "license": "MIT",
@@ -14,7 +14,8 @@
   "files": [
     "dist",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.txt"
   ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -37,6 +38,7 @@
     "react": ">=18 <20"
   },
   "devDependencies": {
+    "@bjorn3/browser_wasi_shim": "0.4.2",
     "@types/react": "19.3.3",
     "esbuild": "0.28.2",
     "react": "19.3.1",

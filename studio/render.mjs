@@ -1,13 +1,28 @@
-import { artworkRect, skyAt, ramp } from "./model.mjs?v=motion-4";
-import { drawAtmosphere, drawWeather, rgba as rgb } from "./atmosphere.mjs";
-import { drawWater } from "./water.mjs";
+import { renderNativeRuntime } from "./wasm-runtime.mjs";
+import { ScenePen } from "./scene-pen.mjs";
+import {
+  drawClock,
+  drawCrowd,
+  drawFixture,
+  drawReflections,
+} from "./crowds.mjs";
+import { drawTraffic } from "./incidental.mjs";
+import { drawNativeScene, nativePalette } from "./native-scene.mjs";
+import { artworkRect, skyAt, ramp, mix } from "./model.mjs?v=library-5";
+import {
+  drawAtmosphere,
+  drawWeather,
+  rgba as rgb,
+  OVERCAST,
+} from "./atmosphere.mjs?v=library-5";
+import { drawWater, drawBoat } from "./water.mjs?v=library-5";
 import { createAnimationClock } from "./playback.mjs";
 export function createRenderer(
   canvas,
   getProject,
   getImages,
   onFrame,
-  { referenceWidth } = {},
+  { referenceWidth, getDefinition } = {},
 ) {
   const ctx = canvas.getContext("2d"),
     material = document.createElement("canvas"),
@@ -51,7 +66,49 @@ export function createRenderer(
     const s = p.settings,
       horizon = h - s.ground,
       sky = skyAt(s.hour, s.schedule);
-    drawAtmosphere(ctx, w, h, s, sky, time, moving);
+    const definition = getDefinition?.();
+    const sceneOptions = definition ?? p.nativeScene?.data;
+    const rtl = getComputedStyle(canvas).direction === "rtl";
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const grey = mix([0.17, 0.19, 0.23], [0.06, 0.07, 0.09], sky.darkness),
+      skyLow = mix(sky.low, grey, OVERCAST[s.weather]);
+    const palette = nativePalette(
+      skyLow,
+      sky.darkness,
+      sky.glow,
+      OVERCAST[s.weather],
+      sceneOptions?.illustrated,
+    );
+    const nativeFrame = {
+      size: { width: w, height: h },
+      horizon,
+      time,
+      date: new Date(today.getTime() + s.hour * 3600000),
+      darkness: sky.darkness,
+      glow: sky.glow,
+      motionEnabled: moving,
+      rtl,
+      layoutDirection: rtl ? "rtl" : "ltr",
+      weather: s.weather,
+      contentColor: rgb(mix(palette.landmark, skyLow, 0.16)),
+    };
+    drawAtmosphere(
+      ctx,
+      w,
+      h,
+      {
+        ...s,
+        ownMoon: sceneOptions?.ownMoon,
+        wild: sceneOptions?.wild,
+        illustrated: sceneOptions?.illustrated,
+        rtl,
+        reservedHeight: definition?.reservedHeight?.(w) ?? (s.reservedHeight ? w*s.reservedHeight.widthFactor+s.reservedHeight.offset : undefined),
+      },
+      sky,
+      time,
+      moving,
+    );
     function halo(x, y, r, color) {
       const g = ctx.createRadialGradient(x, y, 0, x, y, r);
       g.addColorStop(0, color);
@@ -59,6 +116,49 @@ export function createRenderer(
       ctx.fillStyle = g;
       ctx.fillRect(x - r, y - r, r * 2, r * 2);
     }
+    if (definition?.render) {
+      ctx.save();
+      definition.render(ctx, nativeFrame);
+      ctx.restore();
+    } else if (definition && (definition.draw || !p.nativeScene)) {
+      const pen = new ScenePen({
+        width: w,
+        horizon,
+        time,
+        night: ramp(sky.darkness, 0.3, 0.72),
+        clockDate: nativeFrame.date,
+        illustrated: definition.illustrated,
+      });
+      definition.draw?.(pen);
+      if (rtl && definition.movesForRTL) pen.moveToLeftMargin();
+      drawNativeScene(
+        ctx,
+        { width: w, height: h, horizon },
+        pen.toGeometry({
+          backdrop: definition.backdrop ?? "open",
+          wild: definition.wild ?? true,
+          ownMoon: definition.ownMoon,
+          illustrated: definition.illustrated,
+          distantBuildingHeights: definition.distantBuildingHeights,
+          nearBuildingHeights: definition.nearBuildingHeights,
+        }),
+        { ...nativeFrame, skyLow, overcast: OVERCAST[s.weather] },
+      );
+    } else if (p.nativeScene?.data)
+      drawNativeScene(
+        ctx,
+        { width: w, height: h, horizon },
+        renderNativeRuntime(p.nativeScene,w,horizon,time,ramp(sky.darkness,.30,.72),s.hour,rtl),
+        {
+          darkness: sky.darkness,
+          glow: sky.glow,
+          time,
+          motionEnabled: moving,
+          skyLow,
+          rtl,
+          overcast: OVERCAST[s.weather],
+        },
+      );
     const motion = moving ? Math.sin(time * 0.06) : 0,
       rects = new Map();
     for (const layer of p.layers) {
@@ -133,10 +233,26 @@ export function createRenderer(
         plates.set(layer.id, cache);
       }
       ctx.drawImage(cache.plate, rect.x, rect.y, rect.width, rect.height);
+      if (layer.clock) drawClock(ctx, rect, layer.clock, s.hour, sky.darkness);
+      if (layer.crowd) {
+        drawCrowd(ctx, rect, layer.crowd, time, sky.darkness);
+        drawReflections(
+          ctx,
+          rect,
+          p.layers.flatMap((l) => l.lights.filter((light) => light.fixture)),
+          layer.crowd,
+          sky.darkness,
+        );
+      }
+      if (layer.boat) drawBoat(ctx, rect, layer.boat, time);
       if (layer.water) drawWater(ctx, rect, layer.water, time, sky.darkness);
       const on = ramp(sky.darkness, 0.12, 0.65);
       for (const light of layer.lights.filter((l) => l.type === "lamp")) {
         if (on < 0.001) continue;
+        if (light.fixture) {
+          drawFixture(ctx, rect, light, time, sky.darkness, 0);
+          continue;
+        }
         const x = rect.x + light.x * rect.width,
           y = rect.y + light.y * rect.height,
           r = Math.max(0.5, rect.width * light.radius);
@@ -155,9 +271,22 @@ export function createRenderer(
         ctx.fill();
       }
     }
+    if (p.layers.some((l) => l.crowd)) {
+      const fade = ctx.createLinearGradient(0, horizon - 13, 0, horizon + 1);
+      fade.addColorStop(0, "transparent");
+      fade.addColorStop(1, "rgba(0,0,0,.9)");
+      ctx.fillStyle = fade;
+      ctx.fillRect(0, horizon - 13, w, 14);
+    }
     // Removed layers must release their cached image surfaces.
     for (const key of plates.keys())
       if (!p.layers.some((l) => l.id === key)) plates.delete(key);
+    if (
+      p.nativeScene?.data?.wild === false &&
+      moving &&
+      ramp(sky.darkness, 0.3, 0.72) > 0.3
+    )
+      drawTraffic(ctx, w, horizon, time, ramp(sky.darkness, 0.3, 0.72));
     drawWeather(ctx, w, h, s, time, moving);
     onFrame({
       rects: new Map(

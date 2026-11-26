@@ -1,3 +1,4 @@
+import type { SceneDefinition } from "./pen.js";
 import type { HTMLAttributes, ReactNode } from "react";
 export type SceneWeather =
   | "clear"
@@ -11,6 +12,10 @@ export type SceneWeather =
 export interface SceneLight {
   id: string;
   type: "lamp" | "flood";
+  fixture?: boolean;
+  near?: boolean;
+  reflection?: number;
+  phaseIndex?: number;
   /** Normalized artwork coordinates, from the top left. */
   x: number;
   y: number;
@@ -35,7 +40,24 @@ export interface SceneLayer {
   asset: SceneAsset;
   lights: SceneLight[];
   /** Normalized water region, drawn above this plate and below later layers. */
-  water?: { x: number; y: number; width: number; height: number; opacity: number } | null;
+  crowd?: "orbit" | "crossing";
+  clock?: { x: number; y: number; radius: number };
+  boat?: {
+    x: number;
+    y: number;
+    amplitude: number;
+    frequency: number;
+    width: number;
+    height: number;
+    color: string;
+  };
+  water?: {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    opacity: number;
+  } | null;
 }
 export interface SceneSettings {
   hour: number;
@@ -45,6 +67,8 @@ export interface SceneSettings {
   overscan: number;
   viewport: number;
   motion: boolean;
+  reservedHeight?: {widthFactor:number;offset:number};
+  showsSunPath?: boolean;
   /** Dawn, sunrise, noon, afternoon, sunset and nightfall, in increasing local hours. */
   schedule: [number, number, number, number, number, number];
 }
@@ -54,6 +78,7 @@ export interface SceneProject {
   settings: SceneSettings;
   /** Drawing order: back to front. */
   layers: SceneLayer[];
+  nativeScene?: { id: string; src?: string; data?: Record<string, unknown>; runtimeSrc?:string;runtimeData?:string };
 }
 export interface EmbeddedSceneProject extends Omit<SceneProject, "layers"> {
   layers: Array<
@@ -66,9 +91,13 @@ export interface LoadSceneOptions {
   baseURL?: string | URL;
   signal?: AbortSignal;
 }
-export interface SceneViewProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "children" | "onError"> {
-  project: SceneSource;
+export interface SceneViewProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "children" | "onError"
+> {
+  project?: SceneSource;
+  /** Procedural pen drawing, a Canvas renderer, and/or a foreground Canvas overlay. */
+  definition?: SceneDefinition;
   /** Base URL for relative artwork URLs when passing a project object. */
   baseURL?: string;
   /** Omit to use the saved project hour; "local" follows the local clock every minute. */
@@ -76,6 +105,7 @@ export interface SceneViewProps
   weather?: SceneWeather;
   /** Freeze ambient motion at its current frame. System Reduce Motion renders the rest pose. */
   paused?: boolean;
+  showsSunPath?: boolean;
   /** Optional description. Without a label the canvas is decorative. */
   label?: string;
   /** Rendered above the canvas. Use normal accessible HTML for meaningful content. */

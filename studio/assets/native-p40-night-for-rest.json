@@ -1,0 +1,1 @@
+{"layers":[],"name":"Surah 40 \u00b7 Night For Rest","nativeScene":{"id":"p40-night-for-rest","src":"library/native-p40-night-for-rest.geometry.json.gz","runtimeSrc":"runtime/sceneweaver-0.2.0.wasm.gz"},"settings":{"aspectRatio":1.5,"ground":36,"hour":18.6,"motion":true,"overscan":1.12,"schedule":[5,6,12,15,18,19.5],"viewport":1.5,"weather":"clear"},"version":1}

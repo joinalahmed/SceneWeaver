@@ -1281,3 +1281,14 @@ pre {
     min-height: 44px;
   }
 }
+
+.browse-library { width:100%; margin-top:8px; font-size:12px; }
+#library-dialog { width:min(1100px,calc(100vw - 40px)); max-height:88vh; padding:24px; }
+.catalog-search {display:grid;grid-template-columns:1fr 200px;gap:12px;margin-top:18px;position:sticky;top:0;background:white;padding:8px 0;z-index:1;}
+.catalog-grid {display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:16px;}
+.catalog-card {display:flex;flex-direction:column;align-items:stretch;text-align:left;padding:0;overflow:hidden;border:1px solid #dedee3;background:white;border-radius:4px;}
+.catalog-card img {width:100%;height:auto;aspect-ratio:1.5;object-fit:cover;background:#e8eaed;}
+.catalog-card strong {font-size:12px;line-height:1.4;padding:10px 10px 0;}
+.catalog-card span {font-size:11px;color:#71717a;padding:4px 10px 10px;}
+.catalog-card:hover {border-color:#0d72e8;}
+@media(max-width:600px){#library-dialog{width:calc(100vw - 16px);padding:16px}.catalog-search{grid-template-columns:1fr}.catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
