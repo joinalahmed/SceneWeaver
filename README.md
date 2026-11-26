@@ -14,6 +14,16 @@ Combine live skies, weather, vector drawings and layered artwork in one Canvas-b
 
 Requires **iOS 17+** or **macOS 14+**, Swift 5.9+. MIT licensed.
 
+## Screenshots
+
+Captured from the running iOS example, using only code-drawn content.
+
+| Daylight | Sunset |
+| --- | --- |
+| ![Coastal scene in daylight](docs/screenshots/coast-day.png) | ![Coastal scene at sunset](docs/screenshots/coast-sunset.png) |
+| **Night lighting** | **Layered artwork** |
+| ![Coastal scene at night with lit windows and a lighthouse](docs/screenshots/coast-night.png) | ![Layered forest and cabin artwork with night lighting](docs/screenshots/layers-night.png) |
+
 ## Install
 
 In Xcode, choose **File → Add Package Dependencies** and enter:
@@ -95,7 +105,7 @@ For more control, `SceneDefinition.render` replaces the geometry renderer and `o
 
 ## Examples and development
 
-[Examples/SceneWeaverGallery.swift](Examples/SceneWeaverGallery.swift) includes a coastal town and a composition using three content layers. It uses only SF Symbols and code, so no image downloads are required. Copy the view into a SwiftUI app linked to the package, or open the package in Xcode to use its preview.
+[Examples/SceneWeaverGallery.swift](Examples/SceneWeaverGallery.swift) includes a coastal town and a composition using three content layers. It creates and caches its transparent illustration plates from code, so no image downloads are required. Copy the view into a SwiftUI app linked to the package, or open the package in Xcode to use its preview.
 
 ```sh
 swift test
@@ -104,7 +114,19 @@ xcodebuild -scheme SceneWeaver \
   -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build
 ```
 
+Regenerate the screenshots on an Apple Silicon Mac with Xcode and an available iOS simulator runtime:
+
+```sh
+python3 scripts/capture-screenshots.py
+```
+
+The script builds a temporary app using the example scene without its gallery controls and captures four unmodified landscape PNGs on a dedicated simulator named `SceneWeaver Screenshots`. It leaves that simulator available for inspection. The screenshots show fixed displayed hours; ambient motion remains live.
+
 The package targets iOS first and also builds on macOS for previews and geometry tests. It is a decorative 2D renderer, not a physics or 3D game engine. Canvas content is accessibility-hidden; place meaningful labels and controls in the host UI. The default animation interval is 24 fps; profile your own artwork and custom layers on your target devices.
+
+## For coding agents
+
+Read [SKILL.md](SKILL.md) when integrating SceneWeaver or authoring a scene. The guide covers API selection, coordinate systems, layer occlusion, lighting, time, accessibility and validation. Tools that support `SKILL.md` can use this repository as the skill directory.
 
 ## Origin and contributions
 
