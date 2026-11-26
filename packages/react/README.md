@@ -125,3 +125,5 @@ npm run build:example
 Then serve the repository root with `python3 -m http.server 5173` and open `/studio/react/`. For browser lifecycle tests, set `PLAYWRIGHT_MODULE` to an installed Playwright package and run `npm run test:browser`. The tests exercise React StrictMode, controlled props, request cancellation, error recovery, resizing, overlays, Reduce Motion and unmount cleanup.
 
 `npm pack` produces an installable tarball containing the bundled component, TypeScript declarations, README and license. Build tools and test fixtures are excluded. The build imports the shared renderer directly from `studio/`; changes to Studio's renderer automatically reach the React bundle.
+
+Water animation is optional per layer: `water: { x: 0, y: 0.73, width: 1, height: 0.27, opacity: 0.28 }` defines a normalized rectangle on the artwork. Highlights render after that plate and before later layers, so foreground objects occlude them. Set `water: null` to disable it. Pausing holds the current animation frame; it does not advance the displayed hour.

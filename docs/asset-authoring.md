@@ -68,3 +68,7 @@ python3 -m http.server 5173
 ```
 
 Inspect daylight, dusk and night, both landscape and portrait framing, and paused motion. Place lights on authored fixtures, preserve foreground occlusion, and verify the native export in Xcode before shipping a consumer app.
+
+### Animated water
+
+A layer can include `"water": {"x": 0, "y": 0.73, "width": 1, "height": 0.27, "opacity": 0.28}`. Bounds use normalized artwork coordinates and must fit inside the plate. Put this on the background water plate; later foreground plates naturally occlude the ripples. Studio and React animate the highlights, and SwiftUI export emits the matching Canvas layer. Omit it for dry scenes; `null` explicitly disables it. The Studio checkbox uses a bottom-quarter region by default; edit the project JSON for a different water boundary.

@@ -9,7 +9,14 @@
     "overscan": 1.12,
     "viewport": 1.5,
     "motion": true,
-    "schedule": [5, 6, 12, 15, 18, 19.5]
+    "schedule": [
+      5,
+      6,
+      12,
+      15,
+      18,
+      19.5
+    ]
   },
   "layers": [
     {
@@ -22,7 +29,14 @@
         "name": "Alpine_distance",
         "src": "alpine/distance.svg"
       },
-      "lights": []
+      "lights": [],
+      "water": {
+        "x": 0,
+        "y": 0.73,
+        "width": 1,
+        "height": 0.27,
+        "opacity": 0.28
+      }
     },
     {
       "id": "alpine-cabin",

@@ -107,6 +107,9 @@ export function validateProject(input, { allowSources = false } = {}) {
       dim: finite(l.dim, 0, 0.9, "Ambient dimming"),
       asset,
       lights,
+      ...(l.water !== undefined
+        ? { water: l.water === null ? null : validateWater(l.water) }
+        : {}),
     };
   });
   if (
@@ -229,4 +232,17 @@ export function skyAt(hour, dates = DEFAULT_SCHEDULE) {
 export function timeLabel(hour) {
   const minutes = Math.round(hour * 60);
   return `${String(Math.floor(minutes / 60) % 24).padStart(2, "0")}:${String(minutes % 60).padStart(2, "0")}`;
+}
+
+function validateWater(water) {
+  const result = {
+    x: finite(water.x, 0, 1, "Water X"),
+    y: finite(water.y, 0, 1, "Water Y"),
+    width: finite(water.width, 0.001, 1, "Water width"),
+    height: finite(water.height, 0.001, 1, "Water height"),
+    opacity: finite(water.opacity, 0, 1, "Water opacity"),
+  };
+  if (result.x + result.width > 1.000001 || result.y + result.height > 1.000001)
+    throw Error("Water bounds must stay inside the artwork.");
+  return result;
 }

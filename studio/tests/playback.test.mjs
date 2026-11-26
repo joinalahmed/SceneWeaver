@@ -20,12 +20,3 @@ test("initially paused scenes start at rest and reduced motion resets animation"
   assert.equal(time(8000, true), 0);
   assert.equal(time(9000, true), 1);
 });
-
-test("day-cycle preview advances, wraps midnight and stays in project bounds", async () => {
-  const { advanceDayHour } = await import("../playback.mjs");
-  assert.equal(advanceDayHour(10, 2500), 11);
-  assert.equal(advanceDayHour(23, 5000), 1);
-  assert.equal(advanceDayHour(10, 0), 10);
-  assert.equal(advanceDayHour(10, -100), 10);
-  assert.ok(advanceDayHour(23.99, 1) <= 23.99);
-});

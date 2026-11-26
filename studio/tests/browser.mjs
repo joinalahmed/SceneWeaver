@@ -25,50 +25,43 @@ try {
   await page.goto(process.env.STUDIO_URL || "http://127.0.0.1:5173/studio/");
   await page.locator('[data-layer="alpine-cabin"]').waitFor();
   assert.equal(await page.locator(".layer").count(), 3);
+  const previewFrame = () =>
+    page.locator("#preview").evaluate((c) => c.toDataURL());
+  const fixedHour = await page.locator("#hour").inputValue();
+  const movingFrame = await previewFrame();
+  await page.waitForTimeout(350);
+  assert.notEqual(
+    await previewFrame(),
+    movingFrame,
+    "Playing changes the rendered scene",
+  );
+  await page.locator("#play").click();
   assert.equal(
     await page.locator("#play").getAttribute("aria-pressed"),
     "false",
   );
-  const initialHour = Number(await page.locator("#hour").inputValue());
-  await page
-    .getByRole("button", { name: "Play day cycle", exact: true })
-    .click();
-  await page.waitForFunction(
-    (hour) => Number(document.querySelector("#hour").value) > hour + 0.1,
-    initialHour,
-  );
-  await page
-    .getByRole("button", { name: "Pause day cycle", exact: true })
-    .click();
-  const frozenHour = await page.locator("#hour").inputValue();
   await page.waitForTimeout(120);
-  const frozenFrame = await page
-    .locator("#preview")
-    .evaluate((c) => c.toDataURL());
+  const pausedFrame = await previewFrame();
   await page.waitForTimeout(250);
-  assert.equal(await page.locator("#hour").inputValue(), frozenHour);
   assert.equal(
-    await page.locator("#preview").evaluate((c) => c.toDataURL()),
-    frozenFrame,
-    "Pause freezes ambient motion as well as the day cycle",
+    await previewFrame(),
+    pausedFrame,
+    "Pause holds the current scene frame",
   );
   await page.locator("#play").click();
-  await page.waitForFunction(
-    (hour) => Number(document.querySelector("#hour").value) > Number(hour),
-    frozenHour,
+  await page.waitForTimeout(250);
+  assert.notEqual(
+    await previewFrame(),
+    pausedFrame,
+    "Play resumes scene motion",
   );
-  await page.locator('[data-hour="10"]').click();
   assert.equal(
-    await page.locator("#play").getAttribute("aria-pressed"),
-    "false",
+    await page.locator("#hour").inputValue(),
+    fixedHour,
+    "Ambient playback does not advance the selected time of day",
   );
-  assert.equal(Number(await page.locator("#hour").inputValue()), 10);
-  await page.locator("#play").click();
-  await page.locator("#hour").fill("17");
-  assert.equal(
-    await page.locator("#play").getAttribute("aria-pressed"),
-    "false",
-  );
+  await page.locator('[data-layer="alpine-distance"]').click();
+  assert.equal(await page.locator("#water-motion").isChecked(), true);
 
   await page.locator('[data-layer="alpine-cabin"]').click();
   await page.locator('[data-hour="22"]').click();
@@ -257,6 +250,44 @@ try {
       ) <= 2,
       "Translucent artwork retains its color and alpha",
     );
+  const waterMotion = await page.evaluate(async () => {
+    const { drawWater } = await import(new URL("water.mjs", location.href));
+    const c = document.createElement("canvas");
+    c.width = 400;
+    c.height = 240;
+    const ctx = c.getContext("2d", { willReadFrequently: true });
+    const rect = { x: 0, y: 0, width: 400, height: 240 },
+      water = { x: 0, y: 0.6, width: 1, height: 0.4, opacity: 0.28 };
+    const frame = (time) => {
+      ctx.fillStyle = "#203f49";
+      ctx.fillRect(0, 0, 400, 240);
+      drawWater(ctx, rect, water, time, 0.5);
+      return c.toDataURL();
+    };
+    const first = frame(0),
+      later = frame(2),
+      paused = frame(2);
+    return {
+      changed: first !== later,
+      stable: later === paused,
+      outside: [...ctx.getImageData(200, 20, 1, 1).data],
+    };
+  });
+  assert.equal(
+    waterMotion.changed,
+    true,
+    "Water highlights animate at a fixed hour",
+  );
+  assert.equal(
+    waterMotion.stable,
+    true,
+    "Frozen water time produces identical pixels",
+  );
+  assert.deepEqual(
+    waterMotion.outside,
+    [32, 63, 73, 255],
+    "Ripples stay inside the authored water region",
+  );
   assert.deepEqual(errors, []);
   console.log(
     `PASS browser composition, light placement and drag, reorder, project round trip, persistence, artwork import, ZIP export and mobile layout. Artifacts: ${output}`,

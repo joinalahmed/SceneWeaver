@@ -13,11 +13,3 @@ export function createAnimationClock() {
     return seconds;
   };
 }
-
-// One day per minute. Keep the value inside the project's supported hour range.
-export function advanceDayHour(hour, elapsedMilliseconds) {
-  return Math.min(
-    23.99,
-    (hour + (Math.max(0, elapsedMilliseconds) * 24) / 60000) % 24,
-  );
-}

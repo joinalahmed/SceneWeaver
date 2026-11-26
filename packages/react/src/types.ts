@@ -34,6 +34,8 @@ export interface SceneLayer {
   dim: number;
   asset: SceneAsset;
   lights: SceneLight[];
+  /** Normalized water region, drawn above this plate and below later layers. */
+  water?: { x: number; y: number; width: number; height: number; opacity: number } | null;
 }
 export interface SceneSettings {
   hour: number;

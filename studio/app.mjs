@@ -8,11 +8,9 @@ import {
   clamp,
   reorder,
   timeLabel,
-} from "./model.mjs";
-import { generateSwift, zipFiles } from "./export.mjs";
-import { createRenderer, decodeArtwork } from "./render.mjs?v=playback-3";
-
-import { advanceDayHour } from "./playback.mjs";
+} from "./model.mjs?v=motion-4";
+import { generateSwift, zipFiles } from "./export.mjs?v=motion-4";
+import { createRenderer, decodeArtwork } from "./render.mjs?v=motion-4";
 
 const $ = (selector) => document.querySelector(selector);
 const icon = (name) =>
@@ -33,41 +31,6 @@ let project = blankProject(),
   guides = true,
   currentFrame,
   loading = false;
-let playing = false,
-  playTimer,
-  playTimestamp;
-function syncPlayback() {
-  $("#play").innerHTML = icon(playing ? "pause" : "play");
-  $("#play").setAttribute(
-    "aria-label",
-    playing ? "Pause day cycle" : "Play day cycle",
-  );
-  $("#play").setAttribute("aria-pressed", playing);
-}
-function setPlayback(value, save = true) {
-  playing = value;
-  clearInterval(playTimer);
-  if (playing) {
-    playTimestamp = performance.now();
-    playTimer = setInterval(() => {
-      const now = performance.now();
-      if (!document.hidden) {
-        project.settings.hour = advanceDayHour(
-          project.settings.hour,
-          now - playTimestamp,
-        );
-        $("#hour").value = project.settings.hour;
-        $("#hour-label").textContent = timeLabel(project.settings.hour);
-      }
-      playTimestamp = now;
-    }, 120);
-  } else if (save) changed(false);
-  syncPlayback();
-}
-document.addEventListener("visibilitychange", () => {
-  playTimestamp = performance.now();
-});
-
 let catalog = [],
   toastTimer,
   saveTimer,
@@ -188,7 +151,6 @@ async function persist() {
   await storage("readwrite", (store) => store.put(project, "current"));
 }
 async function applyProject(input, { undo = true } = {}) {
-  setPlayback(false, false);
   const next = validateProject(input),
     decoded = new Map();
   await Promise.all(
@@ -241,7 +203,15 @@ function render() {
   $("#empty-state").hidden = project.layers.length > 0;
   $("#scene-summary").textContent =
     `${project.name} · ${project.layers.filter((l) => l.visible).length} visible layers`;
-  syncPlayback();
+  $("#play").innerHTML = icon(s.motion ? "pause" : "play");
+  $("#play").setAttribute(
+    "aria-label",
+    s.motion ? "Pause ambient motion" : "Play ambient motion",
+  );
+  $("#play").setAttribute("aria-pressed", s.motion);
+  $("#play").title = s.motion
+    ? "Pause scene animation"
+    : "Animate clouds, water and artwork";
   $("#layers").innerHTML = [...project.layers]
     .reverse()
     .map(
@@ -251,7 +221,7 @@ function render() {
     .join("");
   const l = selectedLayer();
   $("#layer-inspector").innerHTML = l
-    ? `<div class="section-label"><h2>Selected layer</h2><span class="subtle">${project.layers.indexOf(l) + 1} / ${project.layers.length}</span></div><label class="field-label" for="layer-name">Layer name</label><input id="layer-name" type="text" maxlength="100" value="${escape(l.name)}"><label class="field-label" for="asset-name" style="margin-top:14px">Xcode asset name</label><input id="asset-name" type="text" maxlength="64" value="${escape(l.asset.name)}"><div class="range-label"><label for="depth">Motion depth</label><output id="depth-value">${l.depth.toFixed(1)}</output></div><input id="depth" type="range" min="0" max="8" step="0.1" value="${l.depth}"><div class="range-label"><label for="dim">Night dimming</label><output id="dim-value">${Math.round(l.dim * 100)}%</output></div><input id="dim" type="range" min="0" max="0.9" step="0.01" value="${l.dim}"><div class="layer-actions"><button id="layer-back" ${project.layers.indexOf(l) === 0 ? "disabled" : ""} title="Move backward">${icon("back")} Back</button><button id="layer-front" ${project.layers.indexOf(l) === project.layers.length - 1 ? "disabled" : ""} title="Move forward">${icon("front")} Front</button><button id="delete-layer" class="danger">Delete</button></div><div class="range-label"><span>Lights on this plate</span><span>${l.lights.length}</span></div><div class="lights-list">${l.lights.map((x, i) => `<button data-light="${escape(x.id)}" class="${x.id === lightID ? "active" : ""}">${icon(x.type === "lamp" ? "lamp" : "flood")} ${i + 1}</button>`).join("") || '<span class="help">Choose Lamp or Floodlight above the canvas.</span>'}</div>`
+    ? `<div class="section-label"><h2>Selected layer</h2><span class="subtle">${project.layers.indexOf(l) + 1} / ${project.layers.length}</span></div><label class="field-label" for="layer-name">Layer name</label><input id="layer-name" type="text" maxlength="100" value="${escape(l.name)}"><label class="field-label" for="asset-name" style="margin-top:14px">Xcode asset name</label><input id="asset-name" type="text" maxlength="64" value="${escape(l.asset.name)}"><div class="range-label"><label for="depth">Motion depth</label><output id="depth-value">${l.depth.toFixed(1)}</output></div><input id="depth" type="range" min="0" max="8" step="0.1" value="${l.depth}"><div class="range-label"><label for="dim">Night dimming</label><output id="dim-value">${Math.round(l.dim * 100)}%</output></div><input id="dim" type="range" min="0" max="0.9" step="0.01" value="${l.dim}"><label class="help" style="display:flex;gap:8px;align-items:center;margin-top:12px"><input type="checkbox" id="water-motion" ${l.water ? "checked" : ""}> Animate water on this layer</label><div class="layer-actions"><button id="layer-back" ${project.layers.indexOf(l) === 0 ? "disabled" : ""} title="Move backward">${icon("back")} Back</button><button id="layer-front" ${project.layers.indexOf(l) === project.layers.length - 1 ? "disabled" : ""} title="Move forward">${icon("front")} Front</button><button id="delete-layer" class="danger">Delete</button></div><div class="range-label"><span>Lights on this plate</span><span>${l.lights.length}</span></div><div class="lights-list">${l.lights.map((x, i) => `<button data-light="${escape(x.id)}" class="${x.id === lightID ? "active" : ""}">${icon(x.type === "lamp" ? "lamp" : "flood")} ${i + 1}</button>`).join("") || '<span class="help">Choose Lamp or Floodlight above the canvas.</span>'}</div>`
     : '<h2>No layer selected</h2><p class="help">Choose a layer or import aligned transparent artwork to begin.</p>';
   const light = selectedLight();
   $("#light-inspector").innerHTML = light
@@ -304,12 +274,13 @@ function positionHandles() {
 }
 createRenderer(
   $("#preview"),
-  () => ({ ...project, settings: { ...project.settings, motion: playing } }),
+  () => project,
   () => images,
   (frame) => {
     currentFrame = frame;
     positionHandles();
   },
+  { referenceWidth: 402 },
 );
 
 $("#layers").addEventListener("click", (e) => {
@@ -461,12 +432,8 @@ $("#handles").addEventListener("keydown", (e) => {
 });
 
 for (const key of ["hour", "ground", "overscan"]) {
-  $("#" + key).addEventListener("pointerdown", () => {
-    if (key === "hour") setPlayback(false);
-    checkpoint();
-  });
+  $("#" + key).addEventListener("pointerdown", checkpoint);
   $("#" + key).addEventListener("input", (e) => {
-    if (key === "hour") setPlayback(false);
     project.settings[key] = Number(e.target.value);
     $(
       "#" +
@@ -502,18 +469,30 @@ $("#project-name").onchange = (e) => {
   if (value) commit(() => (project.name = value));
   else render();
 };
-$("#play").onclick = () => {
-  if (!playing) checkpoint();
-  setPlayback(!playing);
-};
-document.querySelectorAll("[data-hour]").forEach(
-  (b) =>
-    (b.onclick = () =>
-      commit(() => {
-        setPlayback(false, false);
-        project.settings.hour = Number(b.dataset.hour);
-      })),
-);
+$("#play").onclick = () =>
+  commit(() => (project.settings.motion = !project.settings.motion));
+document
+  .querySelectorAll("[data-hour]")
+  .forEach(
+    (b) =>
+      (b.onclick = () =>
+        commit(() => (project.settings.hour = Number(b.dataset.hour)))),
+  );
+$(".inspector").addEventListener("change", (e) => {
+  if (e.target.id === "water-motion" && selectedLayer()) {
+    commit(() => {
+      if (e.target.checked)
+        selectedLayer().water = {
+          x: 0,
+          y: 0.73,
+          width: 1,
+          height: 0.27,
+          opacity: 0.28,
+        };
+      else selectedLayer().water = null;
+    });
+  }
+});
 $(".inspector").addEventListener("pointerdown", (e) => {
   if (e.target.matches("input[type=range],input[type=color]")) checkpoint();
 });
@@ -852,7 +831,7 @@ $("#preset").onchange = async (e) => {
   }
 };
 async function loadPreset(entry, { undo = true } = {}) {
-  const url = new URL(`assets/${entry.project}`, location.href),
+  const url = new URL(`assets/${entry.project}?v=motion-4`, location.href),
     response = await fetch(url);
   if (!response.ok) throw Error("Could not load the starter scene.");
   const p = validateProject(await response.json(), { allowSources: true });
@@ -925,6 +904,40 @@ async function start() {
       /* Saving remains available through project downloads. */
     }
     if (saved) {
+      saved = validateProject(saved);
+      // Upgrade only byte-identical starter water artwork. Preserve custom
+      // images, edited regions, and explicit opt-outs (water: null).
+      for (const entry of catalog) {
+        const starter = await (
+          await fetch(
+            new URL(
+              entry.project,
+              new URL("assets/catalog.json", location.href),
+            ),
+            { cache: "no-cache" },
+          )
+        ).json();
+        for (const source of starter.layers.filter((l) => l.water)) {
+          const layer = saved.layers?.find(
+            (l) => l.id === source.id && l.asset?.name === source.asset.name,
+          );
+          if (!layer || layer.water !== undefined || !layer.asset.data)
+            continue;
+          const original = new URL(
+            source.asset.src,
+            new URL(
+              entry.project,
+              new URL("assets/catalog.json", location.href),
+            ),
+            { cache: "no-cache" },
+          );
+          const [storedText, starterText] = await Promise.all([
+            fetch(layer.asset.data).then((r) => r.text()),
+            fetch(original).then((r) => r.text()),
+          ]);
+          if (storedText === starterText) layer.water = source.water;
+        }
+      }
       await applyProject(saved, { undo: false });
       $("#preset").value = "";
     } else if (catalog[0]) await loadPreset(catalog[0], { undo: false });

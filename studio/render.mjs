@@ -1,7 +1,14 @@
-import { artworkRect, skyAt, ramp } from "./model.mjs";
+import { artworkRect, skyAt, ramp } from "./model.mjs?v=motion-4";
 import { drawAtmosphere, drawWeather, rgba as rgb } from "./atmosphere.mjs";
+import { drawWater } from "./water.mjs";
 import { createAnimationClock } from "./playback.mjs";
-export function createRenderer(canvas, getProject, getImages, onFrame) {
+export function createRenderer(
+  canvas,
+  getProject,
+  getImages,
+  onFrame,
+  { referenceWidth } = {},
+) {
   const ctx = canvas.getContext("2d"),
     material = document.createElement("canvas"),
     m = material.getContext("2d", { willReadFrequently: true });
@@ -21,18 +28,19 @@ export function createRenderer(canvas, getProject, getImages, onFrame) {
     const p = getProject();
     if (!p) return;
     const bounds = canvas.getBoundingClientRect(),
-      w = bounds.width,
-      h = bounds.height,
+      scale = referenceWidth ? bounds.width / referenceWidth : 1,
+      w = bounds.width / scale,
+      h = bounds.height / scale,
       dpr = Math.min(devicePixelRatio || 1, 2);
     if (!w || !h) return;
     if (
-      canvas.width !== Math.round(w * dpr) ||
-      canvas.height !== Math.round(h * dpr)
+      canvas.width !== Math.round(bounds.width * dpr) ||
+      canvas.height !== Math.round(bounds.height * dpr)
     ) {
-      canvas.width = Math.round(w * dpr);
-      canvas.height = Math.round(h * dpr);
+      canvas.width = Math.round(bounds.width * dpr);
+      canvas.height = Math.round(bounds.height * dpr);
     }
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.setTransform(dpr * scale, 0, 0, dpr * scale, 0, 0);
     ctx.clearRect(0, 0, w, h);
     const moving = !reduced.matches;
     const time = animationTime(
@@ -125,6 +133,7 @@ export function createRenderer(canvas, getProject, getImages, onFrame) {
         plates.set(layer.id, cache);
       }
       ctx.drawImage(cache.plate, rect.x, rect.y, rect.width, rect.height);
+      if (layer.water) drawWater(ctx, rect, layer.water, time, sky.darkness);
       const on = ramp(sky.darkness, 0.12, 0.65);
       for (const light of layer.lights.filter((l) => l.type === "lamp")) {
         if (on < 0.001) continue;
@@ -150,7 +159,22 @@ export function createRenderer(canvas, getProject, getImages, onFrame) {
     for (const key of plates.keys())
       if (!p.layers.some((l) => l.id === key)) plates.delete(key);
     drawWeather(ctx, w, h, s, time, moving);
-    onFrame({ rects, width: w, height: h, sky });
+    onFrame({
+      rects: new Map(
+        [...rects].map(([id, r]) => [
+          id,
+          {
+            x: r.x * scale,
+            y: r.y * scale,
+            width: r.width * scale,
+            height: r.height * scale,
+          },
+        ]),
+      ),
+      width: bounds.width,
+      height: bounds.height,
+      sky,
+    });
   }
   raf = requestAnimationFrame(frame);
   return {

@@ -145,3 +145,21 @@ test("ZIP preserves Unicode filenames and binary asset bytes", async () => {
   );
   assert.equal(v.getUint16(bytes.length - 12, true), 2);
 });
+
+test("water regions round trip, reject bounds errors and export beneath foreground plates", () => {
+  const p = fixture();
+  p.layers[0].water = { x: 0, y: 0.73, width: 1, height: 0.27, opacity: 0.28 };
+  assert.deepEqual(validateProject(p), p);
+  const swift = generateSwift(p);
+  assert.ok(
+    swift.indexOf('Image("Cabin")') < swift.indexOf("drawWater(in: &context"),
+  );
+  assert.ok(
+    swift.indexOf("drawWater(in: &context") < swift.indexOf('Image("Trees")'),
+  );
+  assert.match(swift, /let phase = frame.time \* 1.3/);
+  p.layers[0].water.width = 1.1;
+  assert.throws(() => validateProject(p));
+  p.layers[0].water = null;
+  assert.equal(validateProject(p).layers[0].water, null);
+});
