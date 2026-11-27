@@ -19,8 +19,17 @@ if (
   !catalog.scenes.length
 )
   throw Error("Invalid scene catalog.");
+const components=JSON.parse(await readFile(path.join(root,"components.json"),"utf8"));
+if(new Set(components.scenes.map(s=>s.component)).size!==components.scenes.length)throw Error("Use one example per component.");
+const nativeComponents=JSON.parse(await readFile(path.resolve(root,"../../Sources/SceneWeaverCatalog/Resources/components.json"),"utf8"));
+if(JSON.stringify(components)!==JSON.stringify(nativeComponents))throw Error("Native and web component inventories differ.");
+for(const entry of components.scenes){
+ const web=JSON.parse(await readFile(path.join(root,entry.project),"utf8"));
+ const native=JSON.parse(await readFile(path.resolve(root,"../../Sources/SceneWeaverCatalog/Resources",entry.project),"utf8"));
+ if(JSON.stringify(web)!==JSON.stringify(native))throw Error(`Native component project differs: ${entry.id}`);
+}
 const ids = new Set();
-for (const scene of catalog.scenes) {
+for (const scene of [...catalog.scenes,...components.scenes]) {
   if (!scene.id || ids.has(scene.id) || !scene.name)
     throw Error("Scene IDs must be unique and names nonempty.");
   ids.add(scene.id);

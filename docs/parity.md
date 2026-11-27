@@ -39,7 +39,7 @@ Platform gradients, font rendering, color spaces and antialiasing can differ. Cu
 
 The core `SceneWeaver` product remains independent of the catalog and has no bundled artwork. Add `SceneWeaverCatalog` to opt into the complete original visual library. No application data, Quran text dataset, location history or app services are included.
 
-The React package contains the renderer, components and TypeScript declarations. Host the contents of the `sceneweaver-library-0.2.1.zip` release asset under your site's `/scenes/` directory, retaining relative paths. Pass `/scenes/catalog.json` to `SceneLibrary`, and use its selected project URL with `SceneView`. The same files are served by the public demo.
+The React package contains the renderer, components and TypeScript declarations. Host the contents of the `sceneweaver-library-0.3.0.zip` release asset under your site's `/scenes/` directory, retaining relative paths. Pass `/scenes/catalog.json` to `SceneLibrary`, and use its selected project URL with `SceneView`. The same files are served by the public demo.
 
 Saved procedural projects embed the verified compressed runtime and saved image projects embed their artwork, so they can be reopened without the catalog server. The WASI adapter and Swift runtime notices are in `studio/assets/runtime/`; retain these notices when redistributing the library.
 
@@ -51,3 +51,7 @@ Saved procedural projects embed the verified compressed runtime and saved image 
 4. Register project metadata and thumbnails, then run `node scripts/validate-studio-assets.mjs`, `node --test studio/tests/*.test.mjs` and `swift test`.
 
 The validator checks complete catalog coverage, artwork and geometry references, and runtime integrity/source hashes. The runtime test executes every procedural scene at day/night, a narrow RTL width and animation times beyond 24 seconds. A recipe edit without a matching rebuilt runtime fails validation.
+
+## Component examples
+
+The default gallery in 0.3.0 shows 11 examples, one for each reusable component. `studio/assets/components.json` and the native bundled manifest use the same projects and IDs. `SceneCatalog.components` exposes these separately from `SceneCatalog.scenes`; the latter still contains the 428 original scenes. Studio and the React playground expose a Collection picker to switch to All scenes. React consumers opt into this view using `componentCatalogURL`.

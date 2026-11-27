@@ -4,6 +4,16 @@ import SceneWeaver
 import SceneWeaverCatalog
 
 final class CatalogTests:XCTestCase {
+    func testOneExamplePerComponentAndBundledProjects(){
+        XCTAssertEqual(SceneCatalog.components.count,11)
+        XCTAssertEqual(Set(SceneCatalog.components.map(\.id)).count,11)
+        XCTAssertNotNil(SceneCatalog.artwork(named:"ComponentEmpty"))
+        for item in SceneCatalog.components {
+            XCTAssertNotNil(SceneCatalog.scene(id:item.id))
+            let definition=item.definition
+            XCTAssertTrue(definition.render != nil || !item.tags.isEmpty,item.id)
+        }
+    }
     func testCompleteInventoryAndNoDuplicateScenes(){
         XCTAssertEqual(SceneCatalog.scenes.count,428)
         XCTAssertEqual(Set(SceneCatalog.scenes.map(\.id)).count,428)

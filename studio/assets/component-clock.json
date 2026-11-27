@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "name": "Clock",
+  "settings": {
+    "hour": 18.6,
+    "weather": "clear",
+    "ground": 36,
+    "aspectRatio": 1.5,
+    "overscan": 1.12,
+    "viewport": 1.5,
+    "motion": true,
+    "schedule": [
+      5,
+      6,
+      12,
+      15,
+      18,
+      19.5
+    ]
+  },
+  "layers": [
+    {
+      "id": "component-plate",
+      "name": "Component canvas",
+      "visible": true,
+      "depth": 0,
+      "dim": 0.46,
+      "asset": {
+        "name": "ComponentEmpty",
+        "src": "components/empty.svg"
+      },
+      "lights": [],
+      "clock": {
+        "x": 0.5,
+        "y": 0.58,
+        "radius": 0.1
+      }
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "version": 1,
+  "scenes": [
+    {
+      "id": "component-sky",
+      "name": "Sky",
+      "category": "Components",
+      "component": "sky",
+      "description": "Daylight, clouds, sun, moon and stars.",
+      "project": "component-sky.json",
+      "nativeID": "component-sky",
+      "thumbnail": "thumbnails/component-sky.webp",
+      "tags": [
+        "sky"
+      ]
+    },
+    {
+      "id": "component-weather",
+      "name": "Weather",
+      "category": "Components",
+      "component": "weather",
+      "description": "Rain preview; switch weather in Scene properties.",
+      "project": "component-weather.json",
+      "nativeID": "component-weather",
+      "thumbnail": "thumbnails/component-weather.webp",
+      "tags": [
+        "weather"
+      ]
+    },
+    {
+      "id": "component-geometry",
+      "name": "Vector geometry",
+      "category": "Components",
+      "component": "geometry",
+      "description": "Solids, cutouts, windows and a lighthouse beacon.",
+      "project": "component-geometry.json",
+      "nativeID": "component-geometry",
+      "thumbnail": "thumbnails/component-geometry.webp",
+      "tags": [
+        "geometry"
+      ]
+    },
+    {
+      "id": "component-layers",
+      "name": "Layered artwork",
+      "category": "Components",
+      "component": "layers",
+      "description": "Three registered plates with independent depth.",
+      "project": "component-layers.json",
+      "nativeID": "component-layers",
+      "thumbnail": "thumbnails/component-layers.webp",
+      "tags": [
+        "layers"
+      ]
+    },
+    {
+      "id": "component-water",
+      "name": "Water",
+      "category": "Components",
+      "component": "water",
+      "description": "Animated highlights inside an authored water region.",
+      "project": "component-water.json",
+      "nativeID": "component-water",
+      "thumbnail": "thumbnails/component-water.webp",
+      "tags": [
+        "water"
+      ]
+    },
+    {
+      "id": "component-boat",
+      "name": "Boat",
+      "category": "Components",
+      "component": "boat",
+      "description": "A boat moving independently across the canvas.",
+      "project": "component-boat.json",
+      "nativeID": "component-boat",
+      "thumbnail": "thumbnails/component-boat.webp",
+      "tags": [
+        "boat"
+      ]
+    },
+    {
+      "id": "component-clock",
+      "name": "Clock",
+      "category": "Components",
+      "component": "clock",
+      "description": "Hands follow the selected time of day.",
+      "project": "component-clock.json",
+      "nativeID": "component-clock",
+      "thumbnail": "thumbnails/component-clock.webp",
+      "tags": [
+        "clock"
+      ]
+    },
+    {
+      "id": "component-crowds",
+      "name": "Crowds",
+      "category": "Components",
+      "component": "crowds",
+      "description": "Live pedestrians crossing the foreground.",
+      "project": "component-crowds.json",
+      "nativeID": "component-crowds",
+      "thumbnail": "thumbnails/component-crowds.webp",
+      "tags": [
+        "crowds"
+      ]
+    },
+    {
+      "id": "component-fixtures",
+      "name": "Fixture lights",
+      "category": "Components",
+      "component": "fixtures",
+      "description": "A warm light core, halo and floor reflection.",
+      "project": "component-fixtures.json",
+      "nativeID": "component-fixtures",
+      "thumbnail": "thumbnails/component-fixtures.webp",
+      "tags": [
+        "fixtures"
+      ]
+    },
+    {
+      "id": "component-lamps",
+      "name": "Lamps",
+      "category": "Components",
+      "component": "lamps",
+      "description": "Point lights turn on after dusk.",
+      "project": "component-lamps.json",
+      "nativeID": "component-lamps",
+      "thumbnail": "thumbnails/component-lamps.webp",
+      "tags": [
+        "lamps"
+      ]
+    },
+    {
+      "id": "component-floodlights",
+      "name": "Floodlights",
+      "category": "Components",
+      "component": "floodlights",
+      "description": "Warm light is clipped to the artwork alpha.",
+      "project": "component-floodlights.json",
+      "nativeID": "component-floodlights",
+      "thumbnail": "thumbnails/component-floodlights.webp",
+      "tags": [
+        "floodlights"
+      ]
+    }
+  ]
+}

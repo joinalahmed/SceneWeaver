@@ -14,7 +14,12 @@ public enum SceneCatalog {
         public let category: String
         public let tags: [String]
         let city: Cityscape
+        var projectResource: String? = nil
         public var definition: SceneDefinition {
+            if let projectResource,
+               let url=Bundle.module.url(forResource:projectResource,withExtension:"json"),
+               let bytes=try? Data(contentsOf:url),let project=try? SceneProject(data:bytes),
+               let scene=try? project.definition(image:{SceneCatalog.artwork(named:$0)},nativeScene:{SceneCatalog.scene(id:$0)?.definition}) {return scene}
             if ["alpine","harbor","gallery-layered","haramcourtyard","nabawicourtyard"].contains(id),
                let url=Bundle.module.url(forResource:id,withExtension:"json"),let bytes=try? Data(contentsOf:url),let project=try? SceneProject(data:bytes),
                let scene=try? project.definition(image:{SceneCatalog.artwork(named:$0)}) {return scene}
@@ -46,6 +51,18 @@ public enum SceneCatalog {
         }
     }
     public static let scenes:[Item] = CatalogRecipes.scenes.map { Item(id:$0.id,name:$0.name,category:$0.category,tags:$0.tags,city:$0.city) }
+    /// One focused example for each reusable component, independent of the full artwork catalog.
+    public static let components:[Item] = {
+        struct Entry:Decodable {let id:String;let name:String;let project:String;let description:String}
+        struct Manifest:Decodable {let scenes:[Entry]}
+        guard let url=Bundle.module.url(forResource:"components",withExtension:"json"),
+              let data=try? Data(contentsOf:url),let manifest=try? JSONDecoder().decode(Manifest.self,from:data) else{return []}
+        return manifest.scenes.map { entry in
+            Item(id:entry.id,name:entry.name,category:"Components",tags:[entry.description],
+                 city:Cityscape(id:entry.id,name:entry.name,latitude:0,longitude:0,wild:true,draw:{_ in}),
+                 projectResource:String(entry.project.dropLast(5)))
+        }
+    }()
     private static let imageLock=NSLock()
     private static var imageCache:[String:Image]=[:]
     public static func artwork(named name:String)->Image? {
@@ -65,5 +82,5 @@ public enum SceneCatalog {
         guard !name.contains("/"),!name.contains("..") else{return nil}
         return Bundle.module.url(forResource:name,withExtension:"png")
     }
-    public static func scene(id: String) -> Item? { scenes.first { $0.id == id } }
+    public static func scene(id: String) -> Item? { scenes.first { $0.id == id } ?? components.first { $0.id == id } }
 }

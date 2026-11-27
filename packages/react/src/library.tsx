@@ -8,9 +8,12 @@ export interface SceneLibraryEntry {
   project: string;
   thumbnail?: string;
   nativeID?: string;
+  component?: string;
+  description?: string;
 }
 export interface SceneLibraryProps {
   catalogURL: string;
+  componentCatalogURL?: string;
   onSelect: (entry: SceneLibraryEntry, projectURL: string) => void;
   className?: string;
   style?: CSSProperties;
@@ -18,14 +21,17 @@ export interface SceneLibraryProps {
 /** Searchable, lazy-loaded browser for the complete catalog; artwork loads on selection. */
 export function SceneLibrary({
   catalogURL,
+  componentCatalogURL,
   onSelect,
   className,
   style,
 }: SceneLibraryProps) {
+  const [collection, setCollection] = useState(componentCatalogURL ? "components" : "scenes");
+  const selectedURL = collection === "components" && componentCatalogURL ? componentCatalogURL : catalogURL;
   const libraryURL =
     typeof document === "undefined"
-      ? catalogURL
-      : new URL(catalogURL, document.baseURI).href;
+      ? selectedURL
+      : new URL(selectedURL, document.baseURI).href;
   const [entries, setEntries] = useState<SceneLibraryEntry[]>([]),
     [query, setQuery] = useState(""),
     [category, setCategory] = useState(""),
@@ -71,16 +77,23 @@ export function SceneLibrary({
   );
   return (
     <section className={className} style={style} aria-label="Scene library">
+      {componentCatalogURL && <label style={{display:'block',marginBottom:12}}>Collection{' '}
+        <select aria-label="Library collection" value={collection} onChange={e=>{setCollection(e.target.value);setQuery('');setCategory('')}}>
+          <option value="components">Components · one example each</option>
+          <option value="scenes">All scenes</option>
+        </select>
+      </label>}
       <div
         style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 12 }}
       >
         <input
           aria-label="Search scene library"
           type="search"
-          placeholder="Search places, scenes and themes"
+          placeholder={collection === "components" ? "Search components" : "Search places, scenes and themes"}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
+        {collection === "scenes" && (
         <select
           aria-label="Filter scene category"
           value={category}
@@ -91,9 +104,10 @@ export function SceneLibrary({
             <option key={c}>{c}</option>
           ))}
         </select>
+        )}
       </div>
       <p role={error ? "alert" : "status"}>
-        {error || `${filtered.length} of ${entries.length} scenes`}
+        {error || `${filtered.length} of ${entries.length} ${collection === "components" ? "components" : "scenes"}`}
       </p>
       <div
         style={{
@@ -142,7 +156,7 @@ export function SceneLibrary({
                 fontSize: 12,
               }}
             >
-              {entry.category || "Starter scenes"}
+              {entry.description || entry.category || "Scenes"}
             </span>
           </button>
         ))}

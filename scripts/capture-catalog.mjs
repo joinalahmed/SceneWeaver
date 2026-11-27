@@ -4,7 +4,7 @@ import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {gunzipSync}from'node:zlib';
 import path from 'node:path';
 const require=createRequire(import.meta.url),{chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
-const root=path.resolve(new URL('../studio/assets/',import.meta.url).pathname), catalog=JSON.parse(await readFile(path.join(root,'catalog.json'),'utf8'));
+const root=path.resolve(new URL('../studio/assets/',import.meta.url).pathname), catalog=JSON.parse(await readFile(path.join(root,process.env.COMPONENTS?'components.json':'catalog.json'),'utf8'));
 await mkdir(path.join(root,'thumbnails'),{recursive:true});
 const browser=await chromium.launch({headless:true});
 try {
@@ -26,7 +26,7 @@ try {
   entry.thumbnail=`thumbnails/${entry.id}.webp`;await writeFile(path.join(root,entry.thumbnail),Buffer.from(encoded,'base64'));
   if(index%40===0)console.log(`Captured ${index+1}/${catalog.scenes.length}`);
  }
- await writeFile(path.join(root,'catalog.json'),JSON.stringify(catalog,null,2)+'\n');
+ await writeFile(path.join(root,process.env.COMPONENTS?'components.json':'catalog.json'),JSON.stringify(catalog,null,2)+'\n');
  // The native layered gallery uses these exact same transparent plates.
  for(const[file,name]of[['gallery/distant.svg','GalleryDistant'],['gallery/near.svg','GalleryNear']]){
   const encoded=await page.evaluate(async file=>{const image=new Image();image.src=new URL(file,new URL('assets/',location.href)).href;await image.decode();const canvas=document.createElement('canvas');canvas.width=image.naturalWidth;canvas.height=image.naturalHeight;canvas.getContext('2d').drawImage(image,0,0);return canvas.toDataURL().split(',')[1]},file);

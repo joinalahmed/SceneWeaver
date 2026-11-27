@@ -18,7 +18,7 @@ The light editor keeps layers on the left, a fitted artboard in the center, and 
 
 ## Compose
 
-Use **Browse library** to search all 428 original scenes by name, category or tag, or start with a blank canvas. Import aligned PNG, WebP or JPEG plates. Order them front to back in the layer list; the underlying project and native export use back-to-front drawing order. Select a plate, use Lamp or Floodlight, then click on the artwork. Drag the handle or edit normalized coordinates in the inspector. Arrow keys nudge a focused light. Undo or ⌘/Ctrl+Z restores the last scene edit; ⌘/Ctrl+S saves a project copy.
+Use **Browse components** for one example per reusable component: sky, weather, geometry, layers, water, boats, clocks, crowds, fixtures, lamps and floodlights. Switch the Collection control to **All scenes** for the 428 original scenes. The quick selector contains component examples and the two starter compositions. Import aligned PNG, WebP or JPEG plates. Order them front to back in the layer list; the underlying project and native export use back-to-front drawing order. Select a plate, use Lamp or Floodlight, then click on the artwork. Drag the handle or edit normalized coordinates in the inspector. Arrow keys nudge a focused light. Undo or ⌘/Ctrl+Z restores the last scene edit; ⌘/Ctrl+S saves a project copy.
 
 Set layer depth, ambient dimming, light colors and radius. Preview weather, daylight transitions, overscan and different viewport ratios. All image plates share one authored canvas aspect ratio. Transparent PNG or WebP works best; opaque images cover the live sky.
 

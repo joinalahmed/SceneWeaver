@@ -74,3 +74,7 @@ For engine changes, run `swift test` and the iOS build command in the README. Fo
 ## Full catalog and parity
 
 Before authoring new content, search the existing 428-scene catalog. Reuse a scene or its registered plates when appropriate. Read [parity maintenance](docs/parity.md) for the canonical Swift recipe location, live WebAssembly rebuild, native resource registration, inventory coverage checks and distribution requirements. Studio and React use the same complete library; keep their `nativeID` values aligned with `SceneWeaverCatalog`. Validate native and browser rendering after changing geometry, actor placement, framing or lights.
+
+## Component examples
+
+The default gallery exposes one example per reusable component through `SceneCatalog.components` and `studio/assets/components.json`. Start there when demonstrating an engine feature. Keep a single entry per component; the separate full scene catalog retains subject artwork and variants. In React, pass `componentCatalogURL` alongside `catalogURL` to show both collections.

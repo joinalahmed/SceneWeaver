@@ -23,6 +23,7 @@ try {
     if (r.status() >= 400) errors.push(`HTTP ${r.status()}: ${r.url()}`);
   });
   await page.goto(process.env.STUDIO_URL || "http://127.0.0.1:5173/studio/");
+  await page.locator("#preset").selectOption("alpine");
   await page.locator('[data-layer="alpine-cabin"]').waitFor();
   assert.equal(await page.locator(".layer").count(), 3);
   const previewFrame = () =>
@@ -298,6 +299,12 @@ try {
   // Exercise the shipped full library through the same UI consumers use.
   await page.setViewportSize({width:1440,height:1000});
   await page.locator('#browse-library').click();
+  assert.equal(await page.locator('.catalog-card').count(),11);
+  assert.equal(await page.getByRole('combobox',{name:'Library collection'}).inputValue(),'components');
+  await page.getByRole('button',{name:'Open Clock',exact:true}).click();
+  await page.locator('dialog[open]').waitFor({state:'hidden'});
+  await page.locator('#browse-library').click();
+  await page.getByRole('combobox',{name:'Library collection'}).selectOption('scenes');
   await page.getByRole('searchbox',{name:'Search scene library'}).fill('London');
   assert.equal(await page.locator('.catalog-card').count(),1);
   await page.getByRole('button',{name:'Open London',exact:true}).click();

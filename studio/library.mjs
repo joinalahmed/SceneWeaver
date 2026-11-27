@@ -1,20 +1,27 @@
-export function mountLibrary({ button, dialog, catalog, onSelect }) {
+export function mountLibrary({ button, dialog, catalog, components, onSelect }) {
   const search = dialog.querySelector("input"),
-    filter = dialog.querySelector("select"),
+    filter = dialog.querySelector('[aria-label="Filter scene category"]'),
     grid = dialog.querySelector(".catalog-grid"),
     count = dialog.querySelector("[role=status]");
-  for (const category of [
-    ...new Set(catalog.map((s) => s.category || "Starter scenes")),
-  ]) {
-    const option = document.createElement("option");
-    option.value = category;
-    option.textContent = category;
-    filter.append(option);
+  const scope = dialog.querySelector('[aria-label="Library collection"]');
+  let collection = components;
+  function categories() {
+    filter.hidden = scope.value === 'components';
+    dialog.querySelector('.catalog-search').style.gridTemplateColumns = filter.hidden ? '1fr' : '';
+    search.placeholder = filter.hidden ? 'Search components' : 'Search places, scenes and themes';
+    filter.replaceChildren(new Option('All categories', ''));
+    for (const category of new Set(collection.map(s => s.category || 'Scenes')))
+      filter.append(new Option(category, category));
   }
+  scope.onchange = () => {
+    collection = scope.value === 'components' ? components : catalog;
+    search.value = '';categories();render();
+  };
+  categories();
   let token = 0;
   function render() {
     const query = search.value.trim().toLowerCase();
-    const items = catalog.filter(
+    const items = collection.filter(
       (s) =>
         (!filter.value || (s.category || "Starter scenes") === filter.value) &&
         [s.name, s.id, ...(s.tags || [])]
@@ -22,7 +29,7 @@ export function mountLibrary({ button, dialog, catalog, onSelect }) {
           .toLowerCase()
           .includes(query),
     );
-    count.textContent = `${items.length} of ${catalog.length} scenes`;
+    count.textContent = `${items.length} of ${collection.length} ${scope.value === "components" ? "components" : "scenes"}`;
     grid.replaceChildren(
       ...items.map((scene) => {
         const card = document.createElement("button");
@@ -40,7 +47,7 @@ export function mountLibrary({ button, dialog, catalog, onSelect }) {
         const name = document.createElement("strong");
         name.textContent = scene.name;
         const category = document.createElement("span");
-        category.textContent = scene.category || "Starter scenes";
+        category.textContent = scene.description || scene.category || "Scenes";
         card.append(img, name, category);
         card.onclick = async () => {
           const request = ++token;
@@ -60,7 +67,7 @@ export function mountLibrary({ button, dialog, catalog, onSelect }) {
   }
   search.oninput = filter.onchange = render;
   dialog.querySelector("[data-close-library]").onclick = () => dialog.close();
-  button.textContent = `Browse library · ${catalog.length}`;
+  button.textContent = `Browse components · ${components.length}`;
   button.onclick = () => {
     render();
     dialog.showModal();

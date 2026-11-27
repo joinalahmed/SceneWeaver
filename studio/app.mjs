@@ -11,9 +11,9 @@ import {
   clamp,
   reorder,
   timeLabel,
-} from "./model.mjs?v=library-6";
-import { generateSwift, zipFiles } from "./export.mjs?v=library-6";
-import { createRenderer, decodeArtwork } from "./render.mjs?v=library-6";
+} from "./model.mjs?v=components-1";
+import { generateSwift, zipFiles } from "./export.mjs?v=components-1";
+import { createRenderer, decodeArtwork } from "./render.mjs?v=components-1";
 
 const $ = (selector) => document.querySelector(selector);
 const icon = (name) =>
@@ -205,7 +205,7 @@ function render() {
   $("#layer-count").textContent =
     `${project.layers.length + (project.nativeScene ? 1 : 0)} layers`;
   $("#empty-state").hidden =
-    project.layers.length > 0 || Boolean(project.nativeScene);
+    project.layers.length > 0 || Boolean(project.nativeScene) || project.name !== "Untitled scene";
   $("#scene-summary").textContent =
     `${project.name} · ${project.layers.filter((l) => l.visible).length + (project.nativeScene ? 1 : 0)} visible layers`;
   $("#play").innerHTML = icon(s.motion ? "pause" : "play");
@@ -855,7 +855,7 @@ $("#preset").onchange = async (e) => {
   }
 };
 async function loadPreset(entry, { undo = true } = {}) {
-  const url = new URL(`assets/${entry.project}?v=library-6`, location.href),
+  const url = new URL(`assets/${entry.project}?v=components-1`, location.href),
     response = await fetch(url);
   if (!response.ok) throw Error("Could not load the starter scene.");
   const p = validateProject(await response.json(), { allowSources: true });
@@ -887,6 +887,7 @@ async function loadPreset(entry, { undo = true } = {}) {
     };
   }
   await applyProject(p, { undo });
+  if (![...$("#preset").options].some(o => o.value === entry.id)) $("#preset").add(new Option(entry.name, entry.id));
   $("#preset").value = entry.id;
 }
 async function undo() {
@@ -919,17 +920,22 @@ document.addEventListener("keydown", (e) => {
 
 async function start() {
   try {
-    const response = await fetch("assets/catalog.json?v=library-6");
+    const response = await fetch("assets/catalog.json?v=components-1");
     if (!response.ok) throw Error("Could not load the scene catalog.");
-    catalog = (await response.json()).scenes;
+    const allScenes = (await response.json()).scenes;
+    const componentResponse = await fetch('assets/components.json?v=components-1');
+    if (!componentResponse.ok) throw Error('Could not load the component library.');
+    const components = (await componentResponse.json()).scenes;
+    catalog = [...components, ...allScenes];
     mountLibrary({
       button: $("#browse-library"),
       dialog: $("#library-dialog"),
-      catalog,
+      catalog: allScenes,
+      components,
       onSelect: loadPreset,
     });
     $("#preset").innerHTML =
-      catalog
+      [...components, ...allScenes.filter(s => ["alpine","harbor"].includes(s.id))]
         .map(
           (x) => `<option value="${escape(x.id)}">${escape(x.name)}</option>`,
         )

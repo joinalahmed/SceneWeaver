@@ -22,7 +22,7 @@ Compose scenes visually: import aligned artwork, reorder layers, place and drag 
 
 ![SceneWeaver Studio with the alpine scene and layer inspector](docs/screenshots/studio.png)
 
-Browse all **428 original scenes**, including cities, story and dua scenes, landscapes, and the detailed Makkah/Madinah illustrations. The 421 procedural scenes execute their original Swift recipes live through WebAssembly. Studio and React share the same renderer and assets. [Parity and distribution details](docs/parity.md). No account or build step is needed. [Run locally and read the workflow](studio/README.md).
+Start with **11 component examples**, one per reusable component. Switch to **All scenes** to browse **428 original scenes**, including cities, story and dua scenes, landscapes, and the detailed Makkah/Madinah illustrations. The 421 procedural scenes execute their original Swift recipes live through WebAssembly. Studio and React share the same renderer and assets. [Parity and distribution details](docs/parity.md). No account or build step is needed. [Run locally and read the workflow](studio/README.md).
 
 ![Searchable complete original scene library](docs/screenshots/library.png)
 
@@ -73,11 +73,11 @@ Add the optional `SceneWeaverCatalog` product to your target, then use:
 ```swift
 import SceneWeaverCatalog
 
-SceneCatalogGallery() // Search all 428 scenes
+SceneCatalogGallery() // Components first; All scenes has the complete library
 SceneCatalogView(id: "london", hour: 19)
 ```
 
-React exports `SceneLibrary`, `ScenePen` and `ScenePath` alongside `SceneView`. Download the full library archive from [v0.2.0](https://github.com/joinalahmed/SceneWeaver/releases/tag/v0.2.0) to host the same assets in your own app. See [React integration](packages/react/README.md).
+React exports `SceneLibrary`, `ScenePen` and `ScenePath` alongside `SceneView`. Download the full library archive from [the latest release](https://github.com/joinalahmed/SceneWeaver/releases/latest) to host the same assets in your own app. See [React integration](packages/react/README.md).
 
 ## Draw a scene
 

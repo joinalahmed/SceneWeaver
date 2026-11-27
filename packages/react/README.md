@@ -11,7 +11,7 @@ React 18 and 19 · TypeScript declarations · ESM · SSR-safe client initializat
 Install the built package from the public GitHub release:
 
 ```sh
-npm install https://github.com/joinalahmed/SceneWeaver/releases/download/react-v0.2.1/sceneweaver-react-0.2.1.tgz
+npm install https://github.com/joinalahmed/SceneWeaver/releases/download/react-v0.3.0/sceneweaver-react-0.3.0.tgz
 ```
 
 The package is distributed through GitHub Releases; it is not currently published to the npm registry. React is a peer dependency and is not bundled into the component. Use Node 20+ for package tooling.
@@ -130,7 +130,7 @@ Water animation is optional per layer: `water: { x: 0, y: 0.73, width: 1, height
 
 ## Full original library
 
-Version 0.2.1 exposes all 428 original scenes through the public demo. To self-host, download `sceneweaver-library-0.2.1.zip` from the [native release](https://github.com/joinalahmed/SceneWeaver/releases/tag/v0.2.1), extract its contents into `public/scenes/`, and retain the runtime license notices.
+Version 0.2.1 exposes all 428 original scenes through the public demo. To self-host, download `sceneweaver-library-0.3.0.zip` from the [native release](https://github.com/joinalahmed/SceneWeaver/releases/tag/v0.3.0), extract its contents into `public/scenes/`, and retain the runtime license notices.
 
 ```tsx
 import { useState } from 'react';
@@ -147,3 +147,15 @@ export function Gallery() {
 ```
 
 Procedural catalog projects load the integrity-checked Swift WebAssembly runtime relative to their project URL. The same original recipes execute at the current width, time, night level, clock hour and RTL direction. `onReady` waits for that runtime. Custom programmatic scenes can instead use `definition={{ draw(pen) { ... }, overlay(context, frame) { ... } }}`; `ScenePen` and `ScenePath` are exported with TypeScript declarations. See [cross-platform capabilities](../../docs/parity.md).
+
+## Component examples (0.3.0)
+
+Provide `componentCatalogURL` to open the library with one example per reusable component. The collection picker still exposes the full scene library. Without this prop, existing custom catalogs keep their current behavior.
+
+```tsx
+<SceneLibrary catalogURL="/scenes/catalog.json"
+  componentCatalogURL="/scenes/components.json"
+  onSelect={(_, url) => setProject(url)} />
+```
+
+The 0.3.0 full-library archive includes both manifests and all component projects, artwork and thumbnails. SwiftUI exposes these same 11 examples through `SceneCatalog.components`; `SceneCatalogGallery()` opens to Components by default. Original `SceneCatalog.scenes` IDs and counts remain stable.

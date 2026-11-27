@@ -8,14 +8,14 @@ import {
 } from "./crowds.mjs";
 import { drawTraffic } from "./incidental.mjs";
 import { drawNativeScene, nativePalette } from "./native-scene.mjs";
-import { artworkRect, skyAt, ramp, mix } from "./model.mjs?v=library-6";
+import { artworkRect, skyAt, ramp, mix } from "./model.mjs?v=components-1";
 import {
   drawAtmosphere,
   drawWeather,
   rgba as rgb,
   OVERCAST,
-} from "./atmosphere.mjs?v=library-6";
-import { drawWater, drawBoat } from "./water.mjs?v=library-6";
+} from "./atmosphere.mjs?v=components-1";
+import { drawWater, drawBoat } from "./water.mjs?v=components-1";
 import { createAnimationClock } from "./playback.mjs";
 export function createRenderer(
   canvas,

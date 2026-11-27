@@ -10,20 +10,22 @@ function App() {
     [catalog, setCatalog] = useState<
       Array<{ id: string; name: string; category?: string; project: string }>
     >([]),
+    [components, setComponents] = useState<typeof catalog>([]),
     [libraryOpen, setLibraryOpen] = useState(false);
   const catalogURL = new URL(
-    "../assets/catalog.json?v=library-6",
+    "../assets/catalog.json?v=components-1",
     location.href,
   ).href;
   useEffect(() => {
     const controller = new AbortController();
+    fetch(new URL('components.json',catalogURL),{signal:controller.signal}).then(r=>r.json()).then(data=>setComponents(data.scenes)).catch(()=>{});
     fetch(catalogURL, { signal: controller.signal })
       .then((r) => r.json())
       .then((data) => setCatalog(data.scenes))
       .catch(() => {});
     return () => controller.abort();
   }, [catalogURL]);
-  const selected = catalog.find((entry) => entry.id === scene);
+  const selected = [...components,...catalog].find((entry) => entry.id === scene);
   const url = new URL(
     `../assets/${selected?.project ?? `${scene}.json`}`,
     location.href,
@@ -32,14 +34,14 @@ function App() {
     <main className="playground">
       <header>
         <a href="../">← SceneWeaver Studio</a>
-        <span>REACT / 0.2</span>
+        <span>REACT / 0.3</span>
       </header>
       <section className="intro">
         <div>
           <p className="eyebrow">React component example</p>
           <h1>SceneWeaver for React</h1>
           <p>
-            Explore all 428 scenes with live animation, weather and lighting.
+            One example per reusable component. Open All scenes for the full artwork collection.
           </p>
         </div>
         <a
@@ -65,11 +67,12 @@ function App() {
         onClick={() => setLibraryOpen(!libraryOpen)}
         aria-expanded={libraryOpen}
       >
-        Browse full scene library
+        Browse component library
       </button>
       {libraryOpen && (
         <SceneLibrary
           catalogURL={catalogURL}
+          componentCatalogURL={new URL("components.json", catalogURL).href}
           onSelect={(entry) => {
             setScene(entry.id);
             setLibraryOpen(false);
@@ -81,7 +84,7 @@ function App() {
           Composition
           <select value={scene} onChange={(e) => setScene(e.target.value)}>
             {(catalog.length
-              ? catalog
+              ? [...components, ...catalog.filter(entry => ["alpine","harbor",scene].includes(entry.id))]
               : [
                   { id: "alpine", name: "Alpine hideaway" },
                   { id: "harbor", name: "Harbor at dusk" },

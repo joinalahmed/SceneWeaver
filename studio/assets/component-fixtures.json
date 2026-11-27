@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "name": "Fixture lights",
+  "settings": {
+    "hour": 21,
+    "weather": "clear",
+    "ground": 36,
+    "aspectRatio": 1.5,
+    "overscan": 1.12,
+    "viewport": 1.5,
+    "motion": true,
+    "schedule": [
+      5,
+      6,
+      12,
+      15,
+      18,
+      19.5
+    ]
+  },
+  "layers": [
+    {
+      "id": "component-plate",
+      "name": "Component canvas",
+      "visible": true,
+      "depth": 0,
+      "dim": 0.46,
+      "asset": {
+        "name": "ComponentEmpty",
+        "src": "components/empty.svg"
+      },
+      "lights": [
+        {
+          "id": "fixture",
+          "type": "lamp",
+          "x": 0.5,
+          "y": 0.62,
+          "radius": 0.07,
+          "intensity": 1,
+          "color": "#ffba3d",
+          "fixture": true,
+          "near": true,
+          "reflection": 0.12,
+          "phaseIndex": 0
+        }
+      ],
+      "crowd": "crossing"
+    }
+  ]
+}
