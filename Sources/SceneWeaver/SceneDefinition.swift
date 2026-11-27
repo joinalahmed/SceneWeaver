@@ -33,14 +33,19 @@ public struct SceneFrame {
     public var layoutDirection: LayoutDirection
     /// How far a part at depth 1 is displaced sideways in this frame, in points.
     public var depthShift: CGFloat = 0
+    /// The sky's colour where it meets the ground, as sRGB components in 0...1,
+    /// for a custom renderer that mixes its own haze. Set for `render` only.
+    public var horizonRGB: SIMD3<Double> = .zero
+    /// Where the sun is drawn, when it is up and the scene shows its path.
+    public var sunPosition: CGPoint?
     public init(size: CGSize, horizon: CGFloat, time: Double, date: Date, darkness: Double,
                 glow: Double, motionEnabled: Bool, contentColor: Color = .primary,
                 layoutDirection: LayoutDirection = .leftToRight, weather: SceneWeather = .clear,
-                depthShift: CGFloat = 0) {
+                depthShift: CGFloat = 0, horizonRGB: SIMD3<Double> = .zero, sunPosition: CGPoint? = nil) {
         self.size = size; self.horizon = horizon; self.time = time; self.date = date
         self.darkness = darkness; self.glow = glow; self.motionEnabled = motionEnabled
         self.contentColor = contentColor; self.layoutDirection = layoutDirection; self.weather = weather
-        self.depthShift = depthShift
+        self.depthShift = depthShift; self.horizonRGB = horizonRGB; self.sunPosition = sunPosition
     }
 }
 
@@ -63,6 +68,8 @@ public struct SceneDefinition {
     public var render: Renderer?
     /// Draws above the scene, before weather effects.
     public var overlay: Renderer?
+    /// The built-in car lights along the horizon. Turn off where `render` draws its own roads.
+    public var showsTraffic = true
 
     public init(backdrop: SceneBackdrop = .open, wild: Bool = true,
                 ownMoon: Bool = false, illustrated: Bool = false, movesForRTL: Bool = false,

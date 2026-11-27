@@ -243,7 +243,8 @@ private struct SceneCanvas: View {
         ])
         context.fill(Path(CGRect(x: 0, y: start, width: size.width, height: size.height - start)), with: .linearGradient(
             fade, startPoint: CGPoint(x: 0, y: start), endPoint: CGPoint(x: 0, y: size.height)))
-        city(&context, size, horizon: horizon, skyLow: skyLow, darkness: dark,
+        let sunAt: CGPoint? = path.flatMap { $0.sunIsUp ? $0.point($0.travelled) : nil }
+        city(&context, size, horizon: horizon, skyLow: skyLow, sun: sunAt, darkness: dark,
              glow: moment.glow, lights: lights, time: time)
         if let overlay = city?.overlay {
             overlay(&context, SceneFrame(size: size, horizon: horizon, time: time, date: now,
@@ -251,7 +252,7 @@ private struct SceneCanvas: View {
                                          contentColor: Self.color(Self.mix(cityPalette(skyLow: skyLow, darkness: dark, glow: moment.glow).landmark, skyLow, 0.16)),
                                          layoutDirection: layoutDirection, weather: condition, depthShift: depthShift))
         }
-        if animated, lights > 0.3, city?.wild != true {
+        if animated, lights > 0.3, city?.wild != true, city?.showsTraffic != false {
             var road = context
             road.translateBy(x: depthShift * Self.rooftopDepth, y: 0)
             traffic(&road, size, horizon: horizon, time: time, strength: lights)
@@ -631,12 +632,13 @@ private struct SceneCanvas: View {
     /// roofline where the host supplies no landmarks. As it gets dark the
     /// windows come on a few at a time and keep changing, the landmarks light up
     /// and red lights blink on the tallest of them.
-    private func city(_ context: inout GraphicsContext, _ size: CGSize, horizon: CGFloat, skyLow: RGB,
+    private func city(_ context: inout GraphicsContext, _ size: CGSize, horizon: CGFloat, skyLow: RGB, sun: CGPoint? = nil,
                       darkness: Double, glow: Double, lights: Double, time: Double) {
         if let render = city?.render {
             render(&context, SceneFrame(size: size, horizon: horizon, time: time, date: now,
                                         darkness: darkness, glow: glow, motionEnabled: animated, layoutDirection: layoutDirection,
-                                        weather: condition, depthShift: depthShift))
+                                        weather: condition, depthShift: depthShift,
+                                        horizonRGB: SIMD3(skyLow.0, skyLow.1, skyLow.2), sunPosition: sun))
             return
         }
         let dark: RGB = (0.02, 0.03, 0.06)
