@@ -27,11 +27,23 @@ public struct ScenePen {
     public let clockDate: Date?
     /// Uses a warm material palette for detailed illustrations.
     public let illustrated: Bool
+    /// How far a part at depth 1 is displaced sideways, in points. The host
+    /// drives it, for instance from the device's tilt; 0 draws a flat scene.
+    public let shift: CGFloat
+    /// How near the parts drawn next stand: 0 is the horizon and never moves,
+    /// 1 moves by the whole `shift`, and more than 1 is a foreground that moves
+    /// further. Set it before each landmark, drawing the farthest first.
+    public var depth: CGFloat = ScenePen.landmarkDepth
+    /// Where landmarks stand when a scene does not say.
+    public static let landmarkDepth: CGFloat = 0.7
     private var centre: CGFloat = 0
+    /// The centre line as drawn, displaced for the current depth.
+    private var origin: CGFloat { centre + shift * depth }
 
-    public init(width: CGFloat, horizon: CGFloat, time: Double = 0, night: Double = 0, clockDate: Date? = nil, illustrated: Bool = false) {
+    public init(width: CGFloat, horizon: CGFloat, time: Double = 0, night: Double = 0, clockDate: Date? = nil,
+                illustrated: Bool = false, shift: CGFloat = 0) {
         self.width = width; self.horizon = horizon; self.time = time; self.night = night; self.clockDate = clockDate
-        self.illustrated = illustrated
+        self.illustrated = illustrated; self.shift = shift
     }
 
     /// A repeatable number in 0..<1 for a pair of whole numbers.
@@ -50,13 +62,23 @@ public struct ScenePen {
     /// Moves to a landmark whose centre line is this far from the right edge.
     public mutating func at(_ fromRight: CGFloat) { centre = width - fromRight }
 
-    public func point(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: centre + x, y: horizon - y) }
+    public func point(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: origin + x, y: horizon - y) }
 
     /// Reposition the finished skyline without reflecting landmarks or clock faces.
     public mutating func moveToLeftMargin() {
+        guard let offset = leftMarginOffset else { return }
+        move(by: offset)
+    }
+
+    /// How far the skyline must travel for its leftmost part to stand at the left margin.
+    public var leftMarginOffset: CGFloat? {
         let paths = solids + holes + lights + tints.map(\.path)
-        guard let minX = paths.map({ $0.boundingRect.minX }).min() else { return }
-        let transform = CGAffineTransform(translationX: 8 - minX, y: 0)
+        return paths.map({ $0.boundingRect.minX }).min().map { 8 - $0 }
+    }
+
+    /// Slides the finished skyline sideways.
+    public mutating func move(by offset: CGFloat) {
+        let transform = CGAffineTransform(translationX: offset, y: 0)
         solids = solids.map { $0.applying(transform) }
         holes = holes.map { $0.applying(transform) }
         lights = lights.map { $0.applying(transform) }
@@ -96,11 +118,11 @@ public struct ScenePen {
     // MARK: Outlines
 
     public func blockPath(_ x: CGFloat, _ w: CGFloat, _ h: CGFloat, from y: CGFloat = 0) -> Path {
-        Path(CGRect(x: centre + x - w / 2, y: horizon - y - h, width: w, height: h))
+        Path(CGRect(x: origin + x - w / 2, y: horizon - y - h, width: w, height: h))
     }
 
     public func discPath(_ x: CGFloat, _ y: CGFloat, _ r: CGFloat) -> Path {
-        Path(ellipseIn: CGRect(x: centre + x - r, y: horizon - y - r, width: r * 2, height: r * 2))
+        Path(ellipseIn: CGRect(x: origin + x - r, y: horizon - y - r, width: r * 2, height: r * 2))
     }
 
     /// Half an ellipse standing on `y`.

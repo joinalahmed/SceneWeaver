@@ -31,12 +31,16 @@ public struct SceneFrame {
     public var contentColor: Color
     public var weather: SceneWeather
     public var layoutDirection: LayoutDirection
+    /// How far a part at depth 1 is displaced sideways in this frame, in points.
+    public var depthShift: CGFloat = 0
     public init(size: CGSize, horizon: CGFloat, time: Double, date: Date, darkness: Double,
                 glow: Double, motionEnabled: Bool, contentColor: Color = .primary,
-                layoutDirection: LayoutDirection = .leftToRight, weather: SceneWeather = .clear) {
+                layoutDirection: LayoutDirection = .leftToRight, weather: SceneWeather = .clear,
+                depthShift: CGFloat = 0) {
         self.size = size; self.horizon = horizon; self.time = time; self.date = date
         self.darkness = darkness; self.glow = glow; self.motionEnabled = motionEnabled
         self.contentColor = contentColor; self.layoutDirection = layoutDirection; self.weather = weather
+        self.depthShift = depthShift
     }
 }
 

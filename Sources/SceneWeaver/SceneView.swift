@@ -10,19 +10,21 @@ public struct SceneView: View {
     private let showsSunPath: Bool
     private let ground: CGFloat
     private let paused: Bool
+    private let depthShift: CGFloat
     public static let arc: CGFloat = 128
     public static let dip: CGFloat = 24
 
     public init(schedule: DaylightSchedule, now: Date? = nil, weather: SceneWeather? = nil,
-                scene: SceneDefinition? = nil, showsSunPath: Bool = true, ground: CGFloat = 30, paused: Bool = false) {
+                scene: SceneDefinition? = nil, showsSunPath: Bool = true, ground: CGFloat = 30, paused: Bool = false,
+                depthShift: CGFloat = 0) {
         self.schedule = schedule; self.now = now; self.weather = weather; self.scene = scene
-        self.showsSunPath = showsSunPath; self.ground = ground; self.paused = paused
+        self.showsSunPath = showsSunPath; self.ground = ground; self.paused = paused; self.depthShift = depthShift
     }
 
     public var body: some View {
         TimelineView(.periodic(from: .now, by: 60)) { clock in
             SceneCanvas(schedule: schedule, now: now ?? clock.date, weather: weather,
-                        scene: scene, showsSunPath: showsSunPath, ground: ground, paused: paused)
+                        scene: scene, showsSunPath: showsSunPath, ground: ground, paused: paused, depthShift: depthShift)
         }
     }
 }
@@ -41,6 +43,9 @@ private struct SceneCanvas: View {
     /// How much dark ground lies under the horizon, including the spacing above
     /// any labels laid over the scene.
     var paused = false
+    /// Sideways displacement of the nearest layer, in points; farther layers
+    /// move in proportion to their depth. The host drives it, e.g. from tilt.
+    var depthShift: CGFloat = 0
     @State private var animationClock = SceneAnimationClock()
     var ground: CGFloat = 30
 
@@ -48,9 +53,10 @@ private struct SceneCanvas: View {
     public static let dip: CGFloat = 24
 
     public init(schedule: DaylightSchedule, now: Date = .now, weather: SceneWeather? = nil,
-                scene: SceneDefinition? = nil, showsSunPath: Bool = true, ground: CGFloat = 30, paused: Bool = false) {
+                scene: SceneDefinition? = nil, showsSunPath: Bool = true, ground: CGFloat = 30, paused: Bool = false,
+                depthShift: CGFloat = 0) {
         self.schedule = schedule; self.now = now; self.weather = weather; self.city = scene
-        self.showsSunPath = showsSunPath; self.ground = ground; self.paused = paused
+        self.showsSunPath = showsSunPath; self.ground = ground; self.paused = paused; self.depthShift = depthShift
     }
 
     public var body: some View {
@@ -207,7 +213,7 @@ private struct SceneCanvas: View {
             let position = showsSunPath && city?.illustrated != true
                 ? CGPoint(x: size.width * (layoutDirection == .rightToLeft ? 0.18 : 0.82), y: horizon - (city?.reservedHeight != nil ? (city?.reservedHeight?(size.width) ?? Self.arc) - 10 : 96))
                 : CGPoint(x: size.width * 0.80, y: top - 12)
-            moon(&context, position, opacity: Self.ramp(dark, 0.70, 0.92))
+            moon(&context, CGPoint(x: position.x + depthShift * Self.moonDepth, y: position.y), opacity: Self.ramp(dark, 0.70, 0.92))
         }
 
         // Let the sun itself show the day's progress. Its position comes from
@@ -218,7 +224,9 @@ private struct SceneCanvas: View {
         }
 
         if city?.wild != true { aircraft(&context, size, horizon: horizon, time: time, moment: moment) }
-        clouds(&context, size, top: top, time: time, moment: moment)
+        var cloudLayer = context
+        cloudLayer.translateBy(x: depthShift * Self.cloudDepth, y: 0)
+        clouds(&cloudLayer, size, top: top, time: time, moment: moment)
         if city?.wild != true { birds(&context, size, top: top, time: time, moment: moment) }
 
         // Blend the sky into a city-coloured ground *behind* the skyline, then
@@ -241,9 +249,13 @@ private struct SceneCanvas: View {
             overlay(&context, SceneFrame(size: size, horizon: horizon, time: time, date: now,
                                          darkness: dark, glow: moment.glow, motionEnabled: animated,
                                          contentColor: Self.color(Self.mix(cityPalette(skyLow: skyLow, darkness: dark, glow: moment.glow).landmark, skyLow, 0.16)),
-                                         layoutDirection: layoutDirection, weather: condition))
+                                         layoutDirection: layoutDirection, weather: condition, depthShift: depthShift))
         }
-        if animated, lights > 0.3, city?.wild != true { traffic(&context, size, horizon: horizon, time: time, strength: lights) }
+        if animated, lights > 0.3, city?.wild != true {
+            var road = context
+            road.translateBy(x: depthShift * Self.rooftopDepth, y: 0)
+            traffic(&road, size, horizon: horizon, time: time, strength: lights)
+        }
         precipitation(&context, size, horizon: horizon, time: time)
         if animated, condition == .thunderstorm { lightning(&context, size, horizon: horizon, time: time) }
     }
@@ -623,7 +635,8 @@ private struct SceneCanvas: View {
                       darkness: Double, glow: Double, lights: Double, time: Double) {
         if let render = city?.render {
             render(&context, SceneFrame(size: size, horizon: horizon, time: time, date: now,
-                                        darkness: darkness, glow: glow, motionEnabled: animated, layoutDirection: layoutDirection, weather: condition))
+                                        darkness: darkness, glow: glow, motionEnabled: animated, layoutDirection: layoutDirection,
+                                        weather: condition, depthShift: depthShift))
             return
         }
         let dark: RGB = (0.02, 0.03, 0.06)
@@ -648,6 +661,19 @@ private struct SceneCanvas: View {
             back = Self.hills(width: size.width, horizon: horizon)
         case .open:
             break
+        }
+        // The far row stands deep in the scene and moves least.
+        let backShift = depthShift * Self.backdropDepth
+        if backShift != 0 {
+            distantBuildings = Self.displaced(distantBuildings, by: backShift)
+            back = Path()
+            if city?.backdrop == .hills {
+                back = Self.hills(width: size.width, horizon: horizon).offsetBy(dx: backShift, dy: 0)
+            } else {
+                for rect in distantBuildings {
+                    back.addRect(CGRect(x: rect.minX, y: horizon - rect.height, width: rect.width, height: rect.height))
+                }
+            }
         }
         // The detailed artwork has more foreground detail than a city skyline.
         // Keep its distant hills recessed so they do not merge into that detail.
@@ -674,7 +700,9 @@ private struct SceneCanvas: View {
         }
 
         // Kept low where a city's own landmarks stand, so they are not lost among it.
-        let near = city?.wild == true ? [] : Self.buildings(width: size.width, seed: 70, low: city?.nearBuildingHeights.lowerBound ?? 10, high: city?.nearBuildingHeights.upperBound ?? 36)
+        let near = city?.wild == true ? [] : Self.displaced(
+            Self.buildings(width: size.width, seed: 70, low: city?.nearBuildingHeights.lowerBound ?? 10, high: city?.nearBuildingHeights.upperBound ?? 36),
+            by: depthShift * Self.rooftopDepth)
         var front = Path()
         for (index, rect) in near.enumerated() {
             let body = CGRect(x: rect.minX, y: horizon - rect.height, width: rect.width, height: rect.height)
@@ -686,10 +714,21 @@ private struct SceneCanvas: View {
             }
         }
         var pen = ScenePen(width: size.width, horizon: horizon, time: time, night: lights, clockDate: now,
-                             illustrated: city?.illustrated == true)
+                             illustrated: city?.illustrated == true, shift: depthShift)
         if let city {
             city.draw(&pen)
-            if layoutDirection == .rightToLeft && city.movesForRTL { pen.moveToLeftMargin() }
+            if layoutDirection == .rightToLeft && city.movesForRTL {
+                if depthShift == 0 {
+                    pen.moveToLeftMargin()
+                } else {
+                    // Find the margin from the scene at rest, so that the tilt
+                    // still shows once the skyline has moved across.
+                    var flat = ScenePen(width: size.width, horizon: horizon, time: time, night: lights, clockDate: now,
+                                        illustrated: city.illustrated)
+                    city.draw(&flat)
+                    if let offset = flat.leftMarginOffset { pen.move(by: offset) }
+                }
+            }
         }
         context.drawLayer { layer in
             layer.fill(front, with: .color(Self.color(palette.foreground)))
@@ -758,6 +797,25 @@ private struct SceneCanvas: View {
             context.fill(Path(ellipseIn: CGRect(x: x - (forward ? -2.6 : 2.6) - 1, y: y - 1, width: 2, height: 2)),
                          with: .color(Self.color(tone, 0.8 * strength)))
         }
+    }
+
+    // MARK: Depth
+
+    /// How near each built-in layer stands, as a share of `depthShift`.
+    static let moonDepth: CGFloat = 0.05
+    static let cloudDepth: CGFloat = 0.12
+    static let backdropDepth: CGFloat = 0.22
+    static let rooftopDepth: CGFloat = 0.48
+
+    /// A row of buildings moved sideways. A spare building is added past each
+    /// end, after the others so that their windows keep their places, and the
+    /// row still reaches both edges of the view.
+    private static func displaced(_ row: [CGRect], by shift: CGFloat) -> [CGRect] {
+        guard shift != 0, let first = row.first, let last = row.last else { return row }
+        let spare: CGFloat = 28
+        let ends = [CGRect(x: first.minX - spare, y: 0, width: spare, height: first.height),
+                    CGRect(x: last.maxX, y: 0, width: spare, height: last.height)]
+        return (row + ends).map { $0.offsetBy(dx: shift, dy: 0) }
     }
 
     /// A soft ridge for places that sit among hills.
