@@ -223,11 +223,11 @@ private struct SceneCanvas: View {
             if path.sunIsUp { sun(&context, at: path.point(path.travelled), horizon: horizon, time: time) }
         }
 
-        if city?.wild != true { aircraft(&context, size, horizon: horizon, time: time, moment: moment) }
+        if city?.wild != true, city?.showsAircraft != false { aircraft(&context, size, horizon: horizon, time: time, moment: moment) }
         var cloudLayer = context
         cloudLayer.translateBy(x: depthShift * Self.cloudDepth, y: 0)
         clouds(&cloudLayer, size, top: top, time: time, moment: moment)
-        if city?.wild != true { birds(&context, size, top: top, time: time, moment: moment) }
+        if city?.wild != true, city?.showsBirds != false { birds(&context, size, top: top, time: time, moment: moment) }
 
         // Blend the sky into a city-coloured ground *behind* the skyline, then
         // take that ground to black below the horizon. Drawing the landmarks

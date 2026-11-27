@@ -70,6 +70,9 @@ public struct SceneDefinition {
     public var overlay: Renderer?
     /// The built-in car lights along the horizon. Turn off where `render` draws its own roads.
     public var showsTraffic = true
+    /// The built-in aircraft and birds. Turn off where `render` draws its own.
+    public var showsAircraft = true
+    public var showsBirds = true
 
     public init(backdrop: SceneBackdrop = .open, wild: Bool = true,
                 ownMoon: Bool = false, illustrated: Bool = false, movesForRTL: Bool = false,
