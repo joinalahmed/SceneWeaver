@@ -55,6 +55,11 @@ function App() {
       </section>
       <SceneView
         project={url}
+        onReady={project => {
+          if (selected?.id.startsWith('component-')) {
+            setHour(project.settings.hour);setWeather(project.settings.weather);
+          }
+        }}
         hour={hour}
         weather={weather}
         paused={paused}

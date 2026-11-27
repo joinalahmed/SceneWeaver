@@ -15,6 +15,11 @@ public enum SceneCatalog {
         public let tags: [String]
         let city: Cityscape
         var projectResource: String? = nil
+        var componentSettings:SceneProject.Settings? {
+            guard let projectResource,let url=Bundle.module.url(forResource:projectResource,withExtension:"json"),
+                  let data=try? Data(contentsOf:url),let project=try? SceneProject(data:data)else{return nil}
+            return project.settings
+        }
         public var definition: SceneDefinition {
             if let projectResource,
                let url=Bundle.module.url(forResource:projectResource,withExtension:"json"),

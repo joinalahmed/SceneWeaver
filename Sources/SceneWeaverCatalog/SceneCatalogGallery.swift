@@ -7,7 +7,7 @@ public struct SceneCatalogGallery: View {
     @State private var category = "All categories"
     @State private var selected = "component-sky"
     @State private var componentMode = true
-    @State private var hour = 18.6
+    @State private var hour = 17.5
     @State private var weather = SceneWeather.clear
     public init() {}
     private var entries:[SceneCatalog.Item] { componentMode ? SceneCatalog.components : SceneCatalog.scenes }
@@ -39,18 +39,22 @@ public struct SceneCatalogGallery: View {
             ScrollView { LazyVStack(alignment:.leading,spacing:4) { ForEach(filtered){scene in
                 Button { selected=scene.id } label: { HStack { Text(scene.name);Spacer();Text(scene.category).font(.caption).foregroundStyle(.secondary) }.padding(8) }.buttonStyle(.plain)
             } } }
-        }.padding()
+        }.padding().onChange(of:selected) { _, id in
+            if let settings=SceneCatalog.scene(id:id)?.componentSettings {
+                hour=settings.hour;weather=SceneWeather(rawValue:settings.weather) ?? .clear
+            }
+        }
     }
 }
 
 /// A single optional catalog scene, ready to embed in a SwiftUI card or header.
 public struct SceneCatalogView:View {
-    private let id:String;private let hour:Double;private let weather:SceneWeather;private let paused:Bool
-    public init(id:String,hour:Double=18.6,weather:SceneWeather = .clear,paused:Bool=false){self.id=id;self.hour=hour;self.weather=weather;self.paused=paused}
+    private let id:String;private let hour:Double?;private let weather:SceneWeather?;private let paused:Bool
+    public init(id:String,hour:Double?=nil,weather:SceneWeather? = nil,paused:Bool=false){self.id=id;self.hour=hour;self.weather=weather;self.paused=paused}
     public var body:some View {
         if let item=SceneCatalog.scene(id:id){
             let start=Calendar.current.startOfDay(for:.now)
-            SceneView(schedule:DaylightSchedule(orderedDates:[5,6,12,15,18,19.5].map{start.addingTimeInterval($0*3600)}),now:start.addingTimeInterval(hour*3600),weather:weather,scene:item.definition,ground:36,paused:paused)
+            SceneView(schedule:DaylightSchedule(orderedDates:[5,6,12,15,18,19.5].map{start.addingTimeInterval($0*3600)}),now:start.addingTimeInterval((hour ?? item.componentSettings?.hour ?? 18.6)*3600),weather:weather ?? SceneWeather(rawValue:item.componentSettings?.weather ?? "clear"),scene:item.definition,ground:36,paused:paused)
         }
     }
 }
