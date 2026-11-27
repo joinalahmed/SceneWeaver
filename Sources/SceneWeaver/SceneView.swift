@@ -61,7 +61,7 @@ private struct SceneCanvas: View {
 
     public var body: some View {
         let moment = sky()
-        TimelineView(.animation(minimumInterval: 1.0 / 24, paused: reduceMotion || paused)) { timeline in
+        TimelineView(.animation(minimumInterval: 1.0 / max(1, city?.framesPerSecond ?? 24), paused: reduceMotion || paused)) { timeline in
             Canvas { context, size in
                 draw(&context, size, time: animationClock.time(at: timeline.date, playing: !paused && !reduceMotion, reduced: reduceMotion), moment: moment)
             }

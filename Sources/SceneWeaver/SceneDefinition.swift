@@ -73,6 +73,8 @@ public struct SceneDefinition {
     /// The built-in aircraft and birds. Turn off where `render` draws its own.
     public var showsAircraft = true
     public var showsBirds = true
+    /// How often the scene is drawn again while it moves. Raise it where the host moves the scene itself, as with tilt.
+    public var framesPerSecond: Double = 24
 
     public init(backdrop: SceneBackdrop = .open, wild: Bool = true,
                 ownMoon: Bool = false, illustrated: Bool = false, movesForRTL: Bool = false,
