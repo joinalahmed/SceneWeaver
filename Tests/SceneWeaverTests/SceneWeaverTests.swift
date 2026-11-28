@@ -25,25 +25,15 @@ final class SceneWeaverTests: XCTestCase {
         XCTAssertFalse(DaylightSchedule(orderedDates: Array(repeating: dates[0], count: 6)).isValid)
     }
 
-    func testDepthMovesNearPartsFurtherAndLeavesAFlatSceneAlone() {
-        func drawn(shift: CGFloat) -> ScenePen {
-            var pen = ScenePen(width: 400, horizon: 200, shift: shift)
-            pen.at(100)
-            pen.depth = 0.5; pen.block(0, 20, 40)
-            pen.depth = 1.5; pen.disc(0, 30, 4, .light); pen.beacon(0, 60)
-            pen.depth = 1; pen.shape([(-5, 0), (5, 0), (0, 20)])
-            return pen
-        }
-        let flat = drawn(shift: 0), moved = drawn(shift: 10)
-        XCTAssertEqual(moved.solids[0].boundingRect.minX - flat.solids[0].boundingRect.minX, 5, accuracy: 0.001)
-        XCTAssertEqual(moved.lights[0].boundingRect.minX - flat.lights[0].boundingRect.minX, 15, accuracy: 0.001)
-        XCTAssertEqual(moved.beacons[0].x - flat.beacons[0].x, 15, accuracy: 0.001)
-        XCTAssertEqual(moved.solids[1].boundingRect.minX - flat.solids[1].boundingRect.minX, 10, accuracy: 0.001)
-        XCTAssertEqual(moved.solids[0].boundingRect.minY, flat.solids[0].boundingRect.minY, accuracy: 0.001)
-        // The margin is measured at rest, so a tilted skyline keeps its displacement.
-        var placed = moved
-        placed.move(by: flat.leftMarginOffset ?? 0)
-        XCTAssertEqual(placed.solids[0].boundingRect.minX, 8 + 5, accuracy: 0.001)
+    func testASceneIsFlatAndFullyFurnishedUntilItsHostSaysOtherwise() {
+        let frame = SceneFrame(size: .zero, horizon: 0, time: 0, date: .distantPast, darkness: 0, glow: 0, motionEnabled: true)
+        XCTAssertEqual(frame.depthShift, 0)
+        XCTAssertNil(frame.sunPosition)
+        let scene = SceneDefinition(draw: { _ in })
+        XCTAssertTrue(scene.showsTraffic)
+        XCTAssertTrue(scene.showsAircraft)
+        XCTAssertTrue(scene.showsBirds)
+        XCTAssertEqual(scene.framesPerSecond, 24)
     }
 
     func testTransformsKeepMaterialsAndLightsRegistered() {

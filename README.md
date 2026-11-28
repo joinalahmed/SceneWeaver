@@ -142,6 +142,16 @@ The default 12% overscan fills both sides during subtle depth motion. Give all p
 
 For more control, `SceneDefinition.render` replaces the geometry renderer and `overlay` draws above it, before precipitation. Both receive a `SceneFrame` with dimensions, horizon, time, displayed date, darkness and sunset glow. The host owns artwork decoding and caching; load images outside per-frame drawing callbacks.
 
+## Depth and custom renderers
+
+Pass `depthShift` to `SceneView` to move the scene's layers against each other, for instance from the device's tilt: the moon and clouds hardly move, the backdrop and rooftops more, the landmarks most. Zero, the default, draws a flat scene.
+
+```swift
+SceneView(schedule: schedule, scene: scene, depthShift: lean * 13)
+```
+
+A scene that draws itself through `render` receives the same value as `frame.depthShift`, with the sky's colour at the horizon (`frame.horizonRGB`) and the sun's place while it is up (`frame.sunPosition`), so it can light its own drawing from the scene's sky. Such a scene can also turn off the built-in `showsTraffic`, `showsAircraft` and `showsBirds`, and ask for a higher `framesPerSecond` while it moves.
+
 ## Examples and development
 
 [Examples/SceneWeaverGallery.swift](Examples/SceneWeaverGallery.swift) includes a coastal town and a composition using three content layers. It creates and caches its transparent illustration plates from code, so no image downloads are required. Copy the view into a SwiftUI app linked to the package, or open the package in Xcode to use its preview.

@@ -716,21 +716,13 @@ private struct SceneCanvas: View {
             }
         }
         var pen = ScenePen(width: size.width, horizon: horizon, time: time, night: lights, clockDate: now,
-                             illustrated: city?.illustrated == true, shift: depthShift)
+                             illustrated: city?.illustrated == true)
         if let city {
             city.draw(&pen)
-            if layoutDirection == .rightToLeft && city.movesForRTL {
-                if depthShift == 0 {
-                    pen.moveToLeftMargin()
-                } else {
-                    // Find the margin from the scene at rest, so that the tilt
-                    // still shows once the skyline has moved across.
-                    var flat = ScenePen(width: size.width, horizon: horizon, time: time, night: lights, clockDate: now,
-                                        illustrated: city.illustrated)
-                    city.draw(&flat)
-                    if let offset = flat.leftMarginOffset { pen.move(by: offset) }
-                }
-            }
+            if layoutDirection == .rightToLeft && city.movesForRTL { pen.moveToLeftMargin() }
+            // The landmarks stand in front of the rooftops: they move furthest. The margin is
+            // found first, from the scene at rest, so the tilt still shows once it has moved across.
+            if depthShift != 0 { pen.apply(CGAffineTransform(translationX: depthShift * Self.landmarkDepth, y: 0)) }
         }
         context.drawLayer { layer in
             layer.fill(front, with: .color(Self.color(palette.foreground)))
@@ -808,6 +800,7 @@ private struct SceneCanvas: View {
     static let cloudDepth: CGFloat = 0.12
     static let backdropDepth: CGFloat = 0.22
     static let rooftopDepth: CGFloat = 0.48
+    static let landmarkDepth: CGFloat = 0.7
 
     /// A row of buildings moved sideways. A spare building is added past each
     /// end, after the others so that their windows keep their places, and the
